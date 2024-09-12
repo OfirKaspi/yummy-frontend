@@ -3,6 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import DetailsSection from "./DetailsSection";
+import { Separator } from "@/components/ui/separator";
+import CuisinesSection from "./CuisinesSection";
 
 const formSchema = z.object({
     restaurantName: z.string({
@@ -18,7 +20,7 @@ const formSchema = z.object({
         required_error: "Delivery price is required",
         invalid_type_error: "Must be a valid number",
     }),
-    cousines: z.array(z.string()).nonempty({
+    cuisines: z.array(z.string()).nonempty({
         message: "Must select at least one item"
     }),
     menuItems: z.array(
@@ -41,7 +43,7 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
     const form = useForm<restaurantFormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            cousines: [],
+            cuisines: [],
             menuItems: [{ name: "", price: 0 }]
         }
     })
@@ -57,6 +59,8 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
                 className="space-y-8 bg-gray-50 p-10 rounded-lg"
             >
                 <DetailsSection />
+                <Separator />
+                <CuisinesSection />
             </form>
         </Form>
     )
