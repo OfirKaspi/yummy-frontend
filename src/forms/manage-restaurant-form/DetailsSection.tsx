@@ -68,7 +68,7 @@ const DetailsSection = () => {
                                 step="1"
                                 value={field.value ?? ""}
                                 placeholder="30"
-                                className="bg-white"
+                                className="bg-white no-arrows"
                             />
                         </FormControl>
                         <FormMessage />
@@ -88,7 +88,7 @@ const DetailsSection = () => {
                                 step="0.01"
                                 value={field.value ?? ""}
                                 placeholder="1.50"
-                                className="bg-white"
+                                className="bg-white no-arrows"
                             />
                         </FormControl>
                         <FormMessage />
