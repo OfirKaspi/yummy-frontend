@@ -8,7 +8,7 @@ const DetailsSection = () => {
 
     return (
         <div className="space-y-2">
-            <div>
+            <div className="space-y-2">
                 <h2 className="text-2xl font-bold">Details</h2>
                 <FormDescription>
                     Enter the details about your restaurant
@@ -27,7 +27,7 @@ const DetailsSection = () => {
                     </FormItem>
                 )}
             />
-            <div className="flex gap-4">
+            <div className="space-y-2 sm:space-y-0 sm:flex sm:gap-4">
                 <FormField
                     control={control}
                     name="city"
@@ -61,8 +61,15 @@ const DetailsSection = () => {
                 render={({ field }) => (
                     <FormItem>
                         <FormLabel>Estimated Delivery Time (minutes)</FormLabel>
-                        <FormControl className="max-w-[25%]">
-                            <Input {...field} className="bg-white" placeholder="30" />
+                        <FormControl className="w-[5rem]">
+                            <Input
+                                {...field}
+                                type="number"
+                                step="1"
+                                value={field.value ?? ""}
+                                placeholder="30"
+                                className="bg-white"
+                            />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -74,8 +81,15 @@ const DetailsSection = () => {
                 render={({ field }) => (
                     <FormItem >
                         <FormLabel>Delivery Price ($)</FormLabel>
-                        <FormControl className="max-w-[25%]">
-                            <Input {...field} className="bg-white" placeholder="1.50$" />
+                        <FormControl className="w-[5rem]">
+                            <Input
+                                {...field}
+                                type="number"
+                                step="0.01"
+                                value={field.value ?? ""}
+                                placeholder="1.50"
+                                className="bg-white"
+                            />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
