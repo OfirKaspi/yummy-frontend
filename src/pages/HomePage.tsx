@@ -17,7 +17,7 @@ const HomePage = () => {
                         Order takeaway even faster!
                     </span>
                     <span>
-                        Download the Yummy App for faster ordering and personalised recommendations
+                        Download the Yummy App for faster ordering and personalized recommendations
                     </span>
                     <img src={appDownloadImg} alt="app-downloading-img" />
                 </div>
