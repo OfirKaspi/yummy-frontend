@@ -1,10 +1,37 @@
 import axios from "axios"
 import { useAuth0 } from "@auth0/auth0-react"
-import { useMutation } from "react-query"
+import { useMutation, useQuery } from "react-query"
 import { toast } from "sonner"
 import { Restaurant } from "@/types"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
+export const useGetMyRestaurant = () => {
+    const { getAccessTokenSilently } = useAuth0()
+
+    const getMyRestaurantRequest = async (): Promise<Restaurant> => {
+        try {
+            const accessToken = await getAccessTokenSilently()
+            const response = await axios.get(`${API_BASE_URL}/api/my/restaurant`, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            })
+
+            return response.data
+        } catch (error) {
+            console.error("Error getting restaurant:", error)
+            throw new Error("Failed to get restaurant")
+        }
+    }
+
+    const { data: restaurant, isLoading } = useQuery(
+        "fetchMyRestaurant",
+        getMyRestaurantRequest
+    )
+
+    return { restaurant, isLoading }
+}
 
 export const useCreateMyRestaurant = () => {
     const { getAccessTokenSilently } = useAuth0()
