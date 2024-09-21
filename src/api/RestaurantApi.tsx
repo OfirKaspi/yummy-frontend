@@ -12,6 +12,7 @@ export const useSearchRestaurant = (searchState: SearchState, city?: string) => 
         params.set("searchQuery", searchState.searchQuery)
         params.set("page", searchState.page.toString())
         params.set("selectedCuisines", searchState.selectedCuisines.join(","))
+        params.set("sortOption", searchState.sortOption)
 
         try {
             const response = await axios.get(
