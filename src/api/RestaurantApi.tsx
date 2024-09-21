@@ -10,6 +10,7 @@ export const useSearchRestaurant = (searchState: SearchState, city?: string) => 
     const createSearchRequest = async (): Promise<RestaurantSearchResponse> => {
         const params = new URLSearchParams()
         params.set("searchQuery", searchState.searchQuery)
+        params.set("page", searchState.page.toString())
 
         try {
             const response = await axios.get(
