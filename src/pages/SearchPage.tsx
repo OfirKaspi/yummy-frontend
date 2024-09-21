@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 import { Restaurant } from "@/types"
@@ -28,8 +28,16 @@ const SearchPage = () => {
     })
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
-
+    const [showLoader, setShowLoader] = useState<boolean>(true)
     const { results, isLoading } = useSearchRestaurant(searchState, city)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowLoader(false)
+        }, 500)
+
+        return () => clearTimeout(timer)
+    }, [])
 
     const setSortOption = (sortOption: string) => {
         setSearchState((prevState) => ({
@@ -71,7 +79,7 @@ const SearchPage = () => {
     }
 
 
-    if (isLoading) {
+    if (isLoading || showLoader) {
         return <Loader />
     }
 
