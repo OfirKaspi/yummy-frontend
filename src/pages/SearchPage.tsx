@@ -1,16 +1,40 @@
+import { useState } from "react"
 import { useParams } from "react-router-dom"
 
+import { Restaurant } from "@/types"
 import { useSearchRestaurant } from "@/api/RestaurantApi"
-import LoadingButton from "@/components/LoadingButton"
 import SearchResultsInfo from "@/components/SearchResultsInfo"
 import SearchResultsCard from "@/components/SearchResultsCard"
+import SearchBar, { SearchForm } from "@/components/SearchBar"
+import Loader from "@/components/ui/Loader"
+
+export type SearchState = {
+    searchQuery: string
+}
 
 const SearchPage = () => {
     const { city } = useParams()
-    const { results, isLoading } = useSearchRestaurant(city)
+    const [searchState, setSearchState] = useState<SearchState>({
+        searchQuery: "",
+    })
+    const { results, isLoading } = useSearchRestaurant(searchState, city)
+
+    const setSearchQuery = (searchFormData: SearchForm) => {
+        setSearchState((prevState) => ({
+            ...prevState,
+            searchQuery: searchFormData.searchQuery
+        }))
+    }
+
+    const resetSearch = () => {
+        setSearchState((prevState) => ({
+            ...prevState,
+            searchQuery: ""
+        }))
+    }
 
     if (isLoading) {
-        return <LoadingButton />
+        return <Loader />
     }
 
     if (!results?.data || !city) {
@@ -23,8 +47,14 @@ const SearchPage = () => {
                 insert cuisines here
             </div>
             <div id="main-content" className="flex flex-col gap-5">
+                <SearchBar
+                    searchQuery={searchState.searchQuery}
+                    onSubmit={setSearchQuery}
+                    placeHolder="Search by Cuisine or Restaurant Name"
+                    onReset={resetSearch}
+                />
                 <SearchResultsInfo total={results.pagination.total} city={city} />
-                {results.data.map((restaurant) => (
+                {results.data.map((restaurant: Restaurant) => (
                     <SearchResultsCard restaurant={restaurant} />
                 ))}
             </div>
