@@ -17,7 +17,7 @@ const SORT_OPTIONS = [
     },
     {
         label: "Estimated delivery time",
-        value: "estimatedDeliveryPrice"
+        value: "estimatedDeliveryTime"
     },
 ]
 
