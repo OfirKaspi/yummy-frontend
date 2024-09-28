@@ -5,10 +5,11 @@ import MenuItem from "@/components/MenuItem"
 import RestaurantInfo from "@/components/RestaurantInfo"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import Loader from "@/components/ui/Loader"
-import { useState } from "react"
-import { Card } from "@/components/ui/card"
+import { useEffect, useState } from "react"
+import { Card, CardFooter } from "@/components/ui/card"
 import OrderSummary from "@/components/OrderSummary"
 import { MenuItem as MenuItemType } from "@/types"
+import CheckoutButton from "@/components/CheckoutButton"
 
 export type CartItem = {
     _id: string
@@ -17,11 +18,26 @@ export type CartItem = {
     quantity: number
 }
 
+const loadCartFromStorage = (restaurantId: string): CartItem[] => {
+    const storedCart = sessionStorage.getItem(`cartItems-${restaurantId}`)
+    return storedCart ? JSON.parse(storedCart) : []
+}
+
+const saveCartToStorage = (restaurantId: string, cartItems: CartItem[]) => {
+    sessionStorage.setItem(`cartItems-${restaurantId}`, JSON.stringify(cartItems))
+}
+
 const RestaurantDetailsPage = () => {
     const { restaurantId } = useParams()
     const { restaurant, isLoading } = useGetRestaurant(restaurantId)
+    const [cartItems, setCartItems] = useState<CartItem[]>(() => loadCartFromStorage(restaurantId || ''))
 
-    const [cartItems, setCartItems] = useState<CartItem[]>([])
+    useEffect(() => {
+        if (restaurantId) {
+            saveCartToStorage(restaurantId, cartItems)
+        }
+    }, [cartItems, restaurantId])
+
     const addToCart = (menuItem: MenuItemType) => {
         setCartItems((prevCartItems) => {
             const existingCartItem = prevCartItems.find((cartItem) => cartItem._id === menuItem._id)
@@ -92,6 +108,9 @@ const RestaurantDetailsPage = () => {
                             removeFromCart={removeFromCart}
                             adjustItemQuantity={adjustItemQuantity}
                         />
+                        <CardFooter>
+                            <CheckoutButton />
+                        </CardFooter>
                     </Card>
                 </div>
             </div>
