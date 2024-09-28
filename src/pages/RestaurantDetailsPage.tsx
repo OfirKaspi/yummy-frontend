@@ -46,6 +46,15 @@ const RestaurantDetailsPage = () => {
         })
     }
 
+    const removeFromCart = (cartItem: CartItem) => {
+        setCartItems((prevCartItem) => {
+            const updatedCartItems = prevCartItem.filter(
+                (item) => cartItem._id !== item._id
+            )
+            return updatedCartItems
+        })
+    }
+
     if (isLoading || !restaurant) {
         return <Loader />
     }
@@ -65,7 +74,7 @@ const RestaurantDetailsPage = () => {
                 </div>
                 <div>
                     <Card className="md:sticky md:top-5">
-                        <OrderSummary restaurant={restaurant} cartItems={cartItems} />
+                        <OrderSummary restaurant={restaurant} cartItems={cartItems} removeFromCart={removeFromCart} />
                     </Card>
                 </div>
             </div>
