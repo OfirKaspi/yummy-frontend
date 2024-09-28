@@ -3,15 +3,16 @@ import { Restaurant } from "@/types"
 import { CardContent, CardHeader, CardTitle } from "./ui/card"
 import { Badge } from "./ui/badge"
 import { Separator } from "./ui/separator"
-import { Trash } from "lucide-react"
+import { Minus, Plus, Trash } from "lucide-react"
 
 type Props = {
     restaurant: Restaurant
     cartItems: CartItem[]
     removeFromCart: (cartItem: CartItem) => void
+    adjustItemQuantity: (cartItem: CartItem, newQuantity: number) => void
 }
 
-const OrderSummary = ({ cartItems, restaurant, removeFromCart }: Props) => {
+const OrderSummary = ({ cartItems, restaurant, removeFromCart, adjustItemQuantity }: Props) => {
     const getTotalCost = () => {
         const totalInCents = cartItems.reduce((total, cartItem) =>
             total + cartItem.price * cartItem.quantity,
@@ -32,13 +33,25 @@ const OrderSummary = ({ cartItems, restaurant, removeFromCart }: Props) => {
             <CardContent className="flex flex-col gap-5">
                 {cartItems.map((item) => (
                     <div className="flex justify-between">
-                        <span>
-                            <Badge variant="outline" className="mr-2">
+                        <span className="flex items-center gap-2">
+                            <Plus
+                                className="cursor-pointer"
+                                color="green"
+                                size={20}
+                                onClick={() => adjustItemQuantity(item, item.quantity + 1)}
+                            />
+                            <Badge variant="outline">
                                 {item.quantity}
                             </Badge>
+                            <Minus
+                                className="cursor-pointer"
+                                color="red"
+                                size={20}
+                                onClick={() => adjustItemQuantity(item, item.quantity - 1)}
+                            />
                             {item.name}
                         </span>
-                        <span className="flex items-center gap-1">
+                        <span className="flex items-center gap-2">
                             <Trash
                                 className="cursor-pointer"
                                 color="red"

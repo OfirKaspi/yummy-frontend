@@ -22,19 +22,20 @@ const RestaurantDetailsPage = () => {
     const { restaurant, isLoading } = useGetRestaurant(restaurantId)
 
     const [cartItems, setCartItems] = useState<CartItem[]>([])
-
     const addToCart = (menuItem: MenuItemType) => {
         setCartItems((prevCartItems) => {
             const existingCartItem = prevCartItems.find((cartItem) => cartItem._id === menuItem._id)
-            let updatedCartItems
+
             if (existingCartItem) {
-                updatedCartItems = prevCartItems.map((cartItem) => cartItem._id === existingCartItem._id
-                    ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                    : cartItem
+                return prevCartItems.map((cartItem) =>
+                    cartItem._id === existingCartItem._id
+                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                        : cartItem
                 )
             } else {
-                updatedCartItems = [
-                    ...prevCartItems, {
+                return [
+                    ...prevCartItems,
+                    {
                         _id: menuItem._id,
                         name: menuItem.name,
                         price: menuItem.price,
@@ -42,17 +43,28 @@ const RestaurantDetailsPage = () => {
                     }
                 ]
             }
-            return updatedCartItems
         })
     }
 
-    const removeFromCart = (cartItem: CartItem) => {
-        setCartItems((prevCartItem) => {
-            const updatedCartItems = prevCartItem.filter(
-                (item) => cartItem._id !== item._id
+    const adjustItemQuantity = (cartItem: CartItem, newQuantity: number) => {
+        if (newQuantity === 0) {
+            removeFromCart(cartItem)
+            return
+        }
+
+        setCartItems((prevCartItems) =>
+            prevCartItems.map((item) =>
+                item._id === cartItem._id
+                    ? { ...item, quantity: newQuantity }
+                    : item
             )
-            return updatedCartItems
-        })
+        )
+    }
+
+    const removeFromCart = (cartItem: CartItem) => {
+        setCartItems((prevCartItems) =>
+            prevCartItems.filter((item) => item._id !== cartItem._id)
+        )
     }
 
     if (isLoading || !restaurant) {
@@ -74,7 +86,12 @@ const RestaurantDetailsPage = () => {
                 </div>
                 <div>
                     <Card className="md:sticky md:top-5">
-                        <OrderSummary restaurant={restaurant} cartItems={cartItems} removeFromCart={removeFromCart} />
+                        <OrderSummary
+                            restaurant={restaurant}
+                            cartItems={cartItems}
+                            removeFromCart={removeFromCart}
+                            adjustItemQuantity={adjustItemQuantity}
+                        />
                     </Card>
                 </div>
             </div>
