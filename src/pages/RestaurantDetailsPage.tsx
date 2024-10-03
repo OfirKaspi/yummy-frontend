@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom"
-
-import { useGetRestaurant } from "@/api/RestaurantApi"
-import MenuItem from "@/components/MenuItem"
-import RestaurantInfo from "@/components/RestaurantInfo"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
-import Loader from "@/components/ui/Loader"
 import { useEffect, useState } from "react"
-import { Card, CardFooter } from "@/components/ui/card"
-import OrderSummary from "@/components/OrderSummary"
+
 import { MenuItem as MenuItemType } from "@/types"
+
+import Loader from "@/components/ui/Loader"
+import { Card, CardFooter } from "@/components/ui/card"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+
+import MenuItem from "@/components/MenuItem"
+import { useGetRestaurant } from "@/api/RestaurantApi"
+import RestaurantInfo from "@/components/RestaurantInfo"
+import OrderSummary from "@/components/OrderSummary"
 import CheckoutButton from "@/components/CheckoutButton"
 
 export type CartItem = {

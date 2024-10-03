@@ -1,16 +1,21 @@
+import { useEffect, useRef } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useCreateMyUser } from "@/api/MyUserApi"
 import { useAuth0 } from "@auth0/auth0-react"
-import { useEffect, useRef } from "react"
-import { useNavigate } from "react-router-dom"
+
+import Loader from "@/components/ui/Loader"
 
 const AuthCallbackPage = () => {
     const navigate = useNavigate()
+    const location = useLocation()
     const { user } = useAuth0()
     const { createUser } = useCreateMyUser()
 
     const hasCreatedUser = useRef(false)
 
     useEffect(() => {
+        const returnTo = location.state?.returnTo || "/"
+
         if (user?.sub && user?.email && !hasCreatedUser.current) {
             createUser({
                 auth0Id: user.sub,
@@ -19,12 +24,12 @@ const AuthCallbackPage = () => {
             hasCreatedUser.current = true
         }
 
-        navigate("/")
-    }, [createUser, navigate, user])
+        navigate(returnTo)
+    }, [createUser, navigate, user, location])
 
 
     return (
-        <div>Loading...</div>
+        <Loader isFullScreen />
     )
 }
 
