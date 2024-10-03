@@ -11,9 +11,10 @@ import LoadingButton from "./LoadingButton"
 type Props = {
     onCheckout: (userFormData: UserFormData) => void
     disabled: boolean
+    isLoading: boolean
 }
 
-const CheckoutButton = ({ disabled, onCheckout }: Props) => {
+const CheckoutButton = ({ disabled, onCheckout, isLoading }: Props) => {
     const { isAuthenticated, isLoading: isAuthLoading, loginWithRedirect } = useAuth0()
     const { pathname } = useLocation()
     const { currentUser, isLoading: isGetUserLoading } = useGetMyUser()
@@ -26,7 +27,7 @@ const CheckoutButton = ({ disabled, onCheckout }: Props) => {
         })
     }
 
-    if (isAuthLoading || !currentUser) {
+    if (isAuthLoading || !currentUser || isLoading) {
         return <LoadingButton isFull />
     }
 
