@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import { MenuItem as MenuItemType } from "@/types"
+import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
 
 import Loader from "@/components/ui/Loader"
 import { Card, CardFooter } from "@/components/ui/card"
@@ -85,6 +86,11 @@ const RestaurantDetailsPage = () => {
         )
     }
 
+    const onCheckout = (userFormData: UserFormData) => {
+        console.log("userFormData", userFormData)
+
+    }
+
     if (isLoading || !restaurant) {
         return <Loader />
     }
@@ -111,7 +117,10 @@ const RestaurantDetailsPage = () => {
                             adjustItemQuantity={adjustItemQuantity}
                         />
                         <CardFooter>
-                            <CheckoutButton />
+                            <CheckoutButton
+                                disabled={cartItems.length === 0}
+                                onCheckout={onCheckout}
+                            />
                         </CardFooter>
                     </Card>
                 </div>
