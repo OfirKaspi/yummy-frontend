@@ -1,4 +1,5 @@
 // Maybe later move to a DB
+import cuisinePicExm from '@/assets/cuisinePicExm.jpg'
 
 export const cuisineList = [
     "American",
@@ -28,3 +29,32 @@ export const cuisineList = [
     "Tapas",
     "Vegan",
 ]
+
+export const cuisineListWithImgs = [
+    { name: "American", img: cuisinePicExm },
+    { name: "BBQ", img: cuisinePicExm },
+    { name: "Breakfast", img: cuisinePicExm },
+    { name: "Burgers", img: cuisinePicExm },
+    { name: "Cafe", img: cuisinePicExm },
+    { name: "Chinese", img: cuisinePicExm },
+    { name: "Desserts", img: cuisinePicExm },
+    { name: "French", img: cuisinePicExm },
+    { name: "Greek", img: cuisinePicExm },
+    { name: "Healthy", img: cuisinePicExm },
+    { name: "Indian", img: cuisinePicExm },
+    { name: "Italian", img: cuisinePicExm },
+    { name: "Japanese", img: cuisinePicExm },
+    { name: "Mexican", img: cuisinePicExm },
+    { name: "Noodles", img: cuisinePicExm },
+    { name: "Organic", img: cuisinePicExm },
+    { name: "Pasta", img: cuisinePicExm },
+    { name: "Pizza", img: cuisinePicExm },
+    { name: "Salads", img: cuisinePicExm },
+    { name: "Seafood", img: cuisinePicExm },
+    { name: "Spanish", img: cuisinePicExm },
+    { name: "Steak", img: cuisinePicExm },
+    { name: "Sushi", img: cuisinePicExm },
+    { name: "Tacos", img: cuisinePicExm },
+    { name: "Tapas", img: cuisinePicExm },
+    { name: "Vegan", img: cuisinePicExm }
+];

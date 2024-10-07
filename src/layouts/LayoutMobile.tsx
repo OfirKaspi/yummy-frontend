@@ -5,7 +5,7 @@ type Props = {
 
 const LayoutMobile = ({ children }: Props) => {
     return (
-        <div className="p-5">
+        <div className="p-5 relative">
             {children}
         </div>
     )
