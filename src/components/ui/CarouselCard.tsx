@@ -7,7 +7,7 @@ type Props = {
 
 const CarouselCard = ({ img, name }: Props) => {
     return (
-        <div className="flex items-center rounded-full shadow gap-3 w-fit p-2">
+        <div className="flex items-center rounded-full shadow-slate-200 shadow-lg gap-3 mb-4 w-fit p-2">
             {/* <Skeleton className="h-12 w-12 rounded-full" /> */}
             <div className="h-12 w-12 rounded-full overflow-hidden"> {/* Create a container for the image */}
                 <img

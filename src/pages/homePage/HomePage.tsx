@@ -19,7 +19,7 @@ const HomePage = () => {
     return (
         <>
             {/* {isMobile && <HomePageMobile handleSearchSubmit={handleSearchSubmit} />} */}
-            {isMobile && <HomePageMobile />}
+            {isMobile && <HomePageMobile handleSearchSubmit={handleSearchSubmit} />}
             {isDesktop && <HomePageDesktop handleSearchSubmit={handleSearchSubmit} />}
         </>
     )

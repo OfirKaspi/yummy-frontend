@@ -1,10 +1,10 @@
 import { ChevronRight } from "lucide-react"
 
 type Props = {
-    isOpen: boolean
+    isOpen?: boolean
 }
 
-const ExpandBtn = ({ isOpen }: Props) => {
+const ExpandBtn = ({ isOpen = false }: Props) => {
     return (
         <span className="flex items-center gap-1">
             {isOpen ? 'See Less' : 'See All'}

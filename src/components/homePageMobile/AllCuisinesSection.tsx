@@ -13,9 +13,9 @@ const AllCuisinesSection = () => {
     }
 
     return (
-        <div>
+        <div className="space-y-3">
             <div className="flex items-center justify-between">
-                <span className="text-xl">All Categories</span>
+                <h2 className="text-xl">All Cuisines</h2>
                 <div onClick={handleSeeAll}>
                     <ExpandBtn isOpen={isOpen} />
                 </div>
@@ -32,7 +32,7 @@ const AllCuisinesSection = () => {
                     ))}
                 </div>
             ) : (
-                <div className="flex gap-3 overflow-x-auto whitespace-nowrap py-3 px-4 -mx-4">
+                <div className="flex gap-3 overflow-x-auto whitespace-nowrap px-4 -mx-4">
                     <CarouselCard img={cuisineListWithImgs[0].img} name={"All"} />
                     {cuisineListWithImgs.map((cuisine) => (
                         <CarouselCard img={cuisine.img} name={cuisine.name} />
