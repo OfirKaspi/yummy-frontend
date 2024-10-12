@@ -33,11 +33,11 @@ const SearchSection = ({ searchQuery, onSubmit, placeHolder = "Search dishes, re
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className={`bg-slate-100 shadow-lg rounded-lg flex items-center py-3 pl-5 
+                className={`bg-slate-100 shadow-lg rounded-lg flex items-center p-3
                     ${form.formState.errors.searchQuery && "border-red-500"}`}
             >
-                <button type="submit">
-                    <Search className="text-gray-400" />
+                <button type="submit" className="text-gray-400 px-2 cursor-pointer" >
+                    <Search />
                 </button>
                 <FormField
                     control={form.control}
@@ -47,7 +47,7 @@ const SearchSection = ({ searchQuery, onSubmit, placeHolder = "Search dishes, re
                             <FormControl>
                                 <Input
                                     {...field}
-                                    className="border-none shadow-none text-gray-600 text-md focus-visible:ring-0"
+                                    className="border-none text-gray-600 text-md focus-visible:ring-0"
                                     placeholder={placeHolder}
                                 />
                             </FormControl>

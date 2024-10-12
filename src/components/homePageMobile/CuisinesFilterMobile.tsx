@@ -1,11 +1,12 @@
+
 import { useState } from "react"
 
-import { cuisineListWithImgs } from "@/config/restaurant-options-config"
+import { allCuisinesPropertyCloudinary, cuisineListWithImgsCloudinary } from "@/config/restaurant-options-config"
 
 import ExpandBtn from "./ExpandBtn"
 import CarouselCard from "../ui/CarouselCard"
 
-const AllCuisinesSection = () => {
+const CuisinesFilterMobile = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     const handleSeeAll = () => {
@@ -22,19 +23,19 @@ const AllCuisinesSection = () => {
             </div>
             {isOpen ? (
                 <div className="flex flex-wrap gap-3 py-3 px-4 -mx-4">
-                    <div className="flex items-center rounded-full shadow py-2 px-3">
-                        <span>All</span>
+                    <div className="flex items-center rounded-lg shadow-lg py-2 px-3">
+                        <span>{allCuisinesPropertyCloudinary.name}</span>
                     </div>
-                    {cuisineListWithImgs.map((cuisine) => (
-                        <div className="flex items-center rounded-full shadow py-2 px-3">
+                    {cuisineListWithImgsCloudinary.map((cuisine) => (
+                        <div className="flex items-center rounded-lg shadow-lg py-2 px-3">
                             <span>{cuisine.name}</span>
                         </div>
                     ))}
                 </div>
             ) : (
                 <div className="flex gap-3 overflow-x-auto whitespace-nowrap px-4 -mx-4">
-                    <CarouselCard img={cuisineListWithImgs[0].img} name={"All"} />
-                    {cuisineListWithImgs.map((cuisine) => (
+                    <CarouselCard img={allCuisinesPropertyCloudinary.img} name={allCuisinesPropertyCloudinary.name} />
+                    {cuisineListWithImgsCloudinary.map((cuisine) => (
                         <CarouselCard img={cuisine.img} name={cuisine.name} />
                     ))}
                 </div>
@@ -43,4 +44,4 @@ const AllCuisinesSection = () => {
     )
 }
 
-export default AllCuisinesSection
+export default CuisinesFilterMobile

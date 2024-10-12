@@ -1,6 +1,6 @@
-import UserSection from "../../components/homePageMobile/UserSection"
+import UserSection from "@/components/homePageMobile/UserSection"
 import SearchSection from "@/components/homePageMobile/SearchSection"
-import AllCuisinesSection from "@/components/homePageMobile/AllCuisinesSection"
+import CuisinesFilterMobile from "@/components/homePageMobile/CuisinesFilterMobile"
 import RestaurantList from "@/components/homePageMobile/RestaurantList"
 import { SearchForm } from "@/components/SearchBar"
 
@@ -13,7 +13,7 @@ const HomePageMobile = ({ handleSearchSubmit }: Props) => {
         <div className="space-y-5">
             <UserSection />
             <SearchSection onSubmit={handleSearchSubmit} />
-            <AllCuisinesSection />
+            <CuisinesFilterMobile />
             <RestaurantList />
         </div >
     )
