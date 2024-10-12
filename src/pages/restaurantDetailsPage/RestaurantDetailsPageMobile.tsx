@@ -1,5 +1,5 @@
 import { MenuItem as MenuItemType } from "@/types"
-import { ChevronLeft, LucideHeart, Plus } from "lucide-react"
+import { ChevronLeft, LucideHeart, Plus, ShoppingBag } from "lucide-react"
 import RestaurantStats from "@/components/RestaurantStats"
 import { AspectRatio } from "@radix-ui/react-aspect-ratio"
 import { Card, CardFooter } from "@/components/ui/card"
@@ -8,6 +8,8 @@ import CheckoutButton from "@/components/CheckoutButton"
 import { Restaurant } from "@/types"
 import { CartItem } from "./RestaurantDetailsPage"
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useEffect, useState } from "react"
 
 type Props = {
     restaurant: Restaurant
@@ -32,8 +34,30 @@ const RestaurantDetailsPageMobile = ({
     adjustItemQuantity,
     removeFromCart
 }: Props) => {
+    const [isAtBottom, setIsAtBottom] = useState(false);
+
+    // Function to check if the user has scrolled to the bottom
+    const handleScroll = () => {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const windowHeight = document.documentElement.scrollHeight;
+
+        // Check if the user is near the bottom of the page
+        if (scrollPosition >= windowHeight - 50) { // 50 can be adjusted for a threshold
+            setIsAtBottom(true);
+        } else {
+            setIsAtBottom(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <div className="space-y-5">
+        <div className="space-y-5 pb-20">
             <div
                 className="flex justify-between -mt-5 -mx-5 p-5 h-80 rounded-b-3xl bg-cover bg-center"
                 style={{ backgroundImage: `url('https://www.announcementconverters.com/media/catalog/product/S/-/S-ILG11F_9.JPG')` }}
@@ -94,24 +118,52 @@ const RestaurantDetailsPageMobile = ({
                 ))}
             </div>
 
-            <div>
-                <Card className="md:sticky md:top-5">
-                    <OrderSummary
-                        restaurant={restaurant}
-                        cartItems={cartItems}
-                        removeFromCart={removeFromCart}
-                        adjustItemQuantity={adjustItemQuantity}
-                    />
-                    <CardFooter>
-                        <CheckoutButton
-                            disabled={cartItems.length === 0}
-                            onCheckout={onCheckout}
-                            isLoading={isCheckoutLoading}
+            <Sheet>
+                <SheetTrigger asChild className={`fixed bottom-5 right-5 z-50`}>
+                    <div
+                        className={`flex items-center justify-center 
+                                ${isAtBottom ? 'w-[calc(100%-2rem)] h-16' : 'w-12 h-12'} 
+                                bg-slate-900 text-white transition-all duration-300 rounded-full`}
+                    >
+                        {isAtBottom ? (
+                            <>
+                                <div className="relative">
+                                    <span className="absolute bottom-3 left-3 w-7 h-7 flex items-center justify-center font-medium bg-orange-500 rounded-full">
+                                        3
+                                    </span>
+                                    <ShoppingBag />
+                                </div>
+                                <span className="ml-5 font-bold">Go to check out</span>
+                            </>
+                        ) : (
+                            <>
+                                <ShoppingBag />
+                                <span className="absolute bottom-6 left-6 w-7 h-7 flex items-center justify-center font-medium bg-orange-500 rounded-full">
+                                    3
+                                </span>
+                            </>
+                        )}
+                    </div>
+                </SheetTrigger>
+                <SheetContent side="bottom">
+                    <Card className="md:sticky md:top-5">
+                        <OrderSummary
+                            restaurant={restaurant}
+                            cartItems={cartItems}
+                            removeFromCart={removeFromCart}
+                            adjustItemQuantity={adjustItemQuantity}
                         />
-                    </CardFooter>
-                </Card>
-            </div>
-        </div>
+                        <CardFooter>
+                            <CheckoutButton
+                                disabled={cartItems.length === 0}
+                                onCheckout={onCheckout}
+                                isLoading={isCheckoutLoading}
+                            />
+                        </CardFooter>
+                    </Card>
+                </SheetContent>
+            </Sheet>
+        </div >
     )
 }
 
