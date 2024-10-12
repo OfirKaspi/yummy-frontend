@@ -1,7 +1,8 @@
 import { Restaurant } from "@/types"
 import { AspectRatio } from "@radix-ui/react-aspect-ratio"
-import { Clock, Dot, Truck } from "lucide-react"
+import { Dot } from "lucide-react"
 import { useNavigate } from "react-router-dom"
+import RestaurantStats from "../RestaurantStats"
 
 type Props = {
     restaurant: Restaurant
@@ -30,23 +31,7 @@ const RestaurantCardMobile = ({ restaurant }: Props) => {
                     ))}
                 </div>
             </div>
-            <div className="flex items-center gap-6 text-sm">
-
-                {/* Later add reviews for restaurants */}
-                {/* <div className="flex gap-1 font-bold">
-                    <Star size={20} className="text-orange-600" />
-                    <span>4.7</span>
-                </div> */}
-
-                <div className="flex gap-1">
-                    <Clock size={20} className="text-orange-600" />
-                    <span>{restaurant.estimatedDeliveryTime} min</span>
-                </div>
-                <div className="flex gap-1">
-                    <Truck size={20} className="text-orange-600" />
-                    <span>Delivery from ${(restaurant.deliveryPrice / 100).toFixed(2)}</span>
-                </div>
-            </div>
+            <RestaurantStats restaurant={restaurant} />
         </div>
     )
 }

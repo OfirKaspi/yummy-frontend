@@ -35,7 +35,7 @@ const UserSection = () => {
             <div className="flex gap-3">
                 <MobileNav />
                 <div className="flex justify-center flex-col text-sm">
-                    <span className="text-orange-600 font-medium">DELIVER TO</span>
+                    <span className="text-orange-500 font-medium">DELIVER TO</span>
 
                     {/* LATER USE GEO LOCATION FOR BETTER UX */}
                     <span className="flex items-center text-gray-600 gap-1">
@@ -45,7 +45,7 @@ const UserSection = () => {
                 </div>
                 <div className="ml-auto flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 relative text-white">
                     <ShoppingBag />
-                    <span className="absolute bottom-6 left-6 w-7 h-7 flex items-center justify-center font-medium bg-orange-600 rounded-full">
+                    <span className="absolute bottom-6 left-6 w-7 h-7 flex items-center justify-center font-medium bg-orange-500 rounded-full">
                         3
                     </span>
                 </div>

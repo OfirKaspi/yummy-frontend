@@ -5,7 +5,7 @@ import { Badge } from "./ui/badge"
 import { Separator } from "./ui/separator"
 import { Minus, Plus, Trash } from "lucide-react"
 
-import { CartItem } from "@/pages/RestaurantDetailsPage"
+import { CartItem } from "@/pages/restaurantDetailsPage/RestaurantDetailsPageDesktop"
 
 type Props = {
     restaurant: Restaurant

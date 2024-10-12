@@ -1,19 +1,15 @@
+// HomePage.tsx
+
+import useDeviceType from '@/hooks/useDeviceType'
+import RestaurantDetailsPageDesktop from './RestaurantDetailsPageDesktop'
+import RestaurantDetailsPageMobile from './RestaurantDetailsPageMobile'
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-
 import { MenuItem as MenuItemType } from "@/types"
-import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
-
-import Loader from "@/components/ui/Loader"
-import { Card, CardFooter } from "@/components/ui/card"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
-
-import MenuItem from "@/components/MenuItem"
 import { useGetRestaurant } from "@/api/RestaurantApi"
-import RestaurantInfo from "@/components/RestaurantInfo"
-import OrderSummary from "@/components/OrderSummary"
-import CheckoutButton from "@/components/CheckoutButton"
+import { useEffect, useState } from "react"
+import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
 import { useCreateCheckoutSession } from "@/api/OrderApi"
+import { Loader } from 'lucide-react'
 
 export type CartItem = {
     _id: string
@@ -32,13 +28,23 @@ const saveCartToStorage = (restaurantId: string, cartItems: CartItem[]) => {
 }
 
 const RestaurantDetailsPage = () => {
-    const { restaurantId } = useParams()
-    const { restaurant, isLoading } = useGetRestaurant(restaurantId)
+    const { isMobile, isDesktop } = useDeviceType()
+    const { restaurantId } = useParams();
+    const { restaurant, isLoading } = useGetRestaurant(restaurantId);
+    const [checkedFoodSection, setCheckedFoodSection] = useState('');
     const { createCheckoutSession, isLoading: isCheckoutLoading } = useCreateCheckoutSession()
 
-    const [cartItems, setCartItems] = useState<CartItem[]>(
-        () => loadCartFromStorage(restaurantId || '')
-    )
+    const [cartItems, setCartItems] = useState<CartItem[]>(() => loadCartFromStorage(restaurantId || ''))
+
+    const handleFoodSection = (foodSection: string) => {
+        setCheckedFoodSection(foodSection)
+    }
+
+    useEffect(() => {
+        if (restaurant?.cuisines && restaurant.cuisines.length > 0) {
+            setCheckedFoodSection(restaurant.cuisines[0]);
+        }
+    }, [restaurant])
 
     useEffect(() => {
         if (restaurantId) {
@@ -121,38 +127,33 @@ const RestaurantDetailsPage = () => {
     }
 
     return (
-        <div className="flex flex-col gap-10">
-            <AspectRatio ratio={16 / 5}>
-                <img src={restaurant?.imageUrl} className="rounded-md object-cover h-full w-full" />
-            </AspectRatio>
-            <div className="grid md:grid-cols-[4fr_2fr] gap-5 lg:px-32">
-                <div className="flex flex-col gap-4">
-                    <RestaurantInfo restaurant={restaurant} />
-                    <span className="text-2xl font-bold tracking-tight">Menu</span>
-                    {restaurant.menuItems.map((menuItem) => (
-                        <MenuItem menuItem={menuItem} addToCart={() => addToCart(menuItem)} />
-                    ))}
-                </div>
-                <div>
-                    <Card className="md:sticky md:top-5">
-                        <OrderSummary
-                            restaurant={restaurant}
-                            cartItems={cartItems}
-                            removeFromCart={removeFromCart}
-                            adjustItemQuantity={adjustItemQuantity}
-                        />
-                        <CardFooter>
-                            <CheckoutButton
-                                disabled={cartItems.length === 0}
-                                onCheckout={onCheckout}
-                                isLoading={isCheckoutLoading}
-                            />
-                        </CardFooter>
-                    </Card>
-                </div>
-            </div>
-        </div>
+        <>
+            {isMobile &&
+                <RestaurantDetailsPageMobile
+                    restaurant={restaurant}
+                    cartItems={cartItems}
+                    addToCart={addToCart}
+                    handleFoodSection={handleFoodSection}
+                    checkedFoodSection={checkedFoodSection}
+                    onCheckout={onCheckout}
+                    isCheckoutLoading={isCheckoutLoading}
+                    adjustItemQuantity={adjustItemQuantity}
+                    removeFromCart={removeFromCart}
+                />
+            }
+            {isDesktop &&
+                <RestaurantDetailsPageDesktop
+                    restaurant={restaurant}
+                    cartItems={cartItems}
+                    addToCart={addToCart}
+                    onCheckout={onCheckout}
+                    isCheckoutLoading={isCheckoutLoading}
+                    adjustItemQuantity={adjustItemQuantity}
+                    removeFromCart={removeFromCart}
+                />
+            }
+        </>
     )
 }
 
-export default RestaurantDetailsPage
+export default RestaurantDetailsPage;
