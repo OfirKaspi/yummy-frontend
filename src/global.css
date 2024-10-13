@@ -69,6 +69,17 @@
   }
 }
 
+@media (max-width: 1024px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
 .no-arrows::-webkit-inner-spin-button,
 .no-arrows::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -77,5 +88,4 @@
 
 .no-arrows {
   -moz-appearance: textfield;
-  /* Firefox */
 }

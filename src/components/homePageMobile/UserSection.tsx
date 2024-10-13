@@ -2,7 +2,8 @@ import { useGetMyUser } from "@/api/MyUserApi"
 import MobileNav from "../MobileNav"
 import { SkeletonProfile } from "../ui/skeleton"
 import { useEffect, useState } from "react"
-import { ChevronDown, ShoppingBag } from "lucide-react"
+import { ChevronDown } from "lucide-react"
+import ShoppingBagCmp from "../ShoppingBagCmp"
 
 const UserSection = () => {
     const { currentUser, isLoading } = useGetMyUser()
@@ -44,10 +45,7 @@ const UserSection = () => {
                     </span>
                 </div>
                 <div className="ml-auto flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 relative text-white">
-                    <ShoppingBag />
-                    <span className="absolute bottom-6 left-6 w-7 h-7 flex items-center justify-center font-medium bg-orange-500 rounded-full">
-                        3
-                    </span>
+                    <ShoppingBagCmp />
                 </div>
             </div>
             <div>
@@ -57,9 +55,5 @@ const UserSection = () => {
         </>
     )
 }
-{/* <div>
-    Hey {"Ofir"}!,
-    <span className="font-bold ml-1">Good Afternoon!</span>
-</div> */}
 
 export default UserSection
