@@ -7,6 +7,7 @@ import LoadingButton from "@/components/LoadingButton"
 import { Button } from "@/components/ui/button"
 import { User } from "@/types"
 import { useEffect } from "react"
+import useDeviceType from "@/hooks/useDeviceType"
 
 
 const formSchema = z.object({
@@ -35,6 +36,8 @@ const UserProfileForm = ({
     title = "User Profile",
     buttonText = "Submit"
 }: Props) => {
+    const { isMobile } = useDeviceType()
+
     const form = useForm<UserFormData>({
         resolver: zodResolver(formSchema),
         defaultValues: currentUser,
@@ -48,7 +51,7 @@ const UserProfileForm = ({
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSave)}
-                className="space-y-4 bg-gray-50 rounded-lg md:p-10"
+                className={`space-y-4 rounded-lg md:p-10 ${isMobile ? 'p-6' : 'bg-gray-50'}`}
             >
                 <div>
                     <h2 className="text-2xl font-bold">{title}</h2>
