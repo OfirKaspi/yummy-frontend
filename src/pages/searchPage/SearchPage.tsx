@@ -10,6 +10,9 @@ import Loader from "@/components/ui/Loader"
 import PaginationSelector from "@/components/PaginationSelector"
 import CuisineFilter from "@/components/CuisineFilter"
 import SortOptionDropdown from "@/components/SortOptionDropdown"
+import useDeviceType from "@/hooks/useDeviceType"
+import SearchPageDesktop from "./SearchPageDesktop"
+import SearchPageMobile from "./SearchPageMobile"
 
 export type SearchState = {
     searchQuery: string
@@ -19,6 +22,7 @@ export type SearchState = {
 }
 
 const SearchPage = () => {
+    const { isDesktop, isMobile } = useDeviceType()
     const { city } = useParams()
     const [searchState, setSearchState] = useState<SearchState>({
         searchQuery: "",
@@ -27,7 +31,6 @@ const SearchPage = () => {
         sortOption: "bestMatch"
     })
 
-    const [isExpanded, setIsExpanded] = useState<boolean>(false)
     const [showLoader, setShowLoader] = useState<boolean>(true)
     const { results, isLoading } = useSearchRestaurant(searchState, city)
 
@@ -88,36 +91,33 @@ const SearchPage = () => {
     }
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
-            <div id="cuisines-list">
-                <CuisineFilter
-                    isExpanded={isExpanded}
-                    onExpandedClick={() => setIsExpanded((prevIsExpanded) => !prevIsExpanded)}
-                    onChange={setSelectedCuisines}
-                    selectedCuisines={searchState.selectedCuisines}
+        <>
+            {isMobile &&
+                <SearchPageMobile
+                    city={city}
+                    searchState={searchState}
+                    results={results}
+                    setSortOption={setSortOption}
+                    setSelectedCuisines={setSelectedCuisines}
+                    setPage={setPage}
+                    setSearchQuery={setSearchQuery}
+                    resetSearch={resetSearch}
                 />
-            </div>
-            <div id="main-content" className="flex flex-col gap-5">
-                <SearchBar
-                    searchQuery={searchState.searchQuery}
-                    onSubmit={setSearchQuery}
-                    placeHolder="Search by Cuisine or Restaurant Name"
-                    onReset={resetSearch}
+            }
+
+            {isDesktop &&
+                <SearchPageDesktop
+                    city={city}
+                    searchState={searchState}
+                    results={results}
+                    setSortOption={setSortOption}
+                    setSelectedCuisines={setSelectedCuisines}
+                    setPage={setPage}
+                    setSearchQuery={setSearchQuery}
+                    resetSearch={resetSearch}
                 />
-                <div className="flex justify-between flex-col gap-3 lg:flex-row">
-                    <SearchResultsInfo total={results.pagination.total} city={city} />
-                    <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value)} />
-                </div>
-                {results.data.map((restaurant: Restaurant) => (
-                    <SearchResultsCard restaurant={restaurant} />
-                ))}
-                <PaginationSelector
-                    page={results.pagination.page}
-                    pages={results.pagination.pages}
-                    onPageChange={setPage}
-                />
-            </div>
-        </div>
+            }
+        </>
     )
 }
 

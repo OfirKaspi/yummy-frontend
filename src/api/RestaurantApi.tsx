@@ -2,7 +2,7 @@ import axios from "axios"
 import { useQuery } from "react-query"
 
 import { Restaurant, RestaurantSearchResponse } from "@/types"
-import { SearchState } from "@/pages/SearchPage"
+import { SearchState } from "@/pages/searchPage/SearchPage"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 

@@ -1,16 +1,16 @@
 import { ChevronRight } from "lucide-react"
 
 type Props = {
-    isOpen?: boolean
+    isExpanded?: boolean
 }
 
-const ExpandBtn = ({ isOpen = false }: Props) => {
+const ExpandBtn = ({ isExpanded = false }: Props) => {
     return (
         <span className="flex items-center gap-1">
-            {isOpen ? 'See Less' : 'See All'}
+            {isExpanded ? 'See Less' : 'See All'}
             <ChevronRight
                 className={`text-gray-400 transform transition-transform duration-300 
-                    ${isOpen ? 'rotate-180' : ''}`
+                    ${isExpanded ? 'rotate-180' : ''}`
                 }
             />
         </span>

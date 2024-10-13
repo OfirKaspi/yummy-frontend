@@ -6,7 +6,7 @@ import AuthCallbackPage from './pages/AuthCallbackPage'
 import UserProfilePage from './pages/UserProfilePage'
 import ProtectedRoute from './auth/ProtectedRoute'
 import ManageRestaurantPage from './pages/ManageRestaurantPage'
-import SearchPage from './pages/SearchPage'
+import SearchPage from './pages/searchPage/SearchPage'
 import RestaurantDetailsPage from './pages/restaurantDetailsPage/RestaurantDetailsPage'
 import OrderStatusPage from './pages/OrderStatusPage'
 

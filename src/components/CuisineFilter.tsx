@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react"
+import { ChangeEvent, useState } from "react"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import { Label } from "./ui/label"
 import { cuisineList } from "@/config/restaurant-options-config"
@@ -7,11 +7,15 @@ import { Button } from "./ui/button"
 type Props = {
     onChange: (cuisines: string[]) => void
     selectedCuisines: string[]
-    isExpanded: boolean
-    onExpandedClick: () => void
 }
 
-const CuisineFilter = ({ isExpanded, onChange, onExpandedClick, selectedCuisines }: Props) => {
+const CuisineFilter = ({ onChange, selectedCuisines }: Props) => {
+    const [isExpanded, setIsExpanded] = useState<boolean>(false)
+
+    const onExpandedClick = () => {
+        setIsExpanded((prevIsExpanded) => !prevIsExpanded)
+    }
+
     const handleCuisineChange = (event: ChangeEvent<HTMLInputElement>) => {
         const clickedCuisine = event.target.value
         const isChecked = event.target.checked

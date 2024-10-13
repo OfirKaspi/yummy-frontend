@@ -1,35 +1,4 @@
 // Maybe later move to a DB
-import allCuisines from '@/assets/all-cuisines.png'
-import american from '@/assets/american-min.jpg'
-import bbq from '@/assets/bbq-min.jpg'
-import breakfast from '@/assets/breakfast-min.jpg'
-import hamburger from '@/assets/hamburger-min.jpg'
-import cafe from '@/assets/cafe-min.jpg'
-import chinese from '@/assets/chinese-min.jpg'
-import desserts from '@/assets/desserts-min.jpg'
-import french from '@/assets/french-min.jpg'
-import greek from '@/assets/greek-min.jpg'
-import healthy from '@/assets/healthy-min.jpg'
-import indian from '@/assets/indian-min.jpg'
-import italian from '@/assets/italian-min.jpg'
-import japanese from '@/assets/japanese-min.jpg'
-import mexican from '@/assets/mexican-min.png'
-import noodles from '@/assets/noodles-min.jpg'
-import organic from '@/assets/organic-min.jpg'
-import pasta from '@/assets/pasta-min.jpg'
-import pizza from '@/assets/pizza-min.jpg'
-import salads from '@/assets/salads-min.jpg'
-import seafood from '@/assets/seafood-min.jpg'
-import spanish from '@/assets/spanish-min.jpg'
-import steak from '@/assets/steak-min.png'
-import tacos from '@/assets/tacos-min.jpg'
-import sushi from '@/assets/sushi-min.png'
-import tapas from '@/assets/tapas-min.jpg'
-import vegan from '@/assets/vegan-min.png'
-
-export const allCuisinesProperty = {
-    name: "All", img: allCuisines
-}
 
 export const allCuisinesPropertyCloudinary = {
     name: "All", img: "https://res.cloudinary.com/dudwjf2pu/image/upload/v1728736469/CuisineImgs/all-cuisines_mbiuzg.png"
@@ -63,35 +32,6 @@ export const cuisineList = [
     "Tapas",
     "Vegan",
 ]
-
-export const cuisineListWithImgs = [
-    { name: "American", img: american },
-    { name: "BBQ", img: bbq },
-    { name: "Breakfast", img: breakfast },
-    { name: "Burgers", img: hamburger },
-    { name: "Cafe", img: cafe },
-    { name: "Chinese", img: chinese },
-    { name: "Desserts", img: desserts },
-    { name: "French", img: french },
-    { name: "Greek", img: greek },
-    { name: "Healthy", img: healthy },
-    { name: "Indian", img: indian },
-    { name: "Italian", img: italian },
-    { name: "Japanese", img: japanese },
-    { name: "Mexican", img: mexican },
-    { name: "Noodles", img: noodles },
-    { name: "Organic", img: organic },
-    { name: "Pasta", img: pasta },
-    { name: "Pizza", img: pizza },
-    { name: "Salads", img: salads },
-    { name: "Seafood", img: seafood },
-    { name: "Spanish", img: spanish },
-    { name: "Steak", img: steak },
-    { name: "Sushi", img: sushi },
-    { name: "Tacos", img: tacos },
-    { name: "Tapas", img: tapas },
-    { name: "Vegan", img: vegan }
-];
 
 export const cuisineListWithImgsCloudinary = [
     { name: "American", img: "https://res.cloudinary.com/dudwjf2pu/image/upload/v1728734759/CuisineImgs/american-min_l2x9mb.jpg" },

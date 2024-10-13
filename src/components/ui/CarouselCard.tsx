@@ -1,29 +1,31 @@
-// import { Skeleton } from "./skeleton"
-
 type Props = {
     img: string
     name: string
+    handleCuisineChange: (cuisineName: string) => void
+    isSelected?: boolean
 }
 
-const CarouselCard = ({ img, name }: Props) => {
+const CarouselCard = ({ img, name, handleCuisineChange, isSelected = false }: Props) => {
 
-    const searchForCuisine = () => {
-        console.log("cuisine name: ", name)
+    const handleClick = () => {
+        handleCuisineChange(name)
     }
 
     return (
-        <div className="flex flex-col items-center justify-center gap-3" onClick={searchForCuisine}>
-            <div className="rounded-xl shadow-lg p-2 object-cover">
-                {/* <Skeleton className="h-12 w-12 rounded-full" /> */}
-                <div className="h-24 w-24 overflow-hidden"> {/* Create a container for the image */}
+        <div
+            onClick={handleClick}
+            className="relative flex flex-col items-center justify-center gap-3"
+        >
+            <div className={`rounded-xl shadow-lg p-2 object-cover z-10 ${isSelected && 'shadow-green-300'}`}>
+                <div className="h-24 w-24 overflow-hidden z-10">
                     <img
                         src={img}
-                        className={`h-full w-full object-cover`}
+                        className={`h-full w-full object-cover z-20`}
                         alt={`${name}-cuisine-img`}
                     />
                 </div>
             </div>
-            <span className="font-medium">{name}</span>
+            <span className={`font-medium ${isSelected && 'text-green-600'}`}>{name}</span>
         </div>
     )
 }

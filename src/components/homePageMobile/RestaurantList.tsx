@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import { useSearchRestaurant } from "@/api/RestaurantApi"
 
-import { SearchState } from "@/pages/SearchPage"
+import { SearchState } from "@/pages/searchPage/SearchPage"
 import ExpandBtn from "./ExpandBtn"
 import RestaurantCardMobile from "./RestaurantCardMobile"
 import { SkeletonCard } from "../ui/skeleton"
