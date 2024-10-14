@@ -1,6 +1,6 @@
 import UserSection from "@/components/homePageMobile/UserSection"
 import SearchSection from "@/components/homePageMobile/SearchSection"
-import CuisinesFilterMobile from "@/components/homePageMobile/CuisinesFilterMobile"
+import CuisinesFilterMobile from "@/components/cuisineFilter/CuisineFilterMobile"
 import RestaurantList from "@/components/homePageMobile/RestaurantList"
 import { SearchForm } from "@/components/SearchBar"
 

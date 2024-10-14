@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
-import { Restaurant } from "@/types"
+import { SearchForm } from "@/components/SearchBar"
 import { useSearchRestaurant } from "@/api/RestaurantApi"
-import SearchResultsInfo from "@/components/SearchResultsInfo"
-import SearchResultsCard from "@/components/SearchResultsCard"
-import SearchBar, { SearchForm } from "@/components/SearchBar"
-import Loader from "@/components/ui/Loader"
-import PaginationSelector from "@/components/PaginationSelector"
-import CuisineFilter from "@/components/CuisineFilter"
-import SortOptionDropdown from "@/components/SortOptionDropdown"
 import useDeviceType from "@/hooks/useDeviceType"
+
+import Loader from "@/components/ui/Loader"
 import SearchPageDesktop from "./SearchPageDesktop"
 import SearchPageMobile from "./SearchPageMobile"
 

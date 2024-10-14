@@ -5,7 +5,7 @@ import SearchResultsInfo from "@/components/SearchResultsInfo"
 import SortOptionDropdown from "@/components/SortOptionDropdown"
 import { Restaurant, RestaurantSearchResponse } from "@/types"
 import { SearchState } from "./SearchPage"
-import CuisinesFilterMobile from "@/components/homePageMobile/CuisinesFilterMobile"
+import CuisineFilter from "@/components/cuisineFilter/CuisineFilter"
 
 type Props = {
     city: string
@@ -31,7 +31,7 @@ const SearchPageMobile = ({
     return (
         <div className="space-y-5">
             <div id="cuisines-list">
-                <CuisinesFilterMobile
+                <CuisineFilter
                     onChange={setSelectedCuisines}
                     selectedCuisines={searchState.selectedCuisines}
                 />

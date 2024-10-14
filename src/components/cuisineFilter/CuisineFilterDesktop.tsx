@@ -1,34 +1,24 @@
-import { ChangeEvent, useState } from "react"
-import { Check, ChevronDown, ChevronUp } from "lucide-react"
-import { Label } from "./ui/label"
 import { cuisineList } from "@/config/restaurant-options-config"
-import { Button } from "./ui/button"
+
+import { Check, ChevronDown, ChevronUp } from "lucide-react"
+import { Button } from "../ui/button"
+import { Label } from "../ui/label"
 
 type Props = {
-    onChange: (cuisines: string[]) => void
+    isExpanded: boolean
     selectedCuisines: string[]
+    handleExpansion: () => void
+    handleCuisineChange: (cuisineName: string) => void
+    handleCuisinesReset: () => void
 }
 
-const CuisineFilter = ({ onChange, selectedCuisines }: Props) => {
-    const [isExpanded, setIsExpanded] = useState<boolean>(false)
-
-    const onExpandedClick = () => {
-        setIsExpanded((prevIsExpanded) => !prevIsExpanded)
-    }
-
-    const handleCuisineChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const clickedCuisine = event.target.value
-        const isChecked = event.target.checked
-
-        const newCuisinesList = isChecked
-            ? [...selectedCuisines, clickedCuisine]
-            : selectedCuisines.filter((cuisine) => cuisine !== clickedCuisine)
-
-        onChange(newCuisinesList)
-    }
-
-    const handleCuisinesReset = () => onChange([])
-
+const CuisineFilterDesktop = ({
+    isExpanded,
+    selectedCuisines,
+    handleExpansion,
+    handleCuisineChange,
+    handleCuisinesReset,
+}: Props) => {
     return (
         <>
             <div className="flex justify-between items-center px-2">
@@ -54,7 +44,7 @@ const CuisineFilter = ({ onChange, selectedCuisines }: Props) => {
                                     className="hidden"
                                     value={cuisine}
                                     checked={isSelected}
-                                    onChange={handleCuisineChange}
+                                    onChange={() => handleCuisineChange(cuisine)}
                                 />
                                 <Label
                                     htmlFor={`cuisine_${cuisine}`}
@@ -73,7 +63,7 @@ const CuisineFilter = ({ onChange, selectedCuisines }: Props) => {
                 <Button
                     variant="link"
                     className="mt-4 flex-1"
-                    onClick={onExpandedClick}
+                    onClick={handleExpansion}
                 >
                     {isExpanded
                         ? (<span className="flex flex-row items-center">View Less <ChevronUp /></span>)
@@ -86,5 +76,4 @@ const CuisineFilter = ({ onChange, selectedCuisines }: Props) => {
     )
 }
 
-
-export default CuisineFilter
+export default CuisineFilterDesktop

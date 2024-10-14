@@ -1,4 +1,4 @@
-import CuisineFilter from "@/components/CuisineFilter"
+import CuisineFilter from "@/components/cuisineFilter/CuisineFilter"
 import PaginationSelector from "@/components/PaginationSelector"
 import SearchBar, { SearchForm } from "@/components/SearchBar"
 import SearchResultsCard from "@/components/SearchResultsCard"

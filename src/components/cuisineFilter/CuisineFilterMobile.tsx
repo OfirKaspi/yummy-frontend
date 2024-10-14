@@ -1,36 +1,24 @@
-import { useState } from "react"
-
 import { cuisineListWithImgsCloudinary } from "@/config/restaurant-options-config"
 
-import ExpandBtn from "./ExpandBtn"
+import ExpandBtn from "../homePageMobile/ExpandBtn"
 import CarouselCard from "../ui/CarouselCard"
 
 type Props = {
-    onChange: (cuisines: string[]) => void
+    isExpanded: boolean
     selectedCuisines: string[]
+    handleExpansion: () => void
+    handleCuisineChange: (cuisineName: string) => void
+    handleCuisinesReset: () => void
 }
 
-const CuisinesFilterMobile = ({ onChange, selectedCuisines }: Props) => {
-    const [isExpanded, setIsExpanded] = useState<boolean>(false)
-
-    const handleExpansion = () => {
-        setIsExpanded(!isExpanded)
-    }
-
-    const handleCuisineChange = (cuisineName: string) => {
-        const isChecked = selectedCuisines.includes(cuisineName)
-
-        const newCuisinesList = isChecked
-            ? selectedCuisines.filter((cuisine) => cuisine !== cuisineName)
-            : [...selectedCuisines, cuisineName]
-
-        onChange(newCuisinesList)
-    }
-
-    const handleCuisinesReset = () => (
-        handleExpansion(),
-        onChange([])
-    )
+const CuisinesFilterMobile = ({
+    isExpanded,
+    selectedCuisines,
+    handleExpansion,
+    handleCuisineChange,
+    handleCuisinesReset,
+}: Props) => {
+    console.log("handleCuisineChange CFM", handleCuisineChange);
 
     return (
         <div className="space-y-3">

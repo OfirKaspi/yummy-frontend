@@ -7,6 +7,9 @@ type Props = {
 
 const CarouselCard = ({ img, name, handleCuisineChange, isSelected = false }: Props) => {
 
+    console.log("handleCuisineChange carousel", handleCuisineChange);
+
+
     const handleClick = () => {
         handleCuisineChange(name)
     }
