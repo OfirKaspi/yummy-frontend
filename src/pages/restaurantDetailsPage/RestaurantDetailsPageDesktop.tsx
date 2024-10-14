@@ -4,8 +4,8 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 import MenuItem from "@/components/MenuItem"
 import RestaurantInfo from "@/components/RestaurantInfo"
-import OrderSummary from "@/components/OrderSummary"
-import CheckoutButton from "@/components/CheckoutButton"
+import OrderSummary from "@/components/order/OrderSummary"
+import CheckoutButton from "@/components/order/CheckoutButton"
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
 import { CartItem } from "./RestaurantDetailsPage"
 

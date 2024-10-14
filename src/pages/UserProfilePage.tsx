@@ -1,5 +1,5 @@
 import { useGetMyUser, useUpdateMyUser } from "@/api/MyUserApi"
-import Loader from "@/components/ui/Loader"
+import Loader from "@/components/Loader"
 import UserProfileForm from "@/forms/user-profile-form/UserProfileForm"
 
 const UserProfilePage = () => {

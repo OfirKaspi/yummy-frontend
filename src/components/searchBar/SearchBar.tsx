@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useEffect, useState } from "react"
 import useDeviceType from "@/hooks/useDeviceType"
-import SearchBarDesktop from "./SearchBarDesktop"
-import SearchBarMobile from "./SearchBarMobile"
+import SearchBarDesktop from "@/components/searchBar/SearchBarDesktop"
+import SearchBarMobile from "@/components/searchBar/SearchBarMobile"
 
 const formSchema = z.object({
     searchQuery: z.string({

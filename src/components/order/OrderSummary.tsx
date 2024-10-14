@@ -1,8 +1,8 @@
 import { Restaurant } from "@/types"
 
-import { CardContent, CardHeader, CardTitle } from "./ui/card"
-import { Badge } from "./ui/badge"
-import { Separator } from "./ui/separator"
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 import { Minus, Plus, Trash } from "lucide-react"
 
 import { CartItem } from "@/pages/restaurantDetailsPage/RestaurantDetailsPage"

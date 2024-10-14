@@ -2,7 +2,7 @@ import { Restaurant, RestaurantSearchResponse } from "@/types"
 import { SearchState } from "./SearchPage"
 
 import PaginationSelector from "@/components/PaginationSelector"
-import SearchBar, { SearchForm } from "@/components/SearchBar"
+import SearchBar, { SearchForm } from "@/components/searchBar/SearchBar"
 import RestaurantCardMobile from "@/components/restaurantCard/RestaurantCardMobile"
 import SearchResultsInfoMobile from "@/components/searchResultsInfo/SearchResultsInfoMobile"
 import PervPageNavButton from "@/components/PervPageNavButton"
@@ -43,13 +43,14 @@ const SearchPageMobile = ({
                     setSortOption={setSortOption}
                 />
             </div>
-
-            <SearchBar
-                searchQuery={searchState.searchQuery}
-                onSubmit={setSearchQuery}
-                placeHolder="Search by Cuisine or Restaurant Name"
-                onReset={resetSearch}
-            />
+            <div className="pb-2">
+                <SearchBar
+                    searchQuery={searchState.searchQuery}
+                    onSubmit={setSearchQuery}
+                    placeHolder="Search by Restaurant Name"
+                    onReset={resetSearch}
+                />
+            </div>
 
             {results.data.map((restaurant: Restaurant) => (
                 <RestaurantCardMobile restaurant={restaurant} />

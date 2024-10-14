@@ -1,7 +1,7 @@
 import { cuisineListWithImgsCloudinary } from "@/config/restaurant-options-config"
 
-import ExpandBtn from "../homePageMobile/ExpandBtn"
-import CarouselCard from "../ui/CarouselCard"
+import ExpandBtn from "@/components/homePageMobile/ExpandBtn"
+import CarouselCard from "@/components/CarouselCard"
 
 type Props = {
     isExpanded: boolean

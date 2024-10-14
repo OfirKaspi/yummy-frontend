@@ -1,9 +1,9 @@
 import { Filter } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet"
-import CuisineFilter from "../cuisineFilter/CuisineFilter"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import CuisineFilter from "@/components/cuisineFilter/CuisineFilter"
 import { SearchState } from "@/pages/searchPage/SearchPage"
-import SortOptionDropdown from "../SortOptionDropdown"
-import { Separator } from "../ui/separator"
+import SortOptionDropdown from "@/components/SortOptionDropdown"
+import { Separator } from "@/components/ui/separator"
 
 type Props = {
     setSelectedCuisines: (cuisines: string[]) => void

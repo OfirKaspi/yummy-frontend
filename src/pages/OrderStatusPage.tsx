@@ -3,7 +3,7 @@ import OrdersNotFound from "@/components/order/OrdersNotFound"
 import OrderStatusDetail from "@/components/order/OrderStatusDetail"
 import OrderStatusHeader from "@/components/order/OrderStatusHeader"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
-import Loader from "@/components/ui/Loader"
+import Loader from "@/components/Loader"
 
 const OrderStatusPage = () => {
     const { orders, isLoading } = useGetMyOrders()

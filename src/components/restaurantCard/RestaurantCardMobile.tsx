@@ -2,7 +2,7 @@ import { Restaurant } from "@/types"
 import { AspectRatio } from "@radix-ui/react-aspect-ratio"
 import { Dot } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import RestaurantStats from "../RestaurantStats"
+import RestaurantStats from "@/components/RestaurantStats"
 
 type Props = {
     restaurant: Restaurant
@@ -21,7 +21,7 @@ const RestaurantCardMobile = ({ restaurant }: Props) => {
                 <img src={restaurant.imageUrl} className="rounded-lg object-cover h-full w-full" />
             </AspectRatio>
             <div>
-                <h3 className="text-xl">Restaurant Title</h3>
+                <h3 className="text-xl">{restaurant.restaurantName}</h3>
                 <div className="flex">
                     {restaurant.cuisines.map((cuisine, index) => (
                         <span className="flex text-gray-600 text-sm">

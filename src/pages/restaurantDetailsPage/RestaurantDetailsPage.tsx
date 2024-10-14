@@ -9,7 +9,7 @@ import { useGetRestaurant } from "@/api/RestaurantApi"
 import { useEffect, useState } from "react"
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
 import { useCreateCheckoutSession } from "@/api/OrderApi"
-import { Loader } from 'lucide-react'
+import Loader from '@/components/Loader'
 
 export type CartItem = {
     _id: string
@@ -123,7 +123,7 @@ const RestaurantDetailsPage = () => {
     }
 
     if (isLoading || !restaurant) {
-        return <Loader />
+        return <Loader isFullScreen={true} />
     }
 
     return (

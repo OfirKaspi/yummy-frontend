@@ -1,4 +1,4 @@
-import Loader from "@/components/ui/Loader"
+import Loader from "@/components/Loader"
 import { useAuth0 } from "@auth0/auth0-react"
 import { Navigate, Outlet } from "react-router-dom"
 

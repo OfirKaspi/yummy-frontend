@@ -1,9 +1,9 @@
 import { useGetMyUser } from "@/api/MyUserApi"
-import MobileNav from "../MobileNav"
-import { SkeletonProfile } from "../ui/skeleton"
+import MobileNav from "@/components/MobileNav"
+import { SkeletonProfile } from "@/components/ui/skeleton"
 import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
-import ShoppingBagCmp from "../ShoppingBagCmp"
+import ShoppingBagCmp from "@/components/ShoppingBagCmp"
 
 const UserSection = () => {
     const { currentUser, isLoading } = useGetMyUser()

@@ -1,14 +1,14 @@
 import { useLocation } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 
-import { Button } from "./ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 import UserProfileForm, { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
 import { useGetMyUser } from "@/api/MyUserApi"
-import LoadingButton from "./LoadingButton"
+import LoadingButton from "@/components/LoadingButton"
 import useDeviceType from "@/hooks/useDeviceType"
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 type Props = {
     onCheckout: (userFormData: UserFormData) => void

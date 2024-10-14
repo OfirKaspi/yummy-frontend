@@ -1,6 +1,6 @@
 import CuisineFilter from "@/components/cuisineFilter/CuisineFilter"
 import PaginationSelector from "@/components/PaginationSelector"
-import SearchBar, { SearchForm } from "@/components/SearchBar"
+import SearchBar, { SearchForm } from "@/components/searchBar/SearchBar"
 import SearchResultsInfoDesktop from "@/components/searchResultsInfo/SearchResultsInfoDesktop"
 import SortOptionDropdown from "@/components/SortOptionDropdown"
 import { Restaurant, RestaurantSearchResponse } from "@/types"

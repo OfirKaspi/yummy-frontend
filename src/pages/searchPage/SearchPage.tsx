@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
-import { SearchForm } from "@/components/SearchBar"
+import { SearchForm } from "@/components/searchBar/SearchBar"
 import { useSearchRestaurant } from "@/api/RestaurantApi"
 import useDeviceType from "@/hooks/useDeviceType"
 
-import Loader from "@/components/ui/Loader"
+import Loader from "@/components/Loader"
 import SearchPageDesktop from "./SearchPageDesktop"
 import SearchPageMobile from "./SearchPageMobile"
 

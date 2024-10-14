@@ -10,7 +10,7 @@ import { SkeletonCard } from "../ui/skeleton"
 
 const RestaurantList = () => {
     const navigate = useNavigate()
-    const city = 'london' //Change later to something else - not hardcoded
+    const city = "London"
     const [searchState] = useState<SearchState>({
         searchQuery: "",
         page: 1,

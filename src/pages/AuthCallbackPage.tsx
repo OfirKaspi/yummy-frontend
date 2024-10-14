@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useCreateMyUser } from "@/api/MyUserApi"
 import { useAuth0 } from "@auth0/auth0-react"
 
-import Loader from "@/components/ui/Loader"
+import Loader from "@/components/Loader"
 
 const AuthCallbackPage = () => {
     const navigate = useNavigate()

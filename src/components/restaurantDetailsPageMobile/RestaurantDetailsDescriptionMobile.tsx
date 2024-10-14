@@ -1,5 +1,5 @@
 import { Restaurant } from "@/types"
-import RestaurantStats from "../RestaurantStats"
+import RestaurantStats from "@/components/RestaurantStats"
 
 type Props = {
     restaurant: Restaurant

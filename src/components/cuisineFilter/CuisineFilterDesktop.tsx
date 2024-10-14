@@ -1,8 +1,8 @@
 import { cuisineList } from "@/config/restaurant-options-config"
 
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
-import { Button } from "../ui/button"
-import { Label } from "../ui/label"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
 
 type Props = {
     isExpanded: boolean

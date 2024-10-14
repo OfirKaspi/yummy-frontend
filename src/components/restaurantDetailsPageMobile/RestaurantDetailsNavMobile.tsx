@@ -1,6 +1,6 @@
 import { LucideHeart } from "lucide-react"
 
-import PervPageNavButton from "../PervPageNavButton"
+import PervPageNavButton from "@/components/PervPageNavButton"
 
 type Props = {
     restaurantImg: string

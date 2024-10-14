@@ -1,8 +1,8 @@
 import { Search } from "lucide-react"
 import { Form, FormControl, FormField, FormItem } from "../ui/form"
-import { Input } from "../ui/input"
-import { Button } from "../ui/button"
-import { SearchForm } from "./SearchBar"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { SearchForm } from "@/components/searchBar/SearchBar"
 import { UseFormReturn } from "react-hook-form"
 
 type Props = {

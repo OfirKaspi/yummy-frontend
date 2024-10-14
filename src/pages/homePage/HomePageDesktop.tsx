@@ -1,7 +1,7 @@
 import landingImage from '@/assets/landing.png'
 import appDownloadImg from '@/assets/appDownload.png'
 
-import SearchBar, { SearchForm } from "@/components/SearchBar"
+import SearchBar, { SearchForm } from "@/components/searchBar/SearchBar"
 
 type Props = {
     handleSearchSubmit: (searchFormValues: SearchForm) => void

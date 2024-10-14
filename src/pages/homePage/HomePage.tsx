@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 import useDeviceType from '@/hooks/useDeviceType'
 
-import { SearchForm } from '@/components/SearchBar'
+import { SearchForm } from '@/components/searchBar/SearchBar'
 import HomePageMobile from './HomePageMobile'
 import HomePageDesktop from './HomePageDesktop'
 
