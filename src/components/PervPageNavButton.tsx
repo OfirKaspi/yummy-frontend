@@ -5,7 +5,11 @@ const PervPageNavButton = () => {
     const navigate = useNavigate()
 
     const handleReturnToPrevPage = () => {
-        navigate(-1)
+        if (window.history.length > 1) {
+            navigate(-1)
+        } else {
+            navigate('/')
+        }
     }
 
     return (

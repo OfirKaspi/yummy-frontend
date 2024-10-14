@@ -9,8 +9,8 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 export const useGetRestaurant = (restaurantId?: string) => {
     const getRestaurantByIdRequest = async (): Promise<Restaurant> => {
         try {
-            const response = axios.get(`${API_BASE_URL}/api/restaurant/${restaurantId}`)
-            return (await response).data
+            const response = await axios.get(`${API_BASE_URL}/api/restaurant/${restaurantId}`)
+            return response.data
         } catch (error) {
             console.error("Error getting restaurant:", error)
             throw new Error("Failed to get restaurant")

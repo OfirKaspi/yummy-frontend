@@ -1,47 +1,23 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Form, FormControl, FormField, FormItem } from "./ui/form"
 import { Search } from "lucide-react"
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
-import { useEffect } from "react"
-
-const formSchema = z.object({
-    searchQuery: z.string({
-        required_error: "Restaurant name is required"
-    })
-})
-
-export type SearchForm = z.infer<typeof formSchema>
+import { Form, FormControl, FormField, FormItem } from "../ui/form"
+import { Input } from "../ui/input"
+import { Button } from "../ui/button"
+import { SearchForm } from "./SearchBar"
+import { UseFormReturn } from "react-hook-form"
 
 type Props = {
-    searchQuery?: string
+    form: UseFormReturn<SearchForm>
+    handleReset: () => void
     onSubmit: (formData: SearchForm) => void,
     placeHolder: string,
-    onReset?: () => void
 }
 
-const SearchBar = ({ searchQuery, onSubmit, placeHolder, onReset }: Props) => {
-    const form = useForm<SearchForm>({
-        resolver: zodResolver(formSchema),
-        defaultValues: { searchQuery }
-    })
-
-    useEffect(() => {
-        form.reset({ searchQuery })
-    }, [form, searchQuery])
-
-    const handleReset = () => {
-        form.reset({
-            searchQuery: ""
-        })
-
-        if (onReset) {
-            onReset()
-        }
-    }
-
+const SearchBarDesktop = ({
+    form,
+    handleReset,
+    onSubmit,
+    placeHolder,
+}: Props) => {
     return (
         <Form {...form}>
             <form
@@ -82,4 +58,4 @@ const SearchBar = ({ searchQuery, onSubmit, placeHolder, onReset }: Props) => {
     )
 }
 
-export default SearchBar
+export default SearchBarDesktop
