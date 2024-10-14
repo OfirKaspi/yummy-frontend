@@ -1,11 +1,11 @@
 import CuisineFilter from "@/components/cuisineFilter/CuisineFilter"
 import PaginationSelector from "@/components/PaginationSelector"
 import SearchBar, { SearchForm } from "@/components/SearchBar"
-import SearchResultsCard from "@/components/SearchResultsCard"
 import SearchResultsInfo from "@/components/SearchResultsInfo"
 import SortOptionDropdown from "@/components/SortOptionDropdown"
 import { Restaurant, RestaurantSearchResponse } from "@/types"
 import { SearchState } from "./SearchPage"
+import RestaurantCard from "@/components/restaurantCard/RestaurantCard"
 
 type Props = {
     city: string
@@ -48,7 +48,7 @@ const SearchPageDesktop = ({
                     <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value)} />
                 </div>
                 {results.data.map((restaurant: Restaurant) => (
-                    <SearchResultsCard restaurant={restaurant} />
+                    <RestaurantCard restaurant={restaurant} />
                 ))}
                 <PaginationSelector
                     page={results.pagination.page}
