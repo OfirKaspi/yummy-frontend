@@ -6,17 +6,9 @@ type Props = {
 }
 
 const CarouselCard = ({ img, name, handleCuisineChange, isSelected = false }: Props) => {
-
-    console.log("handleCuisineChange carousel", handleCuisineChange);
-
-
-    const handleClick = () => {
-        handleCuisineChange(name)
-    }
-
     return (
         <div
-            onClick={handleClick}
+            onClick={() => handleCuisineChange(name)}
             className="relative flex flex-col items-center justify-center gap-3"
         >
             <div className={`rounded-xl shadow-lg p-2 object-cover z-10 ${isSelected && 'shadow-green-300'}`}>

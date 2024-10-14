@@ -18,8 +18,6 @@ const CuisinesFilterMobile = ({
     handleCuisineChange,
     handleCuisinesReset,
 }: Props) => {
-    console.log("handleCuisineChange CFM", handleCuisineChange);
-
     return (
         <div className="space-y-3">
             <div className="flex items-center justify-between">

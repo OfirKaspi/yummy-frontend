@@ -35,8 +35,6 @@ const CuisineFilter = ({ onChange, selectedCuisines }: Props) => {
         }
     }
 
-    console.log("handleCuisineChange CF", handleCuisineChange);
-
     return (
         <>
             {isMobile && <CuisinesFilterMobile

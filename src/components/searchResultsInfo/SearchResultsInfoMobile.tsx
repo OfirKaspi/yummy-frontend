@@ -7,16 +7,12 @@ type Props = {
 
 const SearchResultsInfoMobile = ({ city, total }: Props) => {
     return (
-        <div className="text-xl flex flex-col gap-2 font-medium">
-            <span>
-                {total} Restaurants found in {city}
-            </span>
-            <Link
-                to="/"
-                className="ml-1 text-sm font-semibold underline cursor-pointer text-blue-500"
-            >
-                Change Location
-            </Link>
+        <div className="flex flex-col">
+            <span>{total} Restaurants found</span>
+            <div className="flex items-center gap-1">
+                in
+                <Link to="/" className="font-medium underline">{city}</Link>
+            </div>
         </div>
     )
 }
