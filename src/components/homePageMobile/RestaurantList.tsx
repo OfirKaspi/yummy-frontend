@@ -5,7 +5,7 @@ import { useSearchRestaurant } from "@/api/RestaurantApi"
 
 import { SearchState } from "@/pages/searchPage/SearchPage"
 import ExpandBtn from "./ExpandBtn"
-import RestaurantCardMobile from "./RestaurantCardMobile"
+import RestaurantCardMobile from "../restaurantCard/RestaurantCardMobile"
 import { SkeletonCard } from "../ui/skeleton"
 
 const RestaurantList = () => {

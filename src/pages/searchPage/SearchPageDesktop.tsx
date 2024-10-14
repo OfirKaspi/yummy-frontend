@@ -1,11 +1,11 @@
 import CuisineFilter from "@/components/cuisineFilter/CuisineFilter"
 import PaginationSelector from "@/components/PaginationSelector"
 import SearchBar, { SearchForm } from "@/components/SearchBar"
-import SearchResultsInfo from "@/components/SearchResultsInfo"
+import SearchResultsInfoDesktop from "@/components/searchResultsInfo/SearchResultsInfoDesktop"
 import SortOptionDropdown from "@/components/SortOptionDropdown"
 import { Restaurant, RestaurantSearchResponse } from "@/types"
 import { SearchState } from "./SearchPage"
-import RestaurantCard from "@/components/restaurantCard/RestaurantCard"
+import RestaurantCardDesktop from "@/components/restaurantCard/RestaurantCardDesktop"
 
 type Props = {
     city: string
@@ -44,11 +44,11 @@ const SearchPageDesktop = ({
                     onReset={resetSearch}
                 />
                 <div className="flex justify-between flex-col gap-3 lg:flex-row">
-                    <SearchResultsInfo total={results.pagination.total} city={city} />
+                    <SearchResultsInfoDesktop total={results.pagination.total} city={city} />
                     <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value)} />
                 </div>
                 {results.data.map((restaurant: Restaurant) => (
-                    <RestaurantCard restaurant={restaurant} />
+                    <RestaurantCardDesktop restaurant={restaurant} />
                 ))}
                 <PaginationSelector
                     page={results.pagination.page}
