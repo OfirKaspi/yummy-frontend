@@ -1,31 +1,42 @@
 import MobileNav from "@/components/MobileNav"
-import OrderStatusDetail from "@/components/order/OrderStatusDetail"
-import OrderStatusHeader from "@/components/order/OrderStatusHeader"
+import MyOrderCardMobile from "@/components/order/MyOrderCardMobile"
+import { Separator } from "@/components/ui/separator"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Order } from "@/types"
-import { AspectRatio } from "@radix-ui/react-aspect-ratio"
 type Props = {
     orders: Order[]
 }
 
 const OrderStatusPageMobile = ({ orders }: Props) => {
     return (
-        <div className="space-y-10">
-            <MobileNav />
-            {orders.map((order) => (
-                <div key={order._id} className="space-y-10 bg-gray-50 p-10 rounded-lg">
-                    <OrderStatusHeader order={order} />
-                    <div className="grid gap-10 md:grid-cols-2">
-                        <OrderStatusDetail order={order} />
-                        <AspectRatio ratio={16 / 5}>
-                            <img
-                                src={order.restaurant.imageUrl}
-                                className="rounded-md object-cover h-full w-full"
-                                alt="restaurant-image"
-                            />
-                        </AspectRatio>
-                    </div>
-                </div>
-            ))}
+        <div className="space-y-5">
+            <div className="flex items-center gap-5">
+                <MobileNav />
+                <h1 className="text-lg">My Orders</h1>
+            </div>
+            <Tabs defaultValue="ongoing" className="space-y-5">
+                <TabsList className="flex">
+                    <TabsTrigger value="ongoing" className="flex-1">Ongoing</TabsTrigger>
+                    <TabsTrigger value="history" className="flex-1">History</TabsTrigger>
+                </TabsList>
+                <TabsContent value="ongoing" className="space-y-5">
+                    {orders.map((order, index) => (
+                        <>
+                            {index < orders.length && <Separator />}
+                            <MyOrderCardMobile key={order._id} order={order} />
+                        </>
+                    ))}
+
+                </TabsContent>
+                <TabsContent value="history" className="space-y-5">
+                    {orders.map((order, index) => (
+                        <>
+                            {index < orders.length && <Separator />}
+                            <MyOrderCardMobile key={order._id} order={order} />
+                        </>
+                    ))}
+                </TabsContent>
+            </Tabs>
         </div>
     )
 }

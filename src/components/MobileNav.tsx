@@ -13,7 +13,7 @@ const MobileNav = () => {
             <SheetTrigger className='bg-slate-100 rounded-full w-12 h-12 flex items-center justify-center'>
                 <Menu className='text-gray-600' />
             </SheetTrigger>
-            <SheetContent side='left' className='space-y-3 rounded-r-3xl'>
+            <SheetContent side='left' className='space-y-5 rounded-r-3xl'>
                 <SheetTitle>
                     {isAuthenticated ? (
                         <span className='flex items-center font-bold gap-2'>
@@ -25,7 +25,7 @@ const MobileNav = () => {
                     )}
                 </SheetTitle>
                 <Separator />
-                <SheetDescription className='flex flex-col gap-4'>
+                <SheetDescription className='flex flex-col gap-5'>
                     {isAuthenticated ? (
                         <MobileNavLinks />
                     ) : (
