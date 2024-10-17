@@ -7,8 +7,6 @@ type Props = {
 }
 
 const OrderStatusHeader = ({ order }: Props) => {
-    console.log('order', order);
-
     const getExpectedDelivery = () => {
         const created = new Date(order.createdAt)
         created.setMinutes(

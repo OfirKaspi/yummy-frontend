@@ -1,23 +1,16 @@
-import { useGetMyOrders } from "@/api/OrderApi"
-import OrdersNotFound from "@/components/order/OrdersNotFound"
+import MobileNav from "@/components/MobileNav"
 import OrderStatusDetail from "@/components/order/OrderStatusDetail"
 import OrderStatusHeader from "@/components/order/OrderStatusHeader"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
-import Loader from "@/components/Loader"
+import { Order } from "@/types"
+import { AspectRatio } from "@radix-ui/react-aspect-ratio"
+type Props = {
+    orders: Order[]
+}
 
-const OrderStatusPage = () => {
-    const { orders, isLoading } = useGetMyOrders()
-
-    if (isLoading) {
-        return <Loader />
-    }
-
-    if (!orders || orders.length === 0) {
-        return <OrdersNotFound />
-    }
-
+const OrderStatusPageMobile = ({ orders }: Props) => {
     return (
         <div className="space-y-10">
+            <MobileNav />
             {orders.map((order) => (
                 <div key={order._id} className="space-y-10 bg-gray-50 p-10 rounded-lg">
                     <OrderStatusHeader order={order} />
@@ -37,4 +30,4 @@ const OrderStatusPage = () => {
     )
 }
 
-export default OrderStatusPage
+export default OrderStatusPageMobile
