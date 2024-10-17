@@ -45,7 +45,7 @@ const RestaurantList = () => {
             {isLoading}
             <div className="space-y-5">
                 {results.data.map((restaurant) => (
-                    <RestaurantCardMobile restaurant={restaurant} />
+                    <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
                 ))}
             </div>
         </div>

@@ -53,7 +53,7 @@ const SearchPageMobile = ({
             </div>
 
             {results.data.map((restaurant: Restaurant) => (
-                <RestaurantCardMobile restaurant={restaurant} />
+                <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
             ))}
             <PaginationSelector
                 page={results.pagination.page}

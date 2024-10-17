@@ -34,7 +34,7 @@ const OrderSummary = ({ cartItems, restaurant, removeFromCart, adjustItemQuantit
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
                 {cartItems.map((item) => (
-                    <div className="flex justify-between">
+                    <div key={item._id} className="flex justify-between">
                         <span className="flex items-center gap-2">
                             <Plus
                                 className="cursor-pointer"

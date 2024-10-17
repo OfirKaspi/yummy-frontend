@@ -33,6 +33,7 @@ const CuisinesFilterMobile = ({
                             const isSelected = selectedCuisines.includes(cuisine.name)
                             return (
                                 <div
+                                    key={cuisine.name}
                                     onClick={() => handleCuisineChange(cuisine.name)}
                                     className={`flex items-center rounded-lg shadow-lg py-2 px-3
                                     ${isSelected && 'shadow-green-300 text-green-600'}`}
@@ -55,6 +56,7 @@ const CuisinesFilterMobile = ({
                         const isSelected = selectedCuisines.includes(cuisine.name)
                         return (
                             <CarouselCard
+                                key={cuisine.name}
                                 img={cuisine.img}
                                 name={cuisine.name}
                                 handleCuisineChange={handleCuisineChange}

@@ -48,7 +48,7 @@ const SearchPageDesktop = ({
                     <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value)} />
                 </div>
                 {results.data.map((restaurant: Restaurant) => (
-                    <RestaurantCardDesktop restaurant={restaurant} />
+                    <RestaurantCardDesktop key={restaurant._id} restaurant={restaurant} />
                 ))}
                 <PaginationSelector
                     page={results.pagination.page}

@@ -24,7 +24,7 @@ const RestaurantCardMobile = ({ restaurant }: Props) => {
                 <h3 className="text-xl">{restaurant.restaurantName}</h3>
                 <div className="flex">
                     {restaurant.cuisines.map((cuisine, index) => (
-                        <span className="flex text-gray-600 text-sm">
+                        <span key={cuisine} className="flex text-gray-600 text-sm">
                             <span>{cuisine}</span>
                             {index < restaurant.cuisines.length - 1 && <Dot size={20} className="text-gray-600" />}
                         </span>
