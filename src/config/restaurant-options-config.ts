@@ -4,35 +4,6 @@ export const allCuisinesPropertyCloudinary = {
     name: "All", img: "https://res.cloudinary.com/dudwjf2pu/image/upload/v1728736469/CuisineImgs/all-cuisines_mbiuzg.png"
 }
 
-export const cuisineList = [
-    "American",
-    "BBQ",
-    "Breakfast",
-    "Burgers",
-    "Cafe",
-    "Chinese",
-    "Desserts",
-    "French",
-    "Greek",
-    "Healthy",
-    "Indian",
-    "Italian",
-    "Japanese",
-    "Mexican",
-    "Noodles",
-    "Organic",
-    "Pasta",
-    "Pizza",
-    "Salads",
-    "Seafood",
-    "Spanish",
-    "Steak",
-    "Sushi",
-    "Tacos",
-    "Tapas",
-    "Vegan",
-]
-
 export const cuisineListWithImgsCloudinary = [
     { name: "American", img: "https://res.cloudinary.com/dudwjf2pu/image/upload/v1728734759/CuisineImgs/american-min_l2x9mb.jpg" },
     { name: "BBQ", img: "https://res.cloudinary.com/dudwjf2pu/image/upload/v1728734760/CuisineImgs/bbq-min_ba3gwo.jpg" },

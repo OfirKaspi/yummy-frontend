@@ -4,7 +4,10 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { FormControl, FormItem, FormLabel } from "@/components/ui/form"
 
 type Props = {
-    cuisine: string,
+    cuisine: {
+        img: string
+        name: string
+    },
     field: ControllerRenderProps<FieldValues, "cuisines">
 }
 
@@ -14,19 +17,19 @@ const CuisineCheckbox = ({ cuisine, field }: Props) => {
             <FormControl>
                 <Checkbox
                     className="bg-white"
-                    checked={field.value.includes(cuisine)}
+                    checked={field.value.includes(cuisine.name)}
                     onCheckedChange={(checked) => {
                         if (checked) {
-                            field.onChange([...field.value, cuisine])
+                            field.onChange([...field.value, cuisine.name])
                         } else {
                             field.onChange(
-                                field.value.filter((value: string) => value !== cuisine)
+                                field.value.filter((value: string) => value !== cuisine.name)
                             )
                         }
                     }}
                 />
             </FormControl>
-            <FormLabel className="text-sm font-normal">{cuisine}</FormLabel>
+            <FormLabel className="text-sm font-normal">{cuisine.name}</FormLabel>
         </FormItem>
     )
 }

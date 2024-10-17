@@ -1,4 +1,4 @@
-import { cuisineList } from "@/config/restaurant-options-config"
+import { cuisineListWithImgsCloudinary } from "@/config/restaurant-options-config"
 
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -32,29 +32,29 @@ const CuisineFilterDesktop = ({
             </div>
 
             <div className="space-y-2 flex flex-col">
-                {cuisineList
-                    .slice(0, isExpanded ? cuisineList.length : 7)
+                {cuisineListWithImgsCloudinary
+                    .slice(0, isExpanded ? cuisineListWithImgsCloudinary.length : 7)
                     .map((cuisine) => {
-                        const isSelected = selectedCuisines.includes(cuisine)
+                        const isSelected = selectedCuisines.includes(cuisine.name)
                         return (
-                            <div className="flex" key={cuisine}>
+                            <div className="flex" key={cuisine.name}>
                                 <input
-                                    id={`cuisine_${cuisine}`}
+                                    id={`cuisine_${cuisine.name}`}
                                     type="checkbox"
                                     className="hidden"
-                                    value={cuisine}
+                                    value={cuisine.name}
                                     checked={isSelected}
-                                    onChange={() => handleCuisineChange(cuisine)}
+                                    onChange={() => handleCuisineChange(cuisine.name)}
                                 />
                                 <Label
-                                    htmlFor={`cuisine_${cuisine}`}
+                                    htmlFor={`cuisine_${cuisine.name}`}
                                     className={`flex flex-1 items-center cursor-pointer text-sm rounded-full px-4 py-2 font-semibold 
                                     ${isSelected
                                             ? "border border-green-600 text-green-600"
                                             : "border border-slate-300"
                                         }`}>
                                     {isSelected && <Check size={20} strokeWidth={3} />}
-                                    {cuisine}
+                                    {cuisine.name}
                                 </Label>
                             </div>
                         )
