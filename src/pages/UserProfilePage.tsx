@@ -1,10 +1,13 @@
 import { useGetMyUser, useUpdateMyUser } from "@/api/MyUserApi"
 import Loader from "@/components/Loader"
+import MainNavMobile from "@/components/navigation/MainNavMobile"
 import UserProfileForm from "@/forms/user-profile-form/UserProfileForm"
+import useDeviceType from "@/hooks/useDeviceType"
 
 const UserProfilePage = () => {
     const { currentUser, isLoading: isGetLoading } = useGetMyUser()
     const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser()
+    const { isMobile } = useDeviceType()
 
     if (isGetLoading) {
         return <Loader />
@@ -15,7 +18,14 @@ const UserProfilePage = () => {
     }
 
     return (
-        <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} />
+        <div className="space-y-5">
+            {isMobile &&
+                <MainNavMobile>
+                    My Profile
+                </MainNavMobile>
+            }
+            <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} />
+        </div>
     )
 }
 

@@ -3,7 +3,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from 
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { useAuth0 } from '@auth0/auth0-react'
-import MobileNavLinks from '@/components/MobileNavLinks'
+import MobileNavLinks from '@/components/navigation/MobileNavLinks'
 
 const MobileNav = () => {
     const { isAuthenticated, loginWithRedirect, user } = useAuth0()
@@ -13,7 +13,7 @@ const MobileNav = () => {
             <SheetTrigger className='bg-slate-100 rounded-full w-12 h-12 flex items-center justify-center'>
                 <Menu className='text-gray-600' />
             </SheetTrigger>
-            <SheetContent side='left' className='space-y-5 rounded-r-3xl'>
+            <SheetContent side='right' className='space-y-5 rounded-l-3xl'>
                 <SheetTitle>
                     {isAuthenticated ? (
                         <span className='flex items-center font-bold gap-2'>

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import UsernameMenu from "@/components/UsernameMenu"
 import { Link } from "react-router-dom"
 
-const MainNav = () => {
+const MainNavDesktop = () => {
     const { loginWithRedirect, isAuthenticated } = useAuth0()
 
     return (
@@ -28,4 +28,4 @@ const MainNav = () => {
     )
 }
 
-export default MainNav
+export default MainNavDesktop

@@ -5,7 +5,7 @@ import PaginationSelector from "@/components/PaginationSelector"
 import SearchBar, { SearchForm } from "@/components/searchBar/SearchBar"
 import RestaurantCardMobile from "@/components/restaurantCard/RestaurantCardMobile"
 import SearchResultsInfoMobile from "@/components/searchResultsInfo/SearchResultsInfoMobile"
-import PervPageNavButton from "@/components/PervPageNavButton"
+import PervPageNavButton from "@/components/navigation/PervPageNavButton"
 
 import SearchFilter from "@/components/searchPage/SearchFilter"
 

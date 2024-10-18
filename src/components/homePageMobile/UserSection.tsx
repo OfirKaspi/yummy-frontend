@@ -1,9 +1,8 @@
 import { useGetMyUser } from "@/api/MyUserApi"
-import MobileNav from "@/components/MobileNav"
 import { SkeletonProfile } from "@/components/ui/skeleton"
 import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
-import ShoppingBagCmp from "@/components/ShoppingBagCmp"
+import MainNavMobile from "../navigation/MainNavMobile"
 
 const UserSection = () => {
     const { currentUser, isLoading } = useGetMyUser()
@@ -33,8 +32,7 @@ const UserSection = () => {
 
     return (
         <>
-            <div className="flex gap-3">
-                <MobileNav />
+            <MainNavMobile isHomePage>
                 <div className="flex justify-center flex-col text-sm">
                     <span className="text-orange-500 font-medium">DELIVER TO</span>
 
@@ -44,10 +42,7 @@ const UserSection = () => {
                         <ChevronDown size={16} />
                     </span>
                 </div>
-                <div className="ml-auto flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 relative text-white">
-                    <ShoppingBagCmp />
-                </div>
-            </div>
+            </MainNavMobile>
             <div>
                 <span>Hey {currentUser?.name},</span>
                 <span className="font-bold"> {greeting}!</span>

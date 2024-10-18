@@ -1,5 +1,6 @@
-import MobileNav from "@/components/MobileNav"
+import MobileNav from "@/components/navigation/MobileNav"
 import MyOrderCardMobile from "@/components/order/MyOrderCardMobile"
+import PervPageNavButton from "@/components/navigation/PervPageNavButton"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Order } from "@/types"
@@ -13,8 +14,9 @@ const OrderStatusPageMobile = ({ ongoingOrders, deliveredOrders }: Props) => {
     return (
         <div className="space-y-5">
             <div className="flex items-center gap-5">
+                <PervPageNavButton />
+                <h1 className="text-lg flex-1">My Orders</h1>
                 <MobileNav />
-                <h1 className="text-lg">My Orders</h1>
             </div>
             <Tabs defaultValue="ongoing" className="space-y-5">
                 <TabsList className="flex">
