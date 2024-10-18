@@ -1,22 +1,22 @@
 import { Order } from "@/types"
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import OrderStatusDetails from "@/components/order/OrderStatusDetails"
 
 type Props = {
     order: Order
 }
 
-const TrackOrder = ({ order }: Props) => {
+const ShowOrder = ({ order }: Props) => {
     return (
         <Sheet>
             <SheetTrigger className="bg-orange-500 rounded-lg text-white font-medium text-xs py-2">
-                Track Order
+                Show Order
             </SheetTrigger>
             <SheetContent side="bottom" className="rounded-t-3xl">
-                {/* OrderDetailsPage */}
-                to be continue
+                <OrderStatusDetails order={order} />
             </SheetContent>
         </Sheet>
     )
 }
 
-export default TrackOrder
+export default ShowOrder

@@ -3,11 +3,13 @@ import MyOrderCardMobile from "@/components/order/MyOrderCardMobile"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Order } from "@/types"
+
 type Props = {
-    orders: Order[]
+    ongoingOrders: Order[]
+    deliveredOrders: Order[]
 }
 
-const OrderStatusPageMobile = ({ orders }: Props) => {
+const OrderStatusPageMobile = ({ ongoingOrders, deliveredOrders }: Props) => {
     return (
         <div className="space-y-5">
             <div className="flex items-center gap-5">
@@ -20,18 +22,18 @@ const OrderStatusPageMobile = ({ orders }: Props) => {
                     <TabsTrigger value="history" className="flex-1">History</TabsTrigger>
                 </TabsList>
                 <TabsContent value="ongoing" className="space-y-5">
-                    {orders.map((order, index) => (
+                    {ongoingOrders.map((order, index) => (
                         <>
-                            {index < orders.length && <Separator />}
+                            {index < ongoingOrders.length && <Separator />}
                             <MyOrderCardMobile key={order._id} order={order} />
                         </>
                     ))}
 
                 </TabsContent>
                 <TabsContent value="history" className="space-y-5">
-                    {orders.map((order, index) => (
+                    {deliveredOrders.map((order, index) => (
                         <>
-                            {index < orders.length && <Separator />}
+                            {index < deliveredOrders.length && <Separator />}
                             <MyOrderCardMobile key={order._id} order={order} />
                         </>
                     ))}

@@ -39,15 +39,16 @@ export const useGetMyOrders = () => {
         }
     }
 
-    const { data: orders, isLoading } = useQuery(
+    const { data: orders, isLoading, refetch } = useQuery(
         "fetchMyOrders",
         getMyOrdersRequest,
         {
-            refetchInterval: 5000
+            staleTime: 60 * 1000,
+            refetchInterval: false,
         }
     )
 
-    return { orders, isLoading }
+    return { orders, isLoading, refetch }
 }
 
 export const useCreateCheckoutSession = () => {

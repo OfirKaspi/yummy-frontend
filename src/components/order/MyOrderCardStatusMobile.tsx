@@ -2,6 +2,11 @@ type Props = {
     status: string
 }
 
+const capitalizeFirstLetter = (string: string) => {
+    if (!string) return ""
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 const getStatusColor = (status: string) => {
     switch (status) {
         case "placed":
@@ -21,11 +26,13 @@ const getStatusColor = (status: string) => {
 
 
 const MyOrderCardStatusMobile = ({ status }: Props) => {
-    const statusColor = getStatusColor(status);
+    const statusColor = getStatusColor(status)
+    const formattedStatus = capitalizeFirstLetter(status)
+
     return (
         <div className="flex text-sm gap-3">
             <span className="font-medium">Order Status</span>
-            <span className={`${statusColor} font-bold`}>{status}</span>
+            <span className={`${statusColor} font-bold`}>{formattedStatus}</span>
         </div>
     )
 }
