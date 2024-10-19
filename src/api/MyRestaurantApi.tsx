@@ -1,8 +1,8 @@
 import axios from "axios"
-import { useAuth0 } from "@auth0/auth0-react"
 import { useMutation, useQuery } from "react-query"
-import { toast } from "sonner"
 import { Order, Restaurant } from "@/types"
+import { useAuth0 } from "@auth0/auth0-react"
+import { showToast } from "@/utils/showToast"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -60,11 +60,11 @@ export const useCreateMyRestaurant = () => {
     } = useMutation(createMyRestaurantRequest)
 
     if (isSuccess) {
-        toast.success("Restaurant created!")
+        showToast("Restaurant created!", "success")
     }
 
     if (error) {
-        toast.error("Unable to create restaurant")
+        showToast("Unable to create restaurant", "error")
     }
 
     return { createRestaurant, isLoading }
@@ -97,11 +97,11 @@ export const useUpdateMyRestaurant = () => {
     } = useMutation(updateMyRestaurantRequest)
 
     if (isSuccess) {
-        toast.success("Restaurant updated!")
+        showToast("Restaurant updated!", "success")
     }
 
     if (error) {
-        toast.error("Unable to update restaurant")
+        showToast("Unable to update restaurant", "error")
     }
 
     return { updateRestaurant, isLoading }
@@ -169,11 +169,12 @@ export const useUpdateMyRestaurantOrder = () => {
     } = useMutation(updateMyRestaurantOrder)
 
     if (isSuccess) {
-        toast.success("Order updated")
+        showToast("Order updated", "success")
     }
 
     if (isError) {
-        toast.error("Unable to update order")
+        showToast("Unable to update order", "error")
+
         reset()
     }
 

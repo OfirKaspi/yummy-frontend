@@ -1,8 +1,8 @@
-import { User } from "@/types"
-import { useAuth0 } from "@auth0/auth0-react"
 import axios from "axios"
 import { useMutation, useQuery } from "react-query"
-import { toast } from "sonner"
+import { User } from "@/types"
+import { showToast } from "@/utils/showToast"
+import { useAuth0 } from "@auth0/auth0-react"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -38,7 +38,7 @@ export const useGetMyUser = () => {
     } = useQuery("getCurrentUser", getMyUserRequest)
 
     if (error) {
-        toast.error(error.toString())
+        showToast(error.toString(), "error")
     }
 
     return { currentUser, isLoading }
@@ -115,11 +115,11 @@ export const useUpdateMyUser = () => {
     } = useMutation(updateMyUserRequest)
 
     if (isSuccess) {
-        toast.success("User profile updated!")
+        showToast("User profile updated!", "success")
     }
 
     if (error) {
-        toast.error(error.toString())
+        showToast(error.toString(), "error")
         reset()
     }
 
