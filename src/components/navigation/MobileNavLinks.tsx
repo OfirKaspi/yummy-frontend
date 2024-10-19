@@ -25,22 +25,22 @@ const MobileNavLinks = () => {
                 Search
             </Link> */}
             <Link
-                to="/order-status"
-                className={`flex items-center font-medium gap-2 ${isActive("/order-status") ? "text-orange-500" : ""}`}
+                to="/my-orders"
+                className={`flex items-center font-medium gap-2 ${isActive("/my-orders") ? "text-orange-500" : ""}`}
             >
                 <ShoppingBag className='text-orange-500' />
                 Order Status
             </Link>
             <Link
-                to="/manage-restaurant"
-                className={`flex items-center font-medium gap-2 ${isActive("/manage-restaurant") ? "text-orange-500" : ""}`}
+                to="/my-restaurant"
+                className={`flex items-center font-medium gap-2 ${isActive("/my-restaurant") ? "text-orange-500" : ""}`}
             >
                 <Utensils className='text-orange-500' />
                 Manage Restaurant
             </Link>
             <Link
-                to="/user-profile"
-                className={`flex items-center font-medium gap-2 ${isActive("/user-profile") ? "text-orange-500" : ""}`}
+                to="/my-profile"
+                className={`flex items-center font-medium gap-2 ${isActive("/my-profile") ? "text-orange-500" : ""}`}
             >
                 <User className='text-orange-500' />
                 User Profile

@@ -18,9 +18,9 @@ const AppRoutes = () => {
             <Route path='/search/:city' element={<Layout><SearchPage /></Layout>} />
             <Route path='/details/:restaurantId' element={<Layout><RestaurantDetailsPage /></Layout>} />
             <Route element={<ProtectedRoute />}>
-                <Route path='/order-status' element={<Layout><MyOrdersPage /></Layout>} />
-                <Route path='/user-profile' element={<Layout><MyProfilePage /></Layout>} />
-                <Route path='/manage-restaurant' element={<Layout><MyRestaurantPage /></Layout>} />
+                <Route path='/my-orders' element={<Layout><MyOrdersPage /></Layout>} />
+                <Route path='/my-profile' element={<Layout><MyProfilePage /></Layout>} />
+                <Route path='/my-restaurant' element={<Layout><MyRestaurantPage /></Layout>} />
             </Route>
             <Route path='*' element={<Navigate to='/' />} />
         </Routes>
