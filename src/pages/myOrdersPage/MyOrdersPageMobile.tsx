@@ -10,7 +10,7 @@ type Props = {
     deliveredOrders: Order[]
 }
 
-const OrderStatusPageMobile = ({ ongoingOrders, deliveredOrders }: Props) => {
+const NyOrdersPageMobile = ({ ongoingOrders, deliveredOrders }: Props) => {
     return (
         <div className="space-y-5">
             <div className="flex items-center gap-5">
@@ -23,10 +23,11 @@ const OrderStatusPageMobile = ({ ongoingOrders, deliveredOrders }: Props) => {
                     <TabsTrigger value="ongoing" className="flex-1">Ongoing</TabsTrigger>
                     <TabsTrigger value="history" className="flex-1">History</TabsTrigger>
                 </TabsList>
+                <Separator />
                 <TabsContent value="ongoing" className="space-y-5">
                     {ongoingOrders.map((order, index) => (
                         <>
-                            {index < ongoingOrders.length && <Separator />}
+                            {index !== 0 && <Separator />}
                             <MyOrderCardMobile key={order._id} order={order} />
                         </>
                     ))}
@@ -35,7 +36,7 @@ const OrderStatusPageMobile = ({ ongoingOrders, deliveredOrders }: Props) => {
                 <TabsContent value="history" className="space-y-5">
                     {deliveredOrders.map((order, index) => (
                         <>
-                            {index < deliveredOrders.length && <Separator />}
+                            {index !== 0 && <Separator />}
                             <MyOrderCardMobile key={order._id} order={order} />
                         </>
                     ))}
@@ -45,4 +46,4 @@ const OrderStatusPageMobile = ({ ongoingOrders, deliveredOrders }: Props) => {
     )
 }
 
-export default OrderStatusPageMobile
+export default NyOrdersPageMobile

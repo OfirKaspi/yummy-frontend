@@ -2,11 +2,11 @@ import { useGetMyOrders } from "@/api/OrderApi"
 import OrdersNotFound from "@/components/order/OrdersNotFound"
 import Loader from "@/components/Loader"
 import useDeviceType from "@/hooks/useDeviceType"
-import OrderStatusPageMobile from "./OrderStatusPageMobile"
-import OrderStatusPageDesktop from "./OrderStatusPageDesktop"
+import NyOrdersPageMobile from "@/pages/myOrdersPage/MyOrdersPageMobile"
+import MyOrdersPageDesktop from "@/pages/myOrdersPage//MyOrdersPageDesktop"
 import { useMemo } from "react"
 
-const OrderStatusPage = () => {
+const MyOrdersPage = () => {
     const { isDesktop, isMobile } = useDeviceType()
     const { orders, isLoading } = useGetMyOrders()
 
@@ -30,10 +30,10 @@ const OrderStatusPage = () => {
 
     return (
         <>
-            {isMobile && <OrderStatusPageMobile ongoingOrders={ongoingOrders} deliveredOrders={deliveredOrders} />}
-            {isDesktop && <OrderStatusPageDesktop ongoingOrders={ongoingOrders} deliveredOrders={deliveredOrders} />}
+            {isMobile && <NyOrdersPageMobile ongoingOrders={ongoingOrders} deliveredOrders={deliveredOrders} />}
+            {isDesktop && <MyOrdersPageDesktop ongoingOrders={ongoingOrders} deliveredOrders={deliveredOrders} />}
         </>
     )
 }
 
-export default OrderStatusPage
+export default MyOrdersPage

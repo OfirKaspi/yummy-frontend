@@ -15,9 +15,9 @@ const MyRestaurantOrders = () => {
     }
 
     return (
-        <div className="space-y-5 bg-gray-50 p-10 rounded-lg">
-            <h2 className="text-2xl font-bold">{orders.length} active orders</h2>
-            {orders?.map((order) => (
+        <div className="space-y-5 lg:rounded-lg lg:bg-gray-50 lg:p-10">
+            <h2 className="text-2xl font-medium">{orders.length} active orders</h2>
+            {orders.map((order) => (
                 <OrderItemCard key={order._id} order={order} />
             ))}
         </div>

@@ -4,6 +4,7 @@ import { Trash2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Card } from "@/components/ui/card"
 
 type Props = {
     index: number
@@ -14,7 +15,7 @@ const MenuItemInput = ({ index, removeMenuItem }: Props) => {
     const { control } = useFormContext()
 
     return (
-        <div className="space-y-2 sm:space-y-0 sm:flex sm:flex-row sm:items-end sm:gap-2">
+        <Card className="p-5 space-y-5 sm:shadow-none sm:border-0 sm:p-0 sm:space-y-0 sm:flex sm:flex-row sm:items-end sm:gap-2">
             <FormField
                 control={control}
                 name={`menuItems.${index}.name`}
@@ -40,7 +41,7 @@ const MenuItemInput = ({ index, removeMenuItem }: Props) => {
                     control={control}
                     name={`menuItems.${index}.price`}
                     render={({ field, fieldState }) => (
-                        <FormItem>
+                        <FormItem className="flex-1">
                             <FormLabel className="flex items-center gap-1">
                                 Price ($)
                                 {fieldState.error ? " - " : ""}
@@ -61,12 +62,13 @@ const MenuItemInput = ({ index, removeMenuItem }: Props) => {
                 <Button
                     type="button"
                     onClick={removeMenuItem}
-                    className="bg-red-500 max-h-fit"
+                    className="bg-red-500 max-h-fit g2"
                 >
                     <Trash2 className="h-4 w-4 text-white" />
+                    Remove Menu Item
                 </Button>
             </div>
-        </div>
+        </Card>
     )
 }
 

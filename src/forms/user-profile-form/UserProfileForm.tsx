@@ -36,7 +36,7 @@ const UserProfileForm = ({
     title = "User Profile",
     buttonText = "Submit"
 }: Props) => {
-    const { isMobile } = useDeviceType()
+    const { isDesktop } = useDeviceType()
 
     const form = useForm<UserFormData>({
         resolver: zodResolver(formSchema),
@@ -51,7 +51,7 @@ const UserProfileForm = ({
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSave)}
-                className={`space-y-4 rounded-lg md:p-10 ${isMobile ? 'p-6' : 'bg-gray-50'}`}
+                className={`space-y-4 rounded-lg md:p-10 ${isDesktop && 'bg-gray-50'}`}
             >
                 <div>
                     <h2 className="text-2xl font-bold">{title}</h2>

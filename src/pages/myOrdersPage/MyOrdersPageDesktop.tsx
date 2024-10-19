@@ -8,7 +8,7 @@ type Props = {
     deliveredOrders: Order[]
 }
 
-const OrderStatusPageDesktop = ({ ongoingOrders, deliveredOrders }: Props) => {
+const MyOrdersPageDesktop = ({ ongoingOrders, deliveredOrders }: Props) => {
     return (
         <Tabs defaultValue="ongoing" className="space-y-5">
             <TabsList>
@@ -33,4 +33,4 @@ const OrderStatusPageDesktop = ({ ongoingOrders, deliveredOrders }: Props) => {
     )
 }
 
-export default OrderStatusPageDesktop
+export default MyOrdersPageDesktop

@@ -4,7 +4,7 @@ import MainNavMobile from "@/components/navigation/MainNavMobile"
 import UserProfileForm from "@/forms/user-profile-form/UserProfileForm"
 import useDeviceType from "@/hooks/useDeviceType"
 
-const UserProfilePage = () => {
+const MyProfilePage = () => {
     const { currentUser, isLoading: isGetLoading } = useGetMyUser()
     const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser()
     const { isMobile } = useDeviceType()
@@ -29,4 +29,4 @@ const UserProfilePage = () => {
     )
 }
 
-export default UserProfilePage
+export default MyProfilePage

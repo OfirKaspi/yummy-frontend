@@ -1,18 +1,18 @@
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod"
+import { useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Restaurant } from "@/types"
 
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
+import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
 
-import LoadingButton from "@/components/LoadingButton";
-import DetailsSection from "./DetailsSection";
-import CuisinesSection from "./CuisinesSection";
-import MenuSection from "./MenuSection";
-import ImageSection from "./ImageSection";
-import { Restaurant } from "@/types";
-import { useEffect } from "react";
+import LoadingButton from "@/components/LoadingButton"
+import DetailsSection from "@/forms/manage-restaurant-form/DetailsSection"
+import CuisinesSection from "@/forms/manage-restaurant-form/CuisinesSection"
+import MenuSection from "@/forms/manage-restaurant-form/MenuSection"
+import ImageSection from "@/forms/manage-restaurant-form/ImageSection"
 
 const formSchema = z.object({
     restaurantName: z.string({
@@ -114,7 +114,7 @@ const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8 bg-gray-50 p-10 rounded-lg"
+                className="lg:p-10 lg:bg-gray-50 space-y-5 rounded-lg"
             >
                 <DetailsSection />
                 <Separator />
@@ -123,9 +123,9 @@ const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
                 <MenuSection />
                 <Separator />
                 <ImageSection />
-                {isLoading ? <LoadingButton /> : <Button type="submit">Submit</Button>}
+                {isLoading ? <LoadingButton /> : <Button className="bg-orange-500" type="submit">Submit</Button>}
             </form>
-        </Form>
+        </Form >
     )
 }
 
