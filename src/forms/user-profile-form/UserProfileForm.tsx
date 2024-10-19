@@ -33,7 +33,7 @@ const UserProfileForm = ({
     currentUser,
     onSave,
     isLoading,
-    title = "User Profile",
+    title = "My Profile",
     buttonText = "Submit"
 }: Props) => {
     const { isDesktop } = useDeviceType()
@@ -54,7 +54,7 @@ const UserProfileForm = ({
                 className={`space-y-4 rounded-lg md:p-10 ${isDesktop && 'bg-gray-50'}`}
             >
                 <div>
-                    <h2 className="text-2xl font-bold">{title}</h2>
+                    <h2 className="text-2xl font-medium">{title}</h2>
                     <FormDescription>
                         View and change your profile information here
                     </FormDescription>

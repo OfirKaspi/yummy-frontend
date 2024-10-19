@@ -10,7 +10,7 @@ const MyProfilePage = () => {
     const { isMobile } = useDeviceType()
 
     if (isGetLoading) {
-        return <Loader />
+        return <Loader isFullScreen />
     }
 
     if (!currentUser) {
