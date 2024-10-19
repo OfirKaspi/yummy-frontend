@@ -78,7 +78,7 @@ const SearchPage = () => {
 
 
     if (isLoading || showLoader) {
-        return <Loader />
+        return <Loader isFullScreen />
     }
 
     if (!results?.data || !city) {

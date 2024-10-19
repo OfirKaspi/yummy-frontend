@@ -1,5 +1,5 @@
 import { useGetMyUser } from "@/api/MyUserApi"
-import { SkeletonProfile } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton"
 import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
 import MainNavMobile from "../navigation/MainNavMobile"
@@ -26,10 +26,6 @@ const UserSection = () => {
         setGreeting(getGreeting())
     }, [])
 
-    if (isLoading) {
-        <SkeletonProfile />
-    }
-
     return (
         <>
             <MainNavMobile isHomePage>
@@ -43,8 +39,13 @@ const UserSection = () => {
                     </span>
                 </div>
             </MainNavMobile>
-            <div>
-                <span>Hey {currentUser?.name},</span>
+            <div className="flex items-center gap-1">
+                <span>Hey,</span>
+                {isLoading || !currentUser ? (
+                    <Skeleton className="w-24 h-5" />
+                ) : (
+                    <span>{currentUser.name}</span>
+                )}
                 <span className="font-bold"> {greeting}!</span>
             </div>
         </>

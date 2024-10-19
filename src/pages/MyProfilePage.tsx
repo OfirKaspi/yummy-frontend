@@ -5,11 +5,11 @@ import UserProfileForm from "@/forms/user-profile-form/UserProfileForm"
 import useDeviceType from "@/hooks/useDeviceType"
 
 const MyProfilePage = () => {
-    const { currentUser, isLoading: isGetLoading } = useGetMyUser()
+    const { currentUser, isLoading: isGetUserLoading } = useGetMyUser()
     const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser()
     const { isMobile } = useDeviceType()
 
-    if (isGetLoading) {
+    if (isGetUserLoading) {
         return <Loader isFullScreen />
     }
 
