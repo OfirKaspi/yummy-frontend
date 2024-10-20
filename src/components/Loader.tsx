@@ -1,4 +1,4 @@
-import Yummy from "../../public/yummy.png"
+import Yummy from "/yummy.png"
 
 type Props = {
     isFullScreen?: boolean

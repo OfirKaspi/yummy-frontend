@@ -40,11 +40,11 @@ const UserSection = () => {
                 </div>
             </MainNavMobile>
             <div className="flex items-center gap-1">
-                <span>Hey,</span>
+                <span>Hey</span>
                 {isLoading || !currentUser ? (
                     <Skeleton className="w-24 h-5" />
                 ) : (
-                    <span>{currentUser.name}</span>
+                    <span>{currentUser.name},</span>
                 )}
                 <span className="font-bold"> {greeting}!</span>
             </div>

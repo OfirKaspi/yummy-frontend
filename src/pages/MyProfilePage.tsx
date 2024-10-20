@@ -1,6 +1,7 @@
 import { useGetMyUser, useUpdateMyUser } from "@/api/MyUserApi"
 import Loader from "@/components/Loader"
 import MainNavMobile from "@/components/navigation/MainNavMobile"
+import { Separator } from "@/components/ui/separator"
 import UserProfileForm from "@/forms/user-profile-form/UserProfileForm"
 import useDeviceType from "@/hooks/useDeviceType"
 
@@ -24,6 +25,7 @@ const MyProfilePage = () => {
                     My Profile
                 </MainNavMobile>
             }
+            <Separator />
             <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} />
         </div>
     )
