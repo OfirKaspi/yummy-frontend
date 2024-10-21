@@ -1,5 +1,4 @@
-import { Restaurant, RestaurantSearchResponse } from "@/types"
-import { SearchState } from "./SearchPage"
+import { Restaurant, RestaurantSearchResponse, SortOptionValue, SearchState } from "@/types"
 
 import PaginationSelector from "@/components/PaginationSelector"
 import SearchBar, { SearchForm } from "@/components/searchBar/SearchBar"
@@ -13,7 +12,7 @@ type Props = {
     city: string
     searchState: SearchState
     results: RestaurantSearchResponse
-    setSortOption: (sortOption: string) => void
+    setSortOption: (sortOption: SortOptionValue) => void
     setSelectedCuisines: (selectedCuisines: string[]) => void
     setPage: (page: number) => void
     setSearchQuery: (searchFormData: SearchForm) => void

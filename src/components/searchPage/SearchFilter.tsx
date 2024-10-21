@@ -1,14 +1,14 @@
 import { Filter } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import CuisineFilter from "@/components/cuisineFilter/CuisineFilter"
-import { SearchState } from "@/pages/searchPage/SearchPage"
+import { SearchState, SortOptionValue } from "@/types"
 import SortOptionDropdown from "@/components/SortOptionDropdown"
 import { Separator } from "@/components/ui/separator"
 
 type Props = {
     setSelectedCuisines: (cuisines: string[]) => void
     searchState: SearchState
-    setSortOption: (sortOption: string) => void
+    setSortOption: (sortOption: SortOptionValue) => void
 }
 
 const SearchFilter = ({ setSelectedCuisines, searchState, setSortOption }: Props) => {
@@ -22,7 +22,7 @@ const SearchFilter = ({ setSelectedCuisines, searchState, setSortOption }: Props
             <SheetContent side="bottom" className="flex flex-col rounded-t-3xl">
                 <div className="flex flex-col gap-3">
                     <h3 className="text-xl font-medium">Sort By</h3>
-                    <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value)} />
+                    <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value as SortOptionValue)} />
                 </div>
                 <Separator />
                 <div className="flex flex-col gap-3">

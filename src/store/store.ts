@@ -1,13 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit'
-import restaurantReducer from '@/store/restaurant/restaurantSlice'
-import userReducer from '@/store/user/userSlice'
+import restaurantsReducer from '@/store/restaurantsSlice'
+import userReducer from '@/store/userSlice'
+import searchReducer from '@/store/searchSlice'
+
+export type RootState = {
+    restaurants: ReturnType<typeof restaurantsReducer>
+    user: ReturnType<typeof userReducer>
+    search: ReturnType<typeof searchReducer>
+}
 
 export const store = configureStore({
     reducer: {
-        restaurantReducer,
-        userReducer,
+        restaurants: restaurantsReducer,
+        user: userReducer,
+        search: searchReducer,
     },
 })
 
-export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
+
+export default store

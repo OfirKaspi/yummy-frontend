@@ -3,15 +3,14 @@ import PaginationSelector from "@/components/PaginationSelector"
 import SearchBar, { SearchForm } from "@/components/searchBar/SearchBar"
 import SearchResultsInfoDesktop from "@/components/searchResultsInfo/SearchResultsInfoDesktop"
 import SortOptionDropdown from "@/components/SortOptionDropdown"
-import { Restaurant, RestaurantSearchResponse } from "@/types"
-import { SearchState } from "./SearchPage"
+import { Restaurant, RestaurantSearchResponse, SortOptionValue, SearchState } from "@/types"
 import RestaurantCardDesktop from "@/components/restaurantCard/RestaurantCardDesktop"
 
 type Props = {
     city: string
     searchState: SearchState
     results: RestaurantSearchResponse
-    setSortOption: (sortOption: string) => void
+    setSortOption: (sortOption: SortOptionValue) => void
     setSelectedCuisines: (selectedCuisines: string[]) => void
     setPage: (page: number) => void
     setSearchQuery: (searchFormData: SearchForm) => void
@@ -45,7 +44,7 @@ const SearchPageDesktop = ({
                 />
                 <div className="flex justify-between flex-col gap-3 lg:flex-row">
                     <SearchResultsInfoDesktop total={results.pagination.total} city={city} />
-                    <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value)} />
+                    <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value as SortOptionValue)} />
                 </div>
                 {results.data.map((restaurant: Restaurant) => (
                     <RestaurantCardDesktop key={restaurant._id} restaurant={restaurant} />

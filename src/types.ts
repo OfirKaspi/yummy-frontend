@@ -65,3 +65,15 @@ export type RestaurantSearchResponse = {
         pages: number
     }
 }
+
+export type SortOptionValue =
+    | "bestMatch"
+    | "deliveryPrice"
+    | "estimatedDeliveryTime"
+
+export type SearchState = {
+    searchQuery: string
+    page: number
+    selectedCuisines: string[]
+    sortOption: SortOptionValue
+}

@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { SortOptionValue } from "@/types"
 
 type Props = {
     onChange: (value: string) => void
-    sortOption: string
+    sortOption: SortOptionValue
 }
 
 const SORT_OPTIONS = [

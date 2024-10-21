@@ -6,15 +6,9 @@ import { useSearchRestaurant } from "@/api/RestaurantApi"
 import useDeviceType from "@/hooks/useDeviceType"
 
 import Loader from "@/components/Loader"
-import SearchPageDesktop from "./SearchPageDesktop"
-import SearchPageMobile from "./SearchPageMobile"
-
-export type SearchState = {
-    searchQuery: string
-    page: number
-    selectedCuisines: string[]
-    sortOption: string
-}
+import SearchPageDesktop from "@/pages/searchPage/SearchPageDesktop"
+import SearchPageMobile from "@/pages/searchPage/SearchPageMobile"
+import { SearchState, SortOptionValue } from "@/types"
 
 const SearchPage = () => {
     const { isDesktop, isMobile } = useDeviceType()
@@ -37,7 +31,7 @@ const SearchPage = () => {
         return () => clearTimeout(timer)
     }, [])
 
-    const setSortOption = (sortOption: string) => {
+    const setSortOption = (sortOption: SortOptionValue) => {
         setSearchState((prevState) => ({
             ...prevState,
             sortOption,
