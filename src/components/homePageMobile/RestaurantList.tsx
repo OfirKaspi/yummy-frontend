@@ -1,18 +1,17 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
-import ExpandBtn from "@/components/ExpandBtn"
 import RestaurantCardMobile from "@/components/restaurantCard/RestaurantCardMobile"
 import { SkeletonCard } from "@/components/ui/skeleton"
 import { AppDispatch } from "@/store/store"
 import { fetchRestaurants, selectError, selectLoading, selectRestaurants } from "@/store/restaurantsSlice"
 import { selectSearchState } from "@/store/searchSlice"
+import NotFound from "@/components/NotFound"
+import RestaurantSeeAll from "@/components/homePageMobile/RestaurantSeeAll"
 
 const RestaurantList = () => {
-    const navigate = useNavigate()
-    const city = "London"
-
+    const { city } = useParams()
     const dispatch: AppDispatch = useDispatch()
     const searchState = useSelector(selectSearchState)
     const restaurants = useSelector(selectRestaurants)
@@ -20,35 +19,28 @@ const RestaurantList = () => {
     const isError = useSelector(selectError)
 
     useEffect(() => {
-        dispatch(fetchRestaurants({ searchState, city }))
-    }, [dispatch, searchState])
+        if (city) {
+            dispatch(fetchRestaurants({ searchState, city }))
+        } else {
+            dispatch(fetchRestaurants({ searchState, city: "london" }))
+        }
+    }, [dispatch, searchState, city])
 
-    const handleSeeAll = () => {
-        navigate('/search/london')
-    }
 
     if (isLoading) {
         return <SkeletonCard />
     }
 
     if (!restaurants || isError) {
-        return <span>No results found</span>
+        return <NotFound itemNotFound="restaurants" />
     }
 
     return (
-        <div className="space-y-3">
-            <div className="flex items-center justify-between">
-                <h2 className="text-xl">Open Restaurants</h2>
-                <div onClick={handleSeeAll}>
-                    <ExpandBtn />
-                </div>
-            </div>
-            {isLoading}
-            <div className="space-y-5">
-                {restaurants.map((restaurant) => (
-                    <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
-                ))}
-            </div>
+        <div className="space-y-5">
+            {!city && <RestaurantSeeAll />}
+            {restaurants.map((restaurant) => (
+                <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
+            ))}
         </div>
     )
 }

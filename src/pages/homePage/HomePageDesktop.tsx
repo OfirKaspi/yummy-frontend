@@ -1,13 +1,9 @@
 import landingImage from '@/assets/landing.png'
 import appDownloadImg from '@/assets/appDownload.png'
 
-import SearchBar, { SearchForm } from "@/components/searchBar/SearchBar"
+import SearchBar from "@/components/searchBar/SearchBar"
 
-type Props = {
-    handleSearchSubmit: (searchFormValues: SearchForm) => void
-}
-
-const HomePageDesktop = ({ handleSearchSubmit }: Props) => {
+const HomePageDesktop = () => {
     return (
         <div>
             <div className="flex flex-col gap-12">
@@ -16,10 +12,7 @@ const HomePageDesktop = ({ handleSearchSubmit }: Props) => {
                         What do you bring to the table?
                     </h1>
                     <span className="text-xl">Food is just a click away!</span>
-                    <SearchBar
-                        placeHolder="Search by City or Town"
-                        onSubmit={handleSearchSubmit}
-                    />
+                    <SearchBar placeHolder="Search by City or Town" />
                 </div>
                 <div className="grid md:grid-cols-2 gap-5">
                     <img src={landingImage} alt="landing-image" />

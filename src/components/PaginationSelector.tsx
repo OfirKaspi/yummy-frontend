@@ -1,23 +1,31 @@
+import { useDispatch, useSelector } from "react-redux"
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
+import { selectPagination } from "@/store/restaurantsSlice"
+import { setPage } from "@/store/searchSlice"
 
-type Props = {
-    page: number
-    pages: number
-    onPageChange: (page: number) => void
-}
+const PaginationSelector = () => {
+    const dispatch = useDispatch()
+    const pagination = useSelector(selectPagination)
 
-const PaginationSelector = ({ onPageChange, page, pages }: Props) => {
+    const handleSetPage = (page: number) => {
+        dispatch(setPage(page))
+    }
+
+    if (!pagination || pagination.pages === 0) {
+        return
+    }
+
     const pageNumbers = []
-    for (let i = 1; i <= pages; i++) {
+    for (let i = 1; i <= pagination.pages; i++) {
         pageNumbers.push(i)
     }
 
     return (
         <Pagination>
             <PaginationContent>
-                {page !== 1 &&
+                {pagination.page !== 1 &&
                     <PaginationItem>
-                        <PaginationPrevious href="#" onClick={() => onPageChange(page - 1)} />
+                        <PaginationPrevious href="#" onClick={() => handleSetPage(pagination.page - 1)} />
                     </PaginationItem>
                 }
 
@@ -25,16 +33,17 @@ const PaginationSelector = ({ onPageChange, page, pages }: Props) => {
                     <PaginationItem key={number}>
                         <PaginationLink
                             href="#"
-                            onClick={() => onPageChange(number)}
-                            isActive={page === number}
+                            onClick={() => handleSetPage(number)}
+                            isActive={pagination.page === number}
                         >
                             {number}
                         </PaginationLink>
                     </PaginationItem>
                 ))}
-                {page !== pageNumbers.length &&
+
+                {pagination.page !== pageNumbers.length &&
                     <PaginationItem>
-                        <PaginationNext href="#" onClick={() => onPageChange(page + 1)} />
+                        <PaginationNext href="#" onClick={() => handleSetPage(pagination.page + 1)} />
                     </PaginationItem>
                 }
             </PaginationContent>

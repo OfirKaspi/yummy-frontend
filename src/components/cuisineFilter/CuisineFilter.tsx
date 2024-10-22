@@ -4,15 +4,18 @@ import useDeviceType from "@/hooks/useDeviceType"
 
 import CuisineFilterDesktop from "./CuisineFilterDesktop"
 import CuisinesFilterMobile from "./CuisineFilterMobile"
+import { useDispatch, useSelector } from "react-redux"
+import { selectSelectedCuisines, setSelectedCuisines } from "@/store/searchSlice"
 
-type Props = {
-    onChange: (cuisines: string[]) => void
-    selectedCuisines: string[]
-}
-
-const CuisineFilter = ({ onChange, selectedCuisines }: Props) => {
-    const { isDesktop, isMobile } = useDeviceType()
+const CuisineFilter = () => {
+    const { isMobile } = useDeviceType()
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+    const dispatch = useDispatch()
+    const selectedCuisines = useSelector(selectSelectedCuisines)
+
+    const handleSetSelectedCuisines = (selectedCuisines: string[]) => {
+        dispatch(setSelectedCuisines(selectedCuisines))
+    }
 
     const handleExpansion = () => {
         setIsExpanded((prevIsExpanded) => !prevIsExpanded)
@@ -25,35 +28,31 @@ const CuisineFilter = ({ onChange, selectedCuisines }: Props) => {
             ? selectedCuisines.filter((cuisine) => cuisine !== cuisineName)
             : [...selectedCuisines, cuisineName]
 
-        onChange(newCuisinesList)
+        handleSetSelectedCuisines(newCuisinesList)
     }
 
     const handleCuisinesReset = () => {
-        onChange([])
+        handleSetSelectedCuisines([])
         if (isExpanded) {
             setIsExpanded(false)
         }
     }
 
-    return (
-        <>
-            {isMobile && <CuisinesFilterMobile
-                isExpanded={isExpanded}
-                selectedCuisines={selectedCuisines}
-                handleExpansion={handleExpansion}
-                handleCuisineChange={handleCuisineChange}
-                handleCuisinesReset={handleCuisinesReset}
-            />}
-
-            {isDesktop && <CuisineFilterDesktop
-                isExpanded={isExpanded}
-                selectedCuisines={selectedCuisines}
-                handleExpansion={handleExpansion}
-                handleCuisineChange={handleCuisineChange}
-                handleCuisinesReset={handleCuisinesReset}
-            />}
-        </>
-    )
+    return isMobile
+        ? <CuisinesFilterMobile
+            isExpanded={isExpanded}
+            selectedCuisines={selectedCuisines}
+            handleExpansion={handleExpansion}
+            handleCuisineChange={handleCuisineChange}
+            handleCuisinesReset={handleCuisinesReset}
+        />
+        : <CuisineFilterDesktop
+            isExpanded={isExpanded}
+            selectedCuisines={selectedCuisines}
+            handleExpansion={handleExpansion}
+            handleCuisineChange={handleCuisineChange}
+            handleCuisinesReset={handleCuisinesReset}
+        />
 }
 
 

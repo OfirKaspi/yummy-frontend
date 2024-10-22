@@ -1,11 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { selectSortOption, setSortOption } from "@/store/searchSlice"
 import { SortOptionValue } from "@/types"
-
-type Props = {
-    onChange: (value: string) => void
-    sortOption: SortOptionValue
-}
+import { useDispatch, useSelector } from "react-redux"
 
 const SORT_OPTIONS = [
     {
@@ -22,7 +19,15 @@ const SORT_OPTIONS = [
     },
 ]
 
-const SortOptionDropdown = ({ onChange, sortOption }: Props) => {
+const SortOptionDropdown = () => {
+    const dispatch = useDispatch()
+    const sortOption = useSelector(selectSortOption)
+
+    const handleSetSortOption = (sortOption: SortOptionValue) => {
+        dispatch(setSortOption(sortOption))
+    }
+
+
     const selectedSortLabel =
         SORT_OPTIONS.find((option) => option.value === sortOption)?.label ||
         SORT_OPTIONS[0].label
@@ -39,7 +44,7 @@ const SortOptionDropdown = ({ onChange, sortOption }: Props) => {
                     <DropdownMenuItem
                         key={option.label}
                         className="cursor-pointer"
-                        onClick={() => onChange(option.value)}
+                        onClick={() => handleSetSortOption(option.value as SortOptionValue)}
                     >
                         {option.label}
                     </DropdownMenuItem>

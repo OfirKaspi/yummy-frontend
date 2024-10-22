@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
+import { selectPaginationTotal } from "@/store/restaurantsSlice"
+import { useSelector } from "react-redux"
+import { Link, useParams } from "react-router-dom"
 
-type Props = {
-    total: number
-    city: string
-}
+const SearchResultsInfoDesktop = () => {
+    const { city } = useParams()
+    const total = useSelector(selectPaginationTotal)
 
-const SearchResultsInfoDesktop = ({ city, total }: Props) => {
     return (
         <div className="flex items-center text-xl font-bold gap-3">
             <span>

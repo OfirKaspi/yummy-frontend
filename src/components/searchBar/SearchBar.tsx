@@ -5,6 +5,9 @@ import { useEffect, useState } from "react"
 import useDeviceType from "@/hooks/useDeviceType"
 import SearchBarDesktop from "@/components/searchBar/SearchBarDesktop"
 import SearchBarMobile from "@/components/searchBar/SearchBarMobile"
+import { useDispatch, useSelector } from "react-redux"
+import { resetSearch, selectSearchQuery, setSearchQuery } from "@/store/searchSlice"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const formSchema = z.object({
     searchQuery: z.string({
@@ -15,15 +18,28 @@ const formSchema = z.object({
 export type SearchForm = z.infer<typeof formSchema>
 
 type Props = {
-    searchQuery?: string
-    onSubmit: (formData: SearchForm) => void,
     placeHolder: string,
-    onReset?: () => void
 }
 
-const SearchBar = ({ searchQuery, onSubmit, placeHolder, onReset }: Props) => {
-    const { isDesktop, isMobile } = useDeviceType()
+const SearchBar = ({ placeHolder }: Props) => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const location = useLocation()
+    const searchQuery = useSelector(selectSearchQuery)
+    const { isMobile } = useDeviceType()
     const [isInputFilled, setIsInputFilled] = useState(false);
+
+    const handleSetSearchQuery = (searchFormData: SearchForm) => {
+        if (location.pathname === "/") {
+            navigate(`/search/${searchFormData.searchQuery}`)
+        } else {
+            dispatch(setSearchQuery(searchFormData.searchQuery))
+        }
+    }
+
+    const handleResetSearch = () => {
+        dispatch(resetSearch())
+    }
 
     const form = useForm<SearchForm>({
         resolver: zodResolver(formSchema),
@@ -40,35 +56,26 @@ const SearchBar = ({ searchQuery, onSubmit, placeHolder, onReset }: Props) => {
         form.reset({ searchQuery })
     }, [form, searchQuery])
 
-    const handleReset = () => {
-        form.reset({
-            searchQuery: ""
-        })
-
-        if (onReset) {
-            onReset()
+    useEffect(() => {
+        if (location.pathname === "/") {
+            dispatch(resetSearch())
         }
-    }
+    }, [location.pathname, dispatch])
 
-    return (
-        <>
-            {isMobile &&
-                <SearchBarMobile
-                    form={form}
-                    handleReset={handleReset}
-                    onSubmit={onSubmit}
-                    placeHolder={placeHolder}
-                    isInputFilled={isInputFilled}
-                />}
-            {isDesktop &&
-                <SearchBarDesktop
-                    form={form}
-                    handleReset={handleReset}
-                    onSubmit={onSubmit}
-                    placeHolder={placeHolder}
-                />}
-        </>
-    )
+    return isMobile
+        ? <SearchBarMobile
+            form={form}
+            handleReset={handleResetSearch}
+            onSubmit={handleSetSearchQuery}
+            placeHolder={placeHolder}
+            isInputFilled={isInputFilled}
+        />
+        : <SearchBarDesktop
+            form={form}
+            handleReset={handleResetSearch}
+            onSubmit={handleSetSearchQuery}
+            placeHolder={placeHolder}
+        />
 }
 
 export default SearchBar
