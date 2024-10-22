@@ -1,81 +1,59 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 
 import { SearchForm } from "@/components/searchBar/SearchBar"
-import { useSearchRestaurant } from "@/api/RestaurantApi"
 import useDeviceType from "@/hooks/useDeviceType"
 
 import Loader from "@/components/Loader"
 import SearchPageDesktop from "@/pages/searchPage/SearchPageDesktop"
 import SearchPageMobile from "@/pages/searchPage/SearchPageMobile"
-import { SearchState, SortOptionValue } from "@/types"
+import { SortOptionValue } from "@/types"
+import { resetSearch, selectSearchState, setPage, setSearchQuery, setSelectedCuisines, setSortOption } from "@/store/searchSlice"
+import { fetchRestaurants, selectLoading, selectPagination, selectRestaurants } from "@/store/restaurantsSlice"
+import { AppDispatch } from "@/store/store"
 
 const SearchPage = () => {
     const { isDesktop, isMobile } = useDeviceType()
     const { city } = useParams()
-    const [searchState, setSearchState] = useState<SearchState>({
-        searchQuery: "",
-        page: 1,
-        selectedCuisines: [],
-        sortOption: "bestMatch"
-    })
 
-    const [showLoader, setShowLoader] = useState<boolean>(true)
-    const { results, isLoading } = useSearchRestaurant(searchState, city)
+    const dispatch = useDispatch<AppDispatch>()
+    const searchState = useSelector(selectSearchState)
+    const restaurants = useSelector(selectRestaurants)
+    const pagination = useSelector(selectPagination)
+    const isLoading = useSelector(selectLoading)
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowLoader(false)
-        }, 500)
+        if (city) {
+            dispatch(fetchRestaurants({ searchState, city }))
+        }
+    }, [city, dispatch, searchState])
 
-        return () => clearTimeout(timer)
-    }, [])
-
-    const setSortOption = (sortOption: SortOptionValue) => {
-        setSearchState((prevState) => ({
-            ...prevState,
-            sortOption,
-            page: 1,
-        }))
+    const handleSetSortOption = (sortOption: SortOptionValue) => {
+        dispatch(setSortOption(sortOption))
     }
 
-    const setSelectedCuisines = (selectedCuisines: string[]) => {
-        setSearchState((prevState) => ({
-            ...prevState,
-            selectedCuisines,
-            page: 1,
-        }))
+    const handleSetSelectedCuisines = (selectedCuisines: string[]) => {
+        dispatch(setSelectedCuisines(selectedCuisines))
     }
 
-    const setPage = (page: number) => {
-        setSearchState((prevState) => ({
-            ...prevState,
-            page,
-        }))
+    const handleSetPage = (page: number) => {
+        dispatch(setPage(page))
     }
 
-    const setSearchQuery = (searchFormData: SearchForm) => {
-        setSearchState((prevState) => ({
-            ...prevState,
-            searchQuery: searchFormData.searchQuery,
-            page: 1,
-        }))
+    const handleSetSearchQuery = (searchFormData: SearchForm) => {
+        dispatch(setSearchQuery(searchFormData.searchQuery))
     }
 
-    const resetSearch = () => {
-        setSearchState((prevState) => ({
-            ...prevState,
-            searchQuery: "",
-            page: 1,
-        }))
+    const handleResetSearch = () => {
+        dispatch(resetSearch())
     }
 
-
-    if (isLoading || showLoader) {
+    if (isLoading) {
         return <Loader isFullScreen />
     }
 
-    if (!results?.data || !city) {
+    if (!pagination || !restaurants || !city) {
         return <span>No results found</span>
     }
 
@@ -83,14 +61,13 @@ const SearchPage = () => {
         <>
             {isMobile &&
                 <SearchPageMobile
-                    city={city}
                     searchState={searchState}
-                    results={results}
-                    setSortOption={setSortOption}
-                    setSelectedCuisines={setSelectedCuisines}
-                    setPage={setPage}
-                    setSearchQuery={setSearchQuery}
-                    resetSearch={resetSearch}
+                    results={{ data: restaurants, pagination: pagination }}
+                    setSortOption={handleSetSortOption}
+                    setSelectedCuisines={handleSetSelectedCuisines}
+                    setPage={handleSetPage}
+                    setSearchQuery={handleSetSearchQuery}
+                    resetSearch={handleResetSearch}
                 />
             }
 
@@ -98,12 +75,12 @@ const SearchPage = () => {
                 <SearchPageDesktop
                     city={city}
                     searchState={searchState}
-                    results={results}
-                    setSortOption={setSortOption}
-                    setSelectedCuisines={setSelectedCuisines}
-                    setPage={setPage}
-                    setSearchQuery={setSearchQuery}
-                    resetSearch={resetSearch}
+                    results={{ data: restaurants, pagination: pagination }}
+                    setSortOption={handleSetSortOption}
+                    setSelectedCuisines={handleSetSelectedCuisines}
+                    setPage={handleSetPage}
+                    setSearchQuery={handleSetSearchQuery}
+                    resetSearch={handleResetSearch}
                 />
             }
         </>

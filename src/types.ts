@@ -57,13 +57,15 @@ export type Order = {
     restaurantId: string
 }
 
+export type Pagination = {
+    total: number
+    page: number
+    pages: number
+}
+
 export type RestaurantSearchResponse = {
     data: Restaurant[]
-    pagination: {
-        total: number
-        page: number
-        pages: number
-    }
+    pagination: Pagination
 }
 
 export type SortOptionValue =

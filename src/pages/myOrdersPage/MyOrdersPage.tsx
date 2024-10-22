@@ -1,5 +1,5 @@
 import { useGetMyOrders } from "@/api/OrderApi"
-import OrdersNotFound from "@/components/order/OrdersNotFound"
+import NotFound from "@/components/NotFound"
 import Loader from "@/components/Loader"
 import useDeviceType from "@/hooks/useDeviceType"
 import NyOrdersPageMobile from "@/pages/myOrdersPage/MyOrdersPageMobile"
@@ -25,7 +25,7 @@ const MyOrdersPage = () => {
     }
 
     if (!orders || orders.length === 0) {
-        return <OrdersNotFound />
+        return <NotFound itemNotFound="orders" />
     }
 
     return (

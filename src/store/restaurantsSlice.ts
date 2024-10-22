@@ -1,4 +1,4 @@
-import { SearchState } from "@/types"
+import { Pagination, SearchState } from "@/types"
 import axios from 'axios'
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
@@ -9,12 +9,14 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 interface RestaurantState {
     restaurants: Restaurant[]
+    pagination: Pagination | null
     loading: boolean
     error: string | null
 }
 
 const initialState: RestaurantState = {
     restaurants: [],
+    pagination: null,
     loading: false,
     error: null,
 }
@@ -46,6 +48,7 @@ export const restaurantsSlice = createSlice({
             .addCase(fetchRestaurants.fulfilled, (state, action) => {
                 state.loading = false
                 state.restaurants = action.payload.data
+                state.pagination = action.payload.pagination
             })
             .addCase(fetchRestaurants.rejected, (state) => {
                 state.loading = false
@@ -55,6 +58,7 @@ export const restaurantsSlice = createSlice({
 })
 
 export const selectRestaurants = (state: RootState) => state.restaurants.restaurants
+export const selectPagination = (state: RootState) => state.restaurants.pagination
 export const selectLoading = (state: RootState) => state.restaurants.loading
 export const selectError = (state: RootState) => state.restaurants.error
 

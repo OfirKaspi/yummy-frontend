@@ -14,10 +14,10 @@ const RestaurantList = () => {
     const city = "London"
 
     const dispatch: AppDispatch = useDispatch()
-    const searchState = useSelector(selectSearchState);
-    const restaurants = useSelector(selectRestaurants);
-    const isLoading = useSelector(selectLoading);
-    const error = useSelector(selectError);
+    const searchState = useSelector(selectSearchState)
+    const restaurants = useSelector(selectRestaurants)
+    const isLoading = useSelector(selectLoading)
+    const isError = useSelector(selectError)
 
     useEffect(() => {
         dispatch(fetchRestaurants({ searchState, city }))
@@ -31,7 +31,7 @@ const RestaurantList = () => {
         return <SkeletonCard />
     }
 
-    if (!restaurants || error) {
+    if (!restaurants || isError) {
         return <span>No results found</span>
     }
 

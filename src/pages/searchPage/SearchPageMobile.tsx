@@ -7,9 +7,9 @@ import SearchResultsInfoMobile from "@/components/searchResultsInfo/SearchResult
 import PervPageNavButton from "@/components/navigation/PervPageNavButton"
 
 import SearchFilter from "@/components/searchPage/SearchFilter"
+import NotFound from "@/components/NotFound"
 
 type Props = {
-    city: string
     searchState: SearchState
     results: RestaurantSearchResponse
     setSortOption: (sortOption: SortOptionValue) => void
@@ -20,7 +20,6 @@ type Props = {
 }
 
 const SearchPageMobile = ({
-    city,
     searchState,
     results,
     setSortOption,
@@ -34,7 +33,7 @@ const SearchPageMobile = ({
             <div className="flex justify-between">
                 <div className="flex gap-3">
                     <PervPageNavButton />
-                    <SearchResultsInfoMobile total={results.pagination.total} city={city} />
+                    <SearchResultsInfoMobile />
                 </div>
                 <SearchFilter
                     setSelectedCuisines={setSelectedCuisines}
@@ -51,14 +50,22 @@ const SearchPageMobile = ({
                 />
             </div>
 
-            {results.data.map((restaurant: Restaurant) => (
-                <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
-            ))}
-            <PaginationSelector
-                page={results.pagination.page}
-                pages={results.pagination.pages}
-                onPageChange={setPage}
-            />
+            {results.data.length !== 0 ? (
+                <>
+                    {results.data.map((restaurant: Restaurant) => (
+                        <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
+                    ))}
+
+                    <PaginationSelector
+                        page={results.pagination.page}
+                        pages={results.pagination.pages}
+                        onPageChange={setPage}
+                    />
+                </>
+            ) : (
+                <NotFound itemNotFound="restaurants" />
+            )
+            }
         </div>
     )
 }

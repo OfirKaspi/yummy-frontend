@@ -1,7 +1,7 @@
 import { useGetMyRestaurantOrders } from "@/api/MyRestaurantApi"
 import OrderItemCard from "@/components/order/OrderItemCard"
 import { SkeletonCard } from "@/components/ui/skeleton"
-import OrdersNotFound from "@/components/order/OrdersNotFound"
+import NotFound from "@/components/NotFound"
 
 const MyRestaurantOrders = () => {
     const { orders, isLoading } = useGetMyRestaurantOrders()
@@ -11,7 +11,7 @@ const MyRestaurantOrders = () => {
     }
 
     if (orders.length === 0) {
-        return <OrdersNotFound />
+        return <NotFound itemNotFound="orders" />
     }
 
     return (
