@@ -67,15 +67,21 @@ export const useCreateMyUser = () => {
     const {
         mutateAsync: createUser,
         isLoading,
-        isError,
+        error,
         isSuccess
     } = useMutation(createMyUserRequest)
+
+    if (isSuccess) {
+        showToast("User profile updated!", "success")
+    }
+
+    if (error) {
+        showToast(error.toString(), "error")
+    }
 
     return {
         createUser,
         isLoading,
-        isError,
-        isSuccess
     }
 }
 
