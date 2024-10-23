@@ -1,6 +1,6 @@
-import { SearchState, SortOptionValue } from "@/types"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { RootState } from "./store"
+import { SearchState, SortOptionValue } from "@/types"
+import { RootState } from "@/store/store"
 
 const initialState: SearchState = {
     searchQuery: "",

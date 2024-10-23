@@ -1,4 +1,4 @@
-import { useGetMyOrders } from "@/api/OrderApi"
+import { useGetMyOrders } from "@/api/orderAPI"
 import NotFound from "@/components/NotFound"
 import Loader from "@/components/Loader"
 import useDeviceType from "@/hooks/useDeviceType"

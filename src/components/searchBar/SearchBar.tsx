@@ -6,7 +6,7 @@ import useDeviceType from "@/hooks/useDeviceType"
 import SearchBarDesktop from "@/components/searchBar/SearchBarDesktop"
 import SearchBarMobile from "@/components/searchBar/SearchBarMobile"
 import { useDispatch, useSelector } from "react-redux"
-import { resetSearch, selectSearchQuery, setSearchQuery } from "@/store/searchSlice"
+import { resetSearch, selectSearchQuery, setSearchQuery } from "@/store/search/searchSlice"
 import { useLocation, useNavigate } from "react-router-dom"
 
 const formSchema = z.object({

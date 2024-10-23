@@ -5,7 +5,7 @@ import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
 import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"
 import ShoppingBagCmp from "@/components/ShoppingBagCmp"
-import { useState, useEffect } from "react"
+import useScrollPosition from "@/hooks/useScrollPosition"
 
 type Props = {
     restaurant: Restaurant
@@ -24,25 +24,7 @@ const RestaurantDetailsOrderSheetMobile = ({
     adjustItemQuantity,
     removeFromCart,
 }: Props) => {
-    const [isAtBottom, setIsAtBottom] = useState(false)
-
-    const handleScroll = () => {
-        const scrollPosition = window.scrollY + window.innerHeight
-        const windowHeight = document.documentElement.scrollHeight
-
-        if (scrollPosition >= windowHeight - 50) {
-            setIsAtBottom(true)
-        } else {
-            setIsAtBottom(false)
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll)
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    }, [])
+    const isAtBottom = useScrollPosition()
 
     const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0)
 

@@ -1,26 +1,12 @@
-import { useGetMyUser } from "@/api/MyUserApi"
-import { Skeleton } from "@/components/ui/skeleton"
+import { useGetMyUser } from "@/api/myUserAPI"
 import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
-import MainNavMobile from "../navigation/MainNavMobile"
+import MainNavMobile from "@/components/navigation/MainNavMobile"
+import { getGreeting } from "@/utils/getGreeting"
 
 const UserSection = () => {
     const { currentUser, isLoading } = useGetMyUser()
     const [greeting, setGreeting] = useState("")
-
-    const getGreeting = () => {
-        const currentHour = new Date().getHours()
-
-        if (currentHour >= 0 && currentHour < 5) {
-            return "Good night"
-        } else if (currentHour < 12) {
-            return "Good morning"
-        } else if (currentHour < 18) {
-            return "Good afternoon"
-        } else {
-            return "Good evening"
-        }
-    }
 
     useEffect(() => {
         setGreeting(getGreeting())
@@ -42,7 +28,7 @@ const UserSection = () => {
             <div className="flex items-center gap-1">
                 <span>Hey</span>
                 {isLoading || !currentUser ? (
-                    <Skeleton className="w-24 h-5" />
+                    <span>Guest,</span>
                 ) : (
                     <span>{currentUser.name},</span>
                 )}

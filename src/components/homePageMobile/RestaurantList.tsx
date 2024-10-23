@@ -5,8 +5,9 @@ import { useParams } from "react-router-dom"
 import RestaurantCardMobile from "@/components/restaurantCard/RestaurantCardMobile"
 import { SkeletonCard } from "@/components/ui/skeleton"
 import { AppDispatch } from "@/store/store"
-import { fetchRestaurants, selectError, selectLoading, selectRestaurants } from "@/store/restaurantsSlice"
-import { selectSearchState } from "@/store/searchSlice"
+import { getRestaurantsStore } from "@/store/restaurants/restaurantsSlice"
+import { selectError, selectLoading, selectRestaurants } from "@/store/restaurants/restaurantsSelectors"
+import { selectSearchState } from "@/store/search/searchSlice"
 import NotFound from "@/components/NotFound"
 import RestaurantSeeAll from "@/components/homePageMobile/RestaurantSeeAll"
 
@@ -20,9 +21,9 @@ const RestaurantList = () => {
 
     useEffect(() => {
         if (city) {
-            dispatch(fetchRestaurants({ searchState, city }))
+            dispatch(getRestaurantsStore({ searchState, city }))
         } else {
-            dispatch(fetchRestaurants({ searchState, city: "london" }))
+            dispatch(getRestaurantsStore({ searchState, city: "london" }))
         }
     }, [dispatch, searchState, city])
 

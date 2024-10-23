@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import restaurantsReducer from '@/store/restaurantsSlice'
+
+import restaurantsReducer from '@/store/restaurants/restaurantsSlice'
+import restaurantReducer from '@/store/restaurant/restaurantSlice'
 import userReducer from '@/store/userSlice'
-import searchReducer from '@/store/searchSlice'
+import searchReducer from '@/store/search/searchSlice'
 
 export type RootState = {
     restaurants: ReturnType<typeof restaurantsReducer>
+    restaurant: ReturnType<typeof restaurantReducer>
     user: ReturnType<typeof userReducer>
     search: ReturnType<typeof searchReducer>
 }
@@ -12,6 +15,7 @@ export type RootState = {
 export const store = configureStore({
     reducer: {
         restaurants: restaurantsReducer,
+        restaurant: restaurantReducer,
         user: userReducer,
         search: searchReducer,
     },

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ORDER_STATUS } from "@/config/order-status-config"
-import { useUpdateMyRestaurantOrder } from "@/api/MyRestaurantApi"
+import { useUpdateMyRestaurantOrder } from "@/api/myRestaurantAPI"
 import { useEffect, useState } from "react"
 
 type Props = {

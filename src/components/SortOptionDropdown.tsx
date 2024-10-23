@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { selectSortOption, setSortOption } from "@/store/searchSlice"
+import { selectSortOption, setSortOption } from "@/store/search/searchSlice"
 import { SortOptionValue } from "@/types"
 import { useDispatch, useSelector } from "react-redux"
 

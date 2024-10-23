@@ -1,4 +1,4 @@
-import { useCreateMyRestaurant, useGetMyRestaurant, useUpdateMyRestaurant } from "@/api/MyRestaurantApi"
+import { useCreateMyRestaurant, useGetMyRestaurant, useUpdateMyRestaurant } from "@/api/myRestaurantAPI"
 import MainNavMobile from "@/components/navigation/MainNavMobile"
 import MyRestaurantOrders from "@/components/order/MyRestaurantOrders"
 import { Separator } from "@/components/ui/separator"

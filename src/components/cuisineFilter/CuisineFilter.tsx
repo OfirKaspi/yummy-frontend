@@ -5,7 +5,7 @@ import useDeviceType from "@/hooks/useDeviceType"
 import CuisineFilterDesktop from "./CuisineFilterDesktop"
 import CuisinesFilterMobile from "./CuisineFilterMobile"
 import { useDispatch, useSelector } from "react-redux"
-import { selectSelectedCuisines, setSelectedCuisines } from "@/store/searchSlice"
+import { selectSelectedCuisines, setSelectedCuisines } from "@/store/search/searchSlice"
 
 const CuisineFilter = () => {
     const { isMobile } = useDeviceType()

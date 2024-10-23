@@ -1,4 +1,4 @@
-import { selectPaginationTotal } from "@/store/restaurantsSlice"
+import { selectPaginationTotal } from "@/store/restaurants/restaurantsSelectors"
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 

@@ -1,4 +1,4 @@
-import { useGetMyUser, useUpdateMyUser } from "@/api/MyUserApi"
+import { useGetMyUser, useUpdateMyUser } from "@/api/myUserAPI"
 import Loader from "@/components/Loader"
 import MainNavMobile from "@/components/navigation/MainNavMobile"
 import { Separator } from "@/components/ui/separator"

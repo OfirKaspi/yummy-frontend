@@ -4,8 +4,8 @@ import SearchPageMobile from "@/pages/searchPage/SearchPageMobile"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch } from "@/store/store"
-import { selectSearchState } from "@/store/searchSlice"
-import { fetchRestaurants } from "@/store/restaurantsSlice"
+import { selectSearchState } from "@/store/search/searchSlice"
+import { getRestaurantsStore } from "@/store/restaurants/restaurantsSlice"
 import { useEffect } from "react"
 
 const SearchPage = () => {
@@ -17,7 +17,7 @@ const SearchPage = () => {
 
     useEffect(() => {
         if (city) {
-            dispatch(fetchRestaurants({ searchState, city }))
+            dispatch(getRestaurantsStore({ searchState, city }))
         }
     }, [city, dispatch, searchState])
 
