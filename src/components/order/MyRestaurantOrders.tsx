@@ -1,4 +1,4 @@
-import { useGetMyRestaurantOrders } from "@/api/myRestaurantAPI"
+import { useGetMyRestaurantOrders } from "@/hooks/useGetMyRestaurantOrders"
 import OrderItemCard from "@/components/order/OrderItemCard"
 import { SkeletonCard } from "@/components/ui/skeleton"
 import NotFound from "@/components/NotFound"
