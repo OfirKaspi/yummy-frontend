@@ -1,5 +1,4 @@
-import { CartItem } from "@/pages/restaurantDetailsPage/RestaurantDetailsPage"
-import { MenuItem } from "@/types"
+import { MenuItem, CartItem } from "@/types"
 import { AspectRatio } from "@radix-ui/react-aspect-ratio"
 import { Plus } from "lucide-react"
 

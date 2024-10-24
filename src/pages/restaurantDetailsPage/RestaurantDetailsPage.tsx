@@ -1,32 +1,17 @@
-import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { MenuItem as MenuItemType } from "@/types"
+import { useParams } from 'react-router-dom'
+import { MenuItem as MenuItemType, CartItem } from '@/types'
 import { AppDispatch } from '@/store/store'
 import { getRestaurantByIdStore } from '@/store/restaurant/restaurantSlice'
 import { selectRestaurant, selectRestaurantLoading } from '@/store/restaurant/restaurantSelectors'
 import useDeviceType from '@/hooks/useDeviceType'
 import RestaurantDetailsPageDesktop from '@/pages/restaurantDetailsPage/RestaurantDetailsPageDesktop'
 import RestaurantDetailsPageMobile from '@/pages/restaurantDetailsPage/RestaurantDetailsPageMobile'
-import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
-import { useCreateCheckoutSession } from "@/api/orderAPI"
+import { UserFormData } from '@/forms/user-profile-form/UserProfileForm'
+import { useCreateCheckoutSession } from '@/api/orderAPI'
 import Loader from '@/components/Loader'
-
-export type CartItem = {
-    _id: string
-    name: string
-    price: number
-    quantity: number
-}
-
-const loadCartFromStorage = (restaurantId: string): CartItem[] => {
-    const storedCart = sessionStorage.getItem(`cartItems-${restaurantId}`)
-    return storedCart ? JSON.parse(storedCart) : []
-}
-
-const saveCartToStorage = (restaurantId: string, cartItems: CartItem[]) => {
-    sessionStorage.setItem(`cartItems-${restaurantId}`, JSON.stringify(cartItems))
-}
+import { loadCartByRestaurantId, saveCartForRestaurant } from '@/utils/cartSessionStorage'
 
 const RestaurantDetailsPage = () => {
     const { isMobile } = useDeviceType()
@@ -34,14 +19,24 @@ const RestaurantDetailsPage = () => {
     const dispatch = useDispatch<AppDispatch>()
     const restaurant = useSelector(selectRestaurant)
     const isLoading = useSelector(selectRestaurantLoading)
-    const [checkedFoodSection, setCheckedFoodSection] = useState('')
     const { createCheckoutSession, isLoading: isCheckoutLoading } = useCreateCheckoutSession()
+    const [checkedFoodSection, setCheckedFoodSection] = useState('')
+    const [cartItems, setCartItems] = useState<CartItem[]>([])
 
-    const [cartItems, setCartItems] = useState<CartItem[]>(() => loadCartFromStorage(restaurantId || ''))
+    useEffect(() => {
+        if (restaurantId) {
+            const restaurantCart = loadCartByRestaurantId(restaurantId)
+            if (restaurantCart.length > 0) {
+                setCartItems(restaurantCart)
+            }
+        }
+    }, [restaurantId])
 
-    const handleFoodSection = (foodSection: string) => {
-        setCheckedFoodSection(foodSection)
-    }
+    useEffect(() => {
+        if (restaurantId) {
+            saveCartForRestaurant(restaurantId, cartItems)
+        }
+    }, [cartItems, restaurantId])
 
     useEffect(() => {
         if (restaurantId) {
@@ -55,13 +50,11 @@ const RestaurantDetailsPage = () => {
         }
     }, [restaurant])
 
-    useEffect(() => {
-        if (restaurantId) {
-            saveCartToStorage(restaurantId, cartItems)
-        }
-    }, [cartItems, restaurantId])
+    const handleFoodSection = (foodSection: string) => {
+        setCheckedFoodSection(foodSection)
+    }
 
-    const addToCart = (menuItem: MenuItemType) => {
+    const addToCartHandler = (menuItem: MenuItemType) => {
         setCartItems((prevCartItems) => {
             const existingCartItem = prevCartItems.find((cartItem) => cartItem._id === menuItem._id)
 
@@ -85,9 +78,9 @@ const RestaurantDetailsPage = () => {
         })
     }
 
-    const adjustItemQuantity = (cartItem: CartItem, newQuantity: number) => {
+    const adjustItemQuantityHandler = (cartItem: CartItem, newQuantity: number) => {
         if (newQuantity === 0) {
-            removeFromCart(cartItem)
+            removeFromCartHandler(cartItem)
             return
         }
 
@@ -100,7 +93,7 @@ const RestaurantDetailsPage = () => {
         )
     }
 
-    const removeFromCart = (cartItem: CartItem) => {
+    const removeFromCartHandler = (cartItem: CartItem) => {
         setCartItems((prevCartItems) =>
             prevCartItems.filter((item) => item._id !== cartItem._id)
         )
@@ -139,22 +132,22 @@ const RestaurantDetailsPage = () => {
         ? <RestaurantDetailsPageMobile
             restaurant={restaurant}
             cartItems={cartItems}
-            addToCart={addToCart}
+            addToCart={addToCartHandler}
             handleFoodSection={handleFoodSection}
             checkedFoodSection={checkedFoodSection}
             onCheckout={onCheckout}
             isCheckoutLoading={isCheckoutLoading}
-            adjustItemQuantity={adjustItemQuantity}
-            removeFromCart={removeFromCart}
+            adjustItemQuantity={adjustItemQuantityHandler}
+            removeFromCart={removeFromCartHandler}
         />
         : <RestaurantDetailsPageDesktop
             restaurant={restaurant}
             cartItems={cartItems}
-            addToCart={addToCart}
+            addToCart={addToCartHandler}
             onCheckout={onCheckout}
             isCheckoutLoading={isCheckoutLoading}
-            adjustItemQuantity={adjustItemQuantity}
-            removeFromCart={removeFromCart}
+            adjustItemQuantity={adjustItemQuantityHandler}
+            removeFromCart={removeFromCartHandler}
         />
 }
 

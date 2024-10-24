@@ -1,6 +1,5 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { CartItem } from "@/pages/restaurantDetailsPage/RestaurantDetailsPage"
-import { Restaurant } from "@/types"
+import { Restaurant, CartItem } from "@/types"
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
 import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"

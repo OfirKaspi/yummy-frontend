@@ -1,4 +1,4 @@
-import { MenuItem as MenuItemType, Restaurant } from "@/types"
+import { MenuItem as MenuItemType, Restaurant, CartItem } from "@/types"
 import { Card, CardFooter } from "@/components/ui/card"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
@@ -7,7 +7,6 @@ import RestaurantInfo from "@/components/RestaurantInfo"
 import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
-import { CartItem } from "./RestaurantDetailsPage"
 
 type Props = {
     restaurant: Restaurant

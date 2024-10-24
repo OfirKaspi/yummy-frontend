@@ -7,12 +7,6 @@ export type User = {
     country: string
 }
 
-export type MenuItem = {
-    _id: string
-    name: string
-    price: number
-}
-
 export type Restaurant = {
     _id: string
     user: string
@@ -78,4 +72,14 @@ export type SearchState = {
     page: number
     selectedCuisines: string[]
     sortOption: SortOptionValue
+}
+
+export type MenuItem = {
+    _id: string
+    name: string
+    price: number
+}
+
+export type CartItem = MenuItem & {
+    quantity: number
 }
