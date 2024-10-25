@@ -1,3 +1,4 @@
+// User
 export type User = {
     _id: string
     email: string
@@ -7,6 +8,19 @@ export type User = {
     country: string
 }
 
+export type CreateUserRequest = {
+    auth0Id: string
+    email: string
+}
+
+export type UpdateMyUserRequest = {
+    name: string
+    addressLine1: string
+    city: string
+    country: string
+}
+
+// Restaurant
 export type Restaurant = {
     _id: string
     user: string
@@ -21,14 +35,18 @@ export type Restaurant = {
     lastUpdated: string
 }
 
-export type OrderStatus =
-    | "placed"
-    | "paid"
-    | "inProgress"
-    | "outForDelivery"
-    | "delivered"
+export type MenuItem = {
+    _id: string
+    name: string
+    price: number
+}
 
+export type RestaurantSearchResponse = {
+    data: Restaurant[]
+    pagination: Pagination
+}
 
+// Order
 export type Order = {
     _id: string
     restaurant: Restaurant
@@ -51,15 +69,22 @@ export type Order = {
     restaurantId: string
 }
 
+export type CartItem = MenuItem & {
+    quantity: number
+}
+
+export type OrderStatus =
+    | "placed"
+    | "paid"
+    | "inProgress"
+    | "outForDelivery"
+    | "delivered"
+
+// Search
 export type Pagination = {
     total: number
     page: number
     pages: number
-}
-
-export type RestaurantSearchResponse = {
-    data: Restaurant[]
-    pagination: Pagination
 }
 
 export type SortOptionValue =
@@ -72,14 +97,4 @@ export type SearchState = {
     page: number
     selectedCuisines: string[]
     sortOption: SortOptionValue
-}
-
-export type MenuItem = {
-    _id: string
-    name: string
-    price: number
-}
-
-export type CartItem = MenuItem & {
-    quantity: number
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { useCreateMyUser } from "@/api/myUserAPI"
+import { useCreateMyUser } from "@/hooks/myUser/useCreateMyUser"
 import { useAuth0 } from "@auth0/auth0-react"
 
 import Loader from "@/components/Loader"

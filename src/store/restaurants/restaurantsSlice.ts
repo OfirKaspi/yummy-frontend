@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Pagination, SearchState, Restaurant, RestaurantSearchResponse } from "@/types"
-import { getRestaurants } from "@/api/restaurantsAPI"
+import { getRestaurants } from "@/api/restaurantAPI"
 
 interface RestaurantState {
     restaurants: Restaurant[]

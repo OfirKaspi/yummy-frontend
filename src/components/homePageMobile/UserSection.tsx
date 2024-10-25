@@ -1,4 +1,4 @@
-import { useGetMyUser } from "@/api/myUserAPI"
+import { useGetMyUser } from "@/hooks/myUser/useGetMyUser"
 import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
 import MainNavMobile from "@/components/navigation/MainNavMobile"

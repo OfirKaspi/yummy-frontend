@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 import UserProfileForm, { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
-import { useGetMyUser } from "@/api/myUserAPI"
+import { useGetMyUser } from "@/hooks/myUser/useGetMyUser"
 import LoadingButton from "@/components/LoadingButton"
 import useDeviceType from "@/hooks/useDeviceType"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"

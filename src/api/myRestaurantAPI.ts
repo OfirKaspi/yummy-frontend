@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Restaurant, Order } from '@/types'
-import { UpdateOrderStatusRequest } from '@/hooks/useUpdateMyRestaurantOrder'
+import { UpdateOrderStatusRequest } from '@/hooks/myRestaurant/useUpdateMyRestaurantOrder'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
