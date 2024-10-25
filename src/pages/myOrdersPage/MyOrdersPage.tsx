@@ -1,5 +1,4 @@
-import { useGetMyOrders } from "@/api/orderAPI"
-import NotFound from "@/components/NotFound"
+import { useGetMyOrders } from "@/hooks/order/useGetMyOrders"
 import Loader from "@/components/Loader"
 import useDeviceType from "@/hooks/useDeviceType"
 import NyOrdersPageMobile from "@/pages/myOrdersPage/MyOrdersPageMobile"
@@ -22,10 +21,6 @@ const MyOrdersPage = () => {
 
     if (isLoading) {
         return <Loader isFullScreen={true} />
-    }
-
-    if (!orders || orders.length === 0) {
-        return <NotFound itemNotFound="orders" />
     }
 
     return (

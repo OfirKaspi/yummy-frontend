@@ -18,6 +18,7 @@ export type UpdateMyUserRequest = {
     addressLine1: string
     city: string
     country: string
+
 }
 
 // Restaurant
@@ -79,6 +80,22 @@ export type OrderStatus =
     | "inProgress"
     | "outForDelivery"
     | "delivered"
+
+export type CheckoutSessionRequest = {
+    cartItems: {
+        menuItemId: string
+        name: string
+        quantity: string
+    }[]
+    deliveryDetails: {
+        email: string
+        name: string
+        addressLine1: string
+        city: string
+    }
+    restaurantId: string
+}
+
 
 // Search
 export type Pagination = {

@@ -6,11 +6,11 @@ import NotFound from "@/components/NotFound"
 const MyRestaurantOrders = () => {
     const { orders, isLoading } = useGetMyRestaurantOrders()
 
-    if (!orders || isLoading) {
+    if (isLoading) {
         return <SkeletonCard />
     }
 
-    if (orders.length === 0) {
+    if (!orders || orders.length === 0) {
         return <NotFound itemNotFound="orders" />
     }
 
