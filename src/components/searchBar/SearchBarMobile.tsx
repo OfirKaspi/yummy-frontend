@@ -37,7 +37,7 @@ const SearchBarMobile = ({
                             <FormControl>
                                 <Input
                                     {...field}
-                                    className="border-none text-gray-600 text-md focus-visible:ring-0"
+                                    className="border-none text-gray-600 text-md shadow-none focus-visible:ring-0"
                                     placeholder={placeHolder}
                                 />
                             </FormControl>

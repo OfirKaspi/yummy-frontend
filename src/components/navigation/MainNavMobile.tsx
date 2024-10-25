@@ -1,6 +1,6 @@
-import ShoppingBagCmp from "@/components/ShoppingBagCmp"
 import MobileNav from "@/components/navigation/MobileNav"
 import PervPageNavButton from "@/components/navigation/PervPageNavButton"
+import GlobalCart from "@/components/GlobalCart"
 
 type Props = {
     children: React.ReactNode
@@ -11,7 +11,7 @@ const MainNavMobile = ({ children, isHomePage = false }: Props) => {
     return (
         <div className="flex items-center gap-5">
             {isHomePage ? (
-                <ShoppingBagCmp />
+                <GlobalCart />
             ) : (
                 <PervPageNavButton />
             )}

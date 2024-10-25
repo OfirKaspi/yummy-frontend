@@ -22,16 +22,12 @@ export const loadCartByRestaurantId = (restaurantId: string): CartItem[] => {
 
 export const saveCartForRestaurant = (restaurantId: string, cartItems: CartItem[]) => {
     const carts = loadCartsFromStorage()
+    const updatedCarts = carts.filter(cart => cart.restaurantId !== restaurantId)
+
     if (cartItems.length === 0) {
-        const updatedCarts = carts.filter(cart => cart.restaurantId !== restaurantId)
         saveCartsToStorage(updatedCarts)
     } else {
-        const restaurantCartIndex = carts.findIndex(cart => cart.restaurantId === restaurantId)
-        if (restaurantCartIndex !== -1) {
-            carts[restaurantCartIndex].cartItems = cartItems
-        } else {
-            carts.push({ restaurantId, cartItems })
-        }
-        saveCartsToStorage(carts)
+        updatedCarts.unshift({ restaurantId, cartItems })
+        saveCartsToStorage(updatedCarts)
     }
 }
