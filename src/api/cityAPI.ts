@@ -1,11 +1,7 @@
+import { City } from '@/types'
 import axios from 'axios'
 
 const VITE_RAPIDAPI_KEY = import.meta.env.VITE_RAPIDAPI_KEY
-
-type City = {
-    id: string
-    name: string
-}
 
 type GetCitiesParams = {
     countryIds: string

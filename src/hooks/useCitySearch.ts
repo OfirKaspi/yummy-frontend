@@ -1,5 +1,5 @@
-import { useQuery } from 'react-query';
-import { getCitiesRequest } from '@/api/cityAPI';
+import { useQuery } from 'react-query'
+import { getCitiesRequest } from '@/api/cityAPI'
 
 export const useCitySearch = (searchTerm: string) => {
     const { data: cities = [], isLoading, isError } = useQuery(
@@ -15,7 +15,7 @@ export const useCitySearch = (searchTerm: string) => {
             staleTime: 5000,
             retry: false,
         }
-    );
+    )
 
-    return { cities, isLoading, isError };
-};
+    return { cities, isLoading, isError }
+}

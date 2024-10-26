@@ -6,10 +6,11 @@ import { Input } from "@/components/ui/input"
 
 type Props = {
     form: UseFormReturn<SearchForm>
-    onSubmit: (formData: SearchForm) => void,
-    placeHolder: string,
+    onSubmit: (formData: SearchForm) => void
+    placeHolder: string
     handleReset: () => void
     isInputFilled: boolean
+    onSearchChange?: (value: string) => void
 }
 
 const SearchBarMobile = ({
@@ -17,7 +18,8 @@ const SearchBarMobile = ({
     onSubmit,
     placeHolder,
     handleReset,
-    isInputFilled
+    isInputFilled,
+    onSearchChange,
 }: Props) => {
     return (
         <Form {...form}>
@@ -26,32 +28,37 @@ const SearchBarMobile = ({
                 className={`bg-slate-100 shadow-lg rounded-lg flex items-center p-3
                     ${form.formState.errors.searchQuery && "border-red-500"}`}
             >
-                <button type="submit" className="text-gray-400 px-2" >
+                <button type="submit" className="text-gray-400 px-2">
                     <Search />
                 </button>
                 <FormField
                     control={form.control}
                     name="searchQuery"
-                    render={({ field }) =>
+                    render={({ field }) => (
                         <FormItem className="flex-1">
                             <FormControl>
                                 <Input
                                     {...field}
-                                    className="border-none text-gray-600 text-md shadow-none focus-visible:ring-0"
                                     placeholder={placeHolder}
+                                    onChange={(e) => {
+                                        field.onChange(e)
+                                        if (onSearchChange) onSearchChange(e.target.value)
+                                    }}
+                                    className="border-none text-gray-600 text-md shadow-none focus-visible:ring-0"
                                 />
                             </FormControl>
                         </FormItem>
-                    }
+                    )}
                 />
-                {isInputFilled &&
+                {isInputFilled && (
                     <button
+                        type="button"
                         className="text-gray-400 px-2"
                         onClick={handleReset}
                     >
                         <Eraser />
                     </button>
-                }
+                )}
             </form>
         </Form>
     )

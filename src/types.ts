@@ -115,3 +115,10 @@ export type SearchState = {
     selectedCuisines: string[]
     sortOption: SortOptionValue
 }
+
+// City
+
+export type City = {
+    id: string
+    name: string
+}
