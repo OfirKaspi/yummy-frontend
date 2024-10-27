@@ -17,12 +17,7 @@ const CityList = ({ cities, isLoading, isError, debouncedTerm, onCitySelect }: P
     } else if (isError) {
         statusMessage = <>Failed to load cities. Please try again.</>
     } else if (debouncedTerm && cities.length === 0) {
-        statusMessage = (
-            <>
-                <b>Service works in Israel</b><br />
-                Must enter a valid city name, please type again.
-            </>
-        )
+        statusMessage = <>City not found, please type again.</>
     }
 
     return (

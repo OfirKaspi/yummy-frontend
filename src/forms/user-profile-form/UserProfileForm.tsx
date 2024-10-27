@@ -6,23 +6,23 @@ import { Input } from "@/components/ui/input"
 import LoadingButton from "@/components/LoadingButton"
 import { Button } from "@/components/ui/button"
 import { User } from "@/types"
-import { useEffect } from "react"
-import useDeviceType from "@/hooks/useDeviceType"
-
+import { useEffect, useState } from "react"
+import CityList from "@/components/city/CityList"
+import { useCitySearch } from "@/hooks/useCitySearch"
+import { showToast } from "@/utils/showToast"
 
 const formSchema = z.object({
-    // Email is real only for the moment
     email: z.string().optional(),
     name: z.string().min(1, "Name is required"),
     addressLine1: z.string().min(1, "Address Line 1 is required"),
-    country: z.string().min(1, "Country is required"),
+    country: z.string().min(1, "Country is required").default("Israel"),
     city: z.string().min(1, "City is required"),
 })
 
 export type UserFormData = z.infer<typeof formSchema>
 
 type Props = {
-    currentUser: User,
+    currentUser: User
     onSave: (userProfileData: UserFormData) => void
     isLoading: boolean
     title?: string
@@ -36,22 +36,38 @@ const UserProfileForm = ({
     title = "My Profile",
     buttonText = "Submit"
 }: Props) => {
-    const { isDesktop } = useDeviceType()
-
     const form = useForm<UserFormData>({
         resolver: zodResolver(formSchema),
         defaultValues: currentUser,
     })
 
+    const [searchCityTerm, setSearchCityTerm] = useState("")
+    const [selectedCity, setSelectedCity] = useState<string | null>(null)
+    const { cities, isLoading: isCityLoading, isError } = useCitySearch(searchCityTerm)
+
     useEffect(() => {
         form.reset(currentUser)
     }, [currentUser, form])
 
+    const handleCitySelect = (cityName: string) => {
+        form.setValue("city", cityName)
+        setSelectedCity(cityName)
+        setSearchCityTerm("")
+    }
+
+    const handleSubmit = (data: UserFormData) => {
+        if (data.city === selectedCity) {
+            onSave(data)
+        } else {
+            showToast("Please select a valid city from the suggestions.", "info")
+        }
+    }
+
     return (
         <Form {...form}>
             <form
-                onSubmit={form.handleSubmit(onSave)}
-                className={`space-y-4 rounded-lg lg:p-10 ${isDesktop && 'bg-gray-50'}`}
+                onSubmit={form.handleSubmit(handleSubmit)}
+                className="space-y-4 rounded-lg lg:p-10"
             >
                 <div>
                     <h2 className="text-2xl font-medium">{title}</h2>
@@ -94,7 +110,7 @@ const UserProfileForm = ({
                                 <FormControl>
                                     <Input {...field} className="bg-white" />
                                 </FormControl>
-                                <FormMessage />                            <FormMessage />
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
@@ -102,12 +118,30 @@ const UserProfileForm = ({
                         control={form.control}
                         name="city"
                         render={({ field }) => (
-                            <FormItem className="flex-1">
+                            <FormItem className="flex-1 relative">
                                 <FormLabel>City</FormLabel>
                                 <FormControl>
-                                    <Input {...field} className="bg-white" />
+                                    <Input
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            setSelectedCity(null)
+                                            setSearchCityTerm(e.target.value)
+                                        }}
+                                        value={field.value}
+                                        className="bg-white"
+                                    />
                                 </FormControl>
                                 <FormMessage />
+                                {searchCityTerm.length > 2 && (
+                                    <CityList
+                                        cities={cities}
+                                        isLoading={isCityLoading}
+                                        isError={isError}
+                                        debouncedTerm={searchCityTerm}
+                                        onCitySelect={handleCitySelect}
+                                    />
+                                )}
                             </FormItem>
                         )}
                     />
@@ -118,7 +152,7 @@ const UserProfileForm = ({
                             <FormItem className="flex-1">
                                 <FormLabel>Country</FormLabel>
                                 <FormControl>
-                                    <Input {...field} className="bg-white" />
+                                    <Input {...field} disabled className="bg-white" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -128,10 +162,7 @@ const UserProfileForm = ({
                 {isLoading ? (
                     <LoadingButton />
                 ) : (
-                    <Button
-                        type="submit"
-                        className="bg-orange-500"
-                    >
+                    <Button type="submit" className="bg-orange-500">
                         {buttonText}
                     </Button>
                 )}
