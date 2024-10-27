@@ -47,7 +47,7 @@ const GlobalCart = () => {
                 {restaurantDetails.map((restaurant, index) => {
                     const cart = carts.find(c => c.restaurantId === restaurant._id)
                     if (!cart) {
-                        return
+                        return null
                     }
                     return (
                         <>
