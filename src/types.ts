@@ -1,13 +1,20 @@
 // User
 export type User = {
     _id: string
+    auth0Id: string
     email: string
     name: string
-    addressLine1: string
+    addresses: Address[]
+    favoriteRestaurants: string[]
+    orders: string[]
+}
+
+export type Address = {
+    _id: string
+    line1: string
     city: string
     country: string
 }
-
 export type CreateUserRequest = {
     auth0Id: string
     email: string

@@ -7,11 +7,9 @@ export const getMyUserRequest = async (accessToken: string): Promise<User> => {
     try {
         const response = await axios.get(`${API_BASE_URL}/api/my/user`, {
             headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json"
+                Authorization: `Bearer ${accessToken}`
             }
         })
-
         return response.data
     } catch (error) {
         console.error("Error getting user:", error)
@@ -19,29 +17,27 @@ export const getMyUserRequest = async (accessToken: string): Promise<User> => {
     }
 }
 
-export const createMyUserRequest = async (accessToken: string, user: CreateUserRequest) => {
+export const createMyUserRequest = async (accessToken: string, user: CreateUserRequest): Promise<User> => {
     try {
-        await axios.post(`${API_BASE_URL}/api/my/user`, user, {
+        const response = await axios.post(`${API_BASE_URL}/api/my/user`, user, {
             headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json"
+                Authorization: `Bearer ${accessToken}`
             }
         })
+        return response.data
     } catch (error) {
         console.error("Error creating user:", error)
         throw new Error("Failed to create user")
     }
 }
 
-export const updateMyUserRequest = async (accessToken: string, formData: UpdateMyUserRequest) => {
+export const updateMyUserRequest = async (accessToken: string, formData: UpdateMyUserRequest): Promise<User> => {
     try {
         const response = await axios.put(`${API_BASE_URL}/api/my/user`, formData, {
             headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json"
+                Authorization: `Bearer ${accessToken}`
             }
         })
-
         return response.data
     } catch (error) {
         console.error("Error updating user:", error)
