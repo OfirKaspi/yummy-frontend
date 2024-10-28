@@ -1,14 +1,14 @@
 import { useLocation } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
+import { useSelector } from "react-redux"
 
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-
 import UserProfileForm, { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
-import { useGetMyUser } from "@/hooks/myUser/useGetMyUser"
 import LoadingButton from "@/components/LoadingButton"
 import useDeviceType from "@/hooks/useDeviceType"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { selectUser, selectUserLoading } from "@/store/user/userSelectors"
 
 type Props = {
     onCheckout: (userFormData: UserFormData) => void
@@ -20,7 +20,8 @@ const CheckoutButton = ({ disabled, onCheckout, isLoading }: Props) => {
     const { isMobile, isDesktop } = useDeviceType()
     const { isAuthenticated, isLoading: isAuthLoading, loginWithRedirect } = useAuth0()
     const { pathname } = useLocation()
-    const { currentUser, isLoading: isGetUserLoading } = useGetMyUser()
+    const currentUser = useSelector(selectUser)
+    const isGetUserLoading = useSelector(selectUserLoading)
 
     const onLogin = async () => {
         await loginWithRedirect({
@@ -30,7 +31,7 @@ const CheckoutButton = ({ disabled, onCheckout, isLoading }: Props) => {
         })
     }
 
-    if (isAuthLoading || !currentUser || isLoading) {
+    if (isAuthLoading || isGetUserLoading || !currentUser || isLoading) {
         return <LoadingButton isFull />
     }
 
@@ -92,7 +93,6 @@ const CheckoutButton = ({ disabled, onCheckout, isLoading }: Props) => {
             </Dialog>
         )
     }
-
 }
 
 export default CheckoutButton

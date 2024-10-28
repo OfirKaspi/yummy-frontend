@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import './global.css'
 
-import AppRoutes from '@/AppRoutes'
+import App from '@/App'
 import Auth0ProviderWithNavigate from '@/auth/Auth0ProviderWithNavigate'
 import { Toaster } from '@/components/ui/sonner'
 import { store } from '@/store/store'
@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')!).render(
       <Router>
         <QueryClientProvider client={queryClient}>
           <Auth0ProviderWithNavigate>
-            <AppRoutes />
+            <App />
             <Toaster visibleToasts={1} position='top-right' richColors />
           </Auth0ProviderWithNavigate>
         </QueryClientProvider>

@@ -1,13 +1,15 @@
-import { useGetMyUser } from "@/hooks/myUser/useGetMyUser"
-import { useUpdateMyUser } from "@/hooks/myUser/useUpdateMyUser"
+import { useSelector } from "react-redux"
 import Loader from "@/components/Loader"
 import MainNavMobile from "@/components/navigation/MainNavMobile"
 import { Separator } from "@/components/ui/separator"
 import UserProfileForm from "@/forms/user-profile-form/UserProfileForm"
 import useDeviceType from "@/hooks/useDeviceType"
+import { selectUser, selectUserLoading } from "@/store/user/userSelectors"
+import { useUpdateMyUser } from "@/hooks/myUser/useUpdateMyUser"
 
 const MyProfilePage = () => {
-    const { currentUser, isLoading: isGetUserLoading } = useGetMyUser()
+    const currentUser = useSelector(selectUser)
+    const isGetUserLoading = useSelector(selectUserLoading)
     const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser()
     const { isMobile } = useDeviceType()
 
