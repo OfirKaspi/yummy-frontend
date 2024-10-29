@@ -33,6 +33,8 @@ export const createMyUserRequest = async (accessToken: string, user: CreateUserR
 
 export const updateMyUserRequest = async (accessToken: string, formData: UpdateMyUserRequest): Promise<User> => {
     try {
+        console.log("Form data being sent:", formData)
+        console.log("accessToken", accessToken)
         const response = await axios.put(`${API_BASE_URL}/api/my/user`, formData, {
             headers: {
                 Authorization: `Bearer ${accessToken}`

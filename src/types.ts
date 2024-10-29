@@ -10,22 +10,21 @@ export type User = {
 }
 
 export type Address = {
-    _id: string
-    line1: string
+    _id?: string
+    addressLine1: string
     city: string
     country: string
 }
+
 export type CreateUserRequest = {
     auth0Id: string
     email: string
 }
 
 export type UpdateMyUserRequest = {
-    name: string
-    addressLine1: string
-    city: string
-    country: string
-
+    name?: string
+    addresses?: Address[]
+    favoriteRestaurantId?: string
 }
 
 // Restaurant

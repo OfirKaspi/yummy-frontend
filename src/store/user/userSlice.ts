@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getMyUserRequest, createMyUserRequest, updateMyUserRequest } from '@/api/myUserAPI'
-import { User, CreateUserRequest, UpdateMyUserRequest } from '@/types'
+import { User, CreateUserRequest, UpdateMyUserRequest, Address } from '@/types'
 import { showToast } from '@/utils/showToast'
 
 interface UserState {
@@ -23,7 +23,13 @@ export const createUser = createAsyncThunk('user/createUser', async ({ accessTok
     return await createMyUserRequest(accessToken, user)
 })
 
-export const updateUser = createAsyncThunk('user/updateUser', async ({ accessToken, userData }: { accessToken: string, userData: UpdateMyUserRequest }) => {
+export const updateUserName = createAsyncThunk('user/updateUserName', async ({ accessToken, name }: { accessToken: string, name: string }) => {
+    const userData: UpdateMyUserRequest = { name }
+    return await updateMyUserRequest(accessToken, userData)
+})
+
+export const updateUserAddresses = createAsyncThunk('user/updateUserAddresses', async ({ accessToken, addresses }: { accessToken: string, addresses: Address[] }) => {
+    const userData: UpdateMyUserRequest = { addresses }
     return await updateMyUserRequest(accessToken, userData)
 })
 
@@ -60,18 +66,29 @@ const userSlice = createSlice({
                 state.error = 'Failed to create user'
                 showToast('Failed to create user', 'error')
             })
-            .addCase(updateUser.pending, (state) => {
+            .addCase(updateUserName.pending, (state) => {
                 state.loading = true
                 state.error = null
             })
-            .addCase(updateUser.fulfilled, (state, action) => {
-                state.user = action.payload
+            .addCase(updateUserName.fulfilled, (state, action) => {
+                state.user = { ...state.user, name: action.payload.name } as User
                 state.loading = false
             })
-            .addCase(updateUser.rejected, (state) => {
+            .addCase(updateUserName.rejected, (state) => {
                 state.loading = false
-                state.error = 'Failed to update user'
-                showToast('Failed to update user', 'error')
+                state.error = 'Failed to update name'
+            })
+            .addCase(updateUserAddresses.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(updateUserAddresses.fulfilled, (state, action) => {
+                state.user = { ...state.user, addresses: action.payload.addresses } as User
+                state.loading = false
+            })
+            .addCase(updateUserAddresses.rejected, (state) => {
+                state.loading = false
+                state.error = 'Failed to update addresses'
             })
     }
 })
