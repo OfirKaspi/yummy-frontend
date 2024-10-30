@@ -19,8 +19,8 @@ export const getUser = createAsyncThunk('user/getUser', async (accessToken: stri
     return await getMyUserRequest(accessToken)
 })
 
-export const createUser = createAsyncThunk('user/createUser', async ({ accessToken, user }: { accessToken: string, user: CreateUserRequest }) => {
-    return await createMyUserRequest(accessToken, user)
+export const createUser = createAsyncThunk('user/createUser', async ({ accessToken, userData }: { accessToken: string, userData: CreateUserRequest }) => {
+    return await createMyUserRequest(accessToken, userData)
 })
 
 export const updateUserName = createAsyncThunk('user/updateUserName', async ({ accessToken, name }: { accessToken: string, name: string }) => {
@@ -59,7 +59,7 @@ const userSlice = createSlice({
             .addCase(createUser.fulfilled, (state, action) => {
                 state.user = action.payload
                 state.loading = false
-                showToast('User created!', 'success')
+                // showToast('User created!', 'success')
             })
             .addCase(createUser.rejected, (state) => {
                 state.loading = false

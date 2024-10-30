@@ -1,32 +1,41 @@
 import { useEffect, useRef } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { useCreateMyUser } from "@/hooks/myUser/useCreateMyUser"
+import { useDispatch } from "react-redux"
+import { createUser } from "@/store/user/userSlice"
 import { useAuth0 } from "@auth0/auth0-react"
-
 import Loader from "@/components/Loader"
+import { CreateUserRequest } from "@/types"
+import { AppDispatch } from "@/store/store"
 
 const AuthCallbackPage = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    const { user } = useAuth0()
-    const { createUser } = useCreateMyUser()
-
     const hasCreatedUser = useRef(false)
+    const dispatch: AppDispatch = useDispatch()
+    const { user, getAccessTokenSilently } = useAuth0()
 
     useEffect(() => {
         const returnTo = location.state?.returnTo || "/"
 
-        if (user?.sub && user?.email && !hasCreatedUser.current) {
-            createUser({
-                auth0Id: user.sub,
-                email: user.email
-            })
-            hasCreatedUser.current = true
+        const createUserWithToken = async () => {
+            if (user?.sub && user?.email && !hasCreatedUser.current) {
+                try {
+                    const accessToken = await getAccessTokenSilently()
+                    const userData: CreateUserRequest = {
+                        auth0Id: user.sub,
+                        email: user.email,
+                    }
+                    await dispatch(createUser({ accessToken, userData }))
+                    hasCreatedUser.current = true
+                } catch (error) {
+                    console.error("Error creating user:", error)
+                }
+            }
         }
 
+        createUserWithToken()
         navigate(returnTo)
-    }, [createUser, navigate, user, location])
-
+    }, [dispatch, navigate, user, location, getAccessTokenSilently])
 
     return (
         <Loader isFullScreen />

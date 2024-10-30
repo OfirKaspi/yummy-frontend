@@ -2,12 +2,11 @@ import { useSelector } from "react-redux"
 import { ChevronDown } from "lucide-react"
 import MainNavMobile from "@/components/navigation/MainNavMobile"
 import { getGreeting } from "@/utils/getGreeting"
-import { selectUser, selectUserLoading } from "@/store/user/userSelectors"
+import { selectUser } from "@/store/user/userSelectors"
 import { useState, useEffect } from "react"
 
 const UserSection = () => {
     const currentUser = useSelector(selectUser)
-    const isLoading = useSelector(selectUserLoading)
     const [greeting, setGreeting] = useState("")
 
     useEffect(() => {
@@ -28,8 +27,7 @@ const UserSection = () => {
             <div className="flex items-center gap-1">
                 <span>
                     Hey
-                    {!isLoading && currentUser?.name && <> {currentUser.name}</>}
-                    ,
+                    {currentUser?.name ? ` ${currentUser.name},` : ","}
                 </span>
                 <span className="font-bold"> {greeting}!</span>
             </div>

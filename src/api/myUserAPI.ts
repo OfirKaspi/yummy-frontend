@@ -17,9 +17,9 @@ export const getMyUserRequest = async (accessToken: string): Promise<User> => {
     }
 }
 
-export const createMyUserRequest = async (accessToken: string, user: CreateUserRequest): Promise<User> => {
+export const createMyUserRequest = async (accessToken: string, userData: CreateUserRequest): Promise<User> => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/my/user`, user, {
+        const response = await axios.post(`${API_BASE_URL}/api/my/user`, userData, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }
