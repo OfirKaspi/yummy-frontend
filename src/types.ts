@@ -53,6 +53,11 @@ export type RestaurantSearchResponse = {
     pagination: Pagination
 }
 
+export type RestaurantCart = {
+    restaurantId: string
+    cartItems: CartItem[]
+}
+
 // Order
 export type Order = {
     _id: string

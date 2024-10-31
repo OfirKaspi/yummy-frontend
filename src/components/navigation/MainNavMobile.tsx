@@ -1,6 +1,6 @@
 import MobileNav from "@/components/navigation/MobileNav"
 import PervPageNavButton from "@/components/navigation/PervPageNavButton"
-import GlobalCart from "@/components/GlobalCart"
+import GlobalCart from "@/components/homePageMobile/GlobalCart"
 
 type Props = {
     children: React.ReactNode

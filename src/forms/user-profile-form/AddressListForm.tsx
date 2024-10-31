@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import LoadingButton from "@/components/LoadingButton"
 import { Address } from "@/types"
 import { useState } from "react"
-import AddressFormItem from "./AddressFormItem"
+import AddressFormItem from "@/forms/user-profile-form/AddressFormItem"
 import { showToast } from "@/utils/showToast"
 
 type AddressFormData = {
@@ -19,11 +19,16 @@ type Props = {
 
 const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
     const [addressList, setAddressList] = useState<AddressFormData[]>(
-        addresses.map((address) => ({
-            addressLine1: address.addressLine1,
-            city: address.city,
-            country: "Israel",
-        }))
+        addresses.length > 0
+            ? addresses.map((address) => ({
+                addressLine1: address.addressLine1,
+                city: address.city,
+                country: "Israel",
+            })) : [{
+                addressLine1: "",
+                city: "",
+                country: "Israel",
+            }]
     )
 
     const [selectedCities, setSelectedCities] = useState<(string | null)[]>(addressList.map(() => null))
@@ -32,7 +37,7 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
     const handleAddAddress = () => {
         setAddressList([...addressList, { addressLine1: "", city: "", country: "Israel" }])
         setSelectedCities([...selectedCities, null])
-        setIsCityUnchanged([...isCityUnchanged, true]) // New address is untouched initially
+        setIsCityUnchanged([...isCityUnchanged, true])
     }
 
     const handleRemoveAddress = (index: number) => {
@@ -53,7 +58,7 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
         setSelectedCities(updatedCities)
 
         const updatedCityUnchanged = [...isCityUnchanged]
-        updatedCityUnchanged[index] = false // Mark city as "changed" when a suggestion is selected
+        updatedCityUnchanged[index] = false
         setIsCityUnchanged(updatedCityUnchanged)
     }
 
@@ -63,6 +68,8 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
 
     const handleSubmit = () => {
         const allValid = addressList.every((address, index) =>
+            address.addressLine1.length > 2 &&
+            address.city.length > 2 &&
             isCityUnchanged[index] || validateCitySelection(address.city, selectedCities[index])
         )
 

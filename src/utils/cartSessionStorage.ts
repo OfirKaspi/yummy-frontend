@@ -1,9 +1,4 @@
-import { CartItem } from '@/types'
-
-type RestaurantCart = {
-    restaurantId: string
-    cartItems: CartItem[]
-}
+import { CartItem, RestaurantCart } from '@/types'
 
 export const loadCartsFromStorage = (): RestaurantCart[] => {
     const storedCarts = sessionStorage.getItem('carts')
