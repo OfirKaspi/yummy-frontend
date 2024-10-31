@@ -47,8 +47,8 @@ const UserSection = () => {
                                     }
                                     <ChevronDown size={16} />
                                 </SheetTrigger>
-                                <SheetContent className="rounded-t-3xl  max-h-[500px] overflow-y-auto" side="bottom">
-                                    <SheetTitle className="mt-0 mb-2">Address Form</SheetTitle>
+                                <SheetContent side="bottom" className="rounded-t-3xl max-h-[500px] space-y-5 overflow-y-auto">
+                                    <SheetTitle className="text-2xl font-normal">Address Form</SheetTitle>
                                     <AddressListForm
                                         addresses={currentUser.addresses}
                                         isLoading={isLoading}

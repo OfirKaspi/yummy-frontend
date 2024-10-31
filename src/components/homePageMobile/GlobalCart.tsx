@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react"
 import { Restaurant } from "@/types"
 import { getRestaurantById } from "@/api/restaurantAPI"
 import { loadCartsFromStorage } from "@/utils/cartSessionStorage"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import ShoppingBagCmp from "@/components/ShoppingBagCmp"
 import { Separator } from "@/components/ui/separator"
 import NotFound from "@/components/NotFound"
@@ -43,16 +43,14 @@ const GlobalCart = () => {
                 <ShoppingBagCmp totalQuantity={totalQuantity} />
             </SheetTrigger>
             <SheetContent side="bottom" className="rounded-t-3xl max-h-[500px] space-y-5 overflow-y-auto">
-                <span className="text-2xl">Open Carts</span>
+                <SheetTitle className="text-2xl font-normal">Open Carts</SheetTitle>
                 <Separator />
                 {
                     restaurantDetails.length > 0
                         ? (
                             restaurantDetails.map((restaurant, index) => {
                                 const cart = carts.find(c => c.restaurantId === restaurant._id)
-                                if (!cart) {
-                                    return null
-                                }
+                                if (!cart) return null
 
                                 return (
                                     <>
