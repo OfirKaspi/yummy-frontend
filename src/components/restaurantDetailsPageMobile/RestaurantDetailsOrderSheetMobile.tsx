@@ -1,6 +1,6 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Restaurant, CartItem } from "@/types"
-import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
+import { UserFormData } from "@/forms/user-profile-form/UserDetailsOrderForm"
 import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"
 import ShoppingBagCmp from "@/components/ShoppingBagCmp"

@@ -34,33 +34,33 @@ const UserSection = () => {
     return (
         <>
             <MainNavMobile isHomePage>
-                <div className="flex justify-center flex-col text-sm">
-                    <span className="text-orange-500 font-medium">DELIVER TO</span>
-                    {
-                        currentUser ? (
-                            <Sheet>
-                                <SheetTrigger className="flex items-center text-gray-600 gap-1">
+                {
+                    currentUser ? (
+                        <Sheet>
+                            <SheetTrigger className="flex flex-col gap-1 text-sm">
+                                <span className="text-orange-500 font-medium">DELIVER TO</span>
+                                <span className="flex items-center gap-1 text-gray-600">
                                     {
                                         currentUser.addresses.length
                                             ? currentUser.addresses[0].addressLine1
                                             : "Add your address"
                                     }
                                     <ChevronDown size={16} />
-                                </SheetTrigger>
-                                <SheetContent side="bottom" className="rounded-t-3xl max-h-[500px] space-y-5 overflow-y-auto">
-                                    <SheetTitle className="text-2xl font-normal">Address Form</SheetTitle>
-                                    <AddressListForm
-                                        addresses={currentUser.addresses}
-                                        isLoading={isLoading}
-                                        onSave={handleUpdateAddresses}
-                                    />
-                                </SheetContent>
-                            </Sheet>
-                        ) : (
-                            <span className="flex items-center text-gray-600 gap-1">Login to add address</span>
-                        )
-                    }
-                </div>
+                                </span>
+                            </SheetTrigger>
+                            <SheetContent side="bottom" className="rounded-t-3xl max-h-[500px] space-y-5 overflow-y-auto">
+                                <SheetTitle className="text-2xl font-normal">Address Form</SheetTitle>
+                                <AddressListForm
+                                    addresses={currentUser.addresses}
+                                    isLoading={isLoading}
+                                    onSave={handleUpdateAddresses}
+                                />
+                            </SheetContent>
+                        </Sheet>
+                    ) : (
+                        <span className="flex items-center text-gray-600 gap-1">Login to add address</span>
+                    )
+                }
             </MainNavMobile>
             <div className="flex items-center gap-1">
                 <span>

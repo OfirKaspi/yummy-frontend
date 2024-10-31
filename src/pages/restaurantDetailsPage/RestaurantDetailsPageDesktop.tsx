@@ -6,7 +6,7 @@ import MenuItem from "@/components/MenuItem"
 import RestaurantInfo from "@/components/RestaurantInfo"
 import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"
-import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
+import { UserFormData } from "@/forms/user-profile-form/UserDetailsOrderForm"
 
 type Props = {
     restaurant: Restaurant

@@ -8,7 +8,7 @@ import { selectRestaurant, selectRestaurantLoading } from '@/store/restaurant/re
 import useDeviceType from '@/hooks/useDeviceType'
 import RestaurantDetailsPageDesktop from '@/pages/restaurantDetailsPage/RestaurantDetailsPageDesktop'
 import RestaurantDetailsPageMobile from '@/pages/restaurantDetailsPage/RestaurantDetailsPageMobile'
-import { UserFormData } from '@/forms/user-profile-form/UserProfileForm'
+import { UserFormData } from '@/forms/user-profile-form/UserDetailsOrderForm'
 import { useCreateCheckoutSession } from '@/hooks/order/useCreateCheckoutSession'
 import Loader from '@/components/Loader'
 import { loadCartByRestaurantId, saveCartForRestaurant } from '@/utils/cartSessionStorage'

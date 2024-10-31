@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { z } from "zod"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import LoadingButton from "@/components/LoadingButton"
 import { Button } from "@/components/ui/button"
-import { User } from "@/types"
-import { useEffect, useState } from "react"
 import CityList from "@/components/city/CityList"
 import { useCitySearch } from "@/hooks/useCitySearch"
 import { showToast } from "@/utils/showToast"
+import { User } from "@/types"
 
 const formSchema = z.object({
     email: z.string().optional(),
@@ -33,21 +33,26 @@ const UserProfileForm = ({
     currentUser,
     onSave,
     isLoading,
-    title = "My Profile",
-    buttonText = "Submit"
+    title = "Confirm Delivery Details",
+    buttonText = "Continue to payment"
 }: Props) => {
+    const { name, email, addresses } = currentUser
+    const initialAddress = addresses?.[0] || { addressLine1: "", city: "", country: "Israel" }
+
     const form = useForm<UserFormData>({
         resolver: zodResolver(formSchema),
-        defaultValues: currentUser,
+        defaultValues: {
+            name: name || "",
+            email: email || "",
+            addressLine1: initialAddress.addressLine1,
+            city: initialAddress.city,
+            country: initialAddress.country || "Israel",
+        },
     })
 
     const [searchCityTerm, setSearchCityTerm] = useState("")
     const [selectedCity, setSelectedCity] = useState<string | null>(null)
     const { cities, isLoading: isCityLoading, isError } = useCitySearch(searchCityTerm)
-
-    useEffect(() => {
-        form.reset(currentUser)
-    }, [currentUser, form])
 
     const handleCitySelect = (cityName: string) => {
         form.setValue("city", cityName)
@@ -56,7 +61,7 @@ const UserProfileForm = ({
     }
 
     const handleSubmit = (data: UserFormData) => {
-        if (data.city === selectedCity) {
+        if (data.city === selectedCity || (initialAddress.city && data.city === initialAddress.city)) {
             onSave(data)
         } else {
             showToast("Please select a valid city from the suggestions.", "info")
@@ -65,15 +70,9 @@ const UserProfileForm = ({
 
     return (
         <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-4 rounded-lg lg:p-10"
-            >
+            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 rounded-lg lg:p-10">
                 <div>
                     <h2 className="text-2xl font-medium">{title}</h2>
-                    <FormDescription>
-                        View and change your profile information here
-                    </FormDescription>
                 </div>
                 <FormField
                     control={form.control}
@@ -128,7 +127,6 @@ const UserProfileForm = ({
                                             setSelectedCity(null)
                                             setSearchCityTerm(e.target.value)
                                         }}
-                                        value={field.value}
                                         className="bg-white"
                                     />
                                 </FormControl>
@@ -138,8 +136,8 @@ const UserProfileForm = ({
                                         cities={cities}
                                         isLoading={isCityLoading}
                                         isError={isError}
-                                        debouncedTerm={searchCityTerm}
                                         onCitySelect={handleCitySelect}
+                                        debouncedTerm={searchCityTerm}
                                     />
                                 )}
                             </FormItem>
@@ -154,7 +152,6 @@ const UserProfileForm = ({
                                 <FormControl>
                                     <Input {...field} disabled className="bg-white" />
                                 </FormControl>
-                                <FormMessage />
                             </FormItem>
                         )}
                     />

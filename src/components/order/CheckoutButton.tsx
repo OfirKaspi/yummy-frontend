@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import UserProfileForm, { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
+import UserProfileForm, { UserFormData } from "@/forms/user-profile-form/UserDetailsOrderForm"
 import LoadingButton from "@/components/LoadingButton"
 import useDeviceType from "@/hooks/useDeviceType"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"

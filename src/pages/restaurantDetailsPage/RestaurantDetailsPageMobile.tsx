@@ -1,6 +1,6 @@
 import { MenuItem as MenuItemType } from "@/types"
 import { Restaurant, CartItem } from "@/types"
-import { UserFormData } from "@/forms/user-profile-form/UserProfileForm"
+import { UserFormData } from "@/forms/user-profile-form/UserDetailsOrderForm"
 import RestaurantDetailsNavMobile from "@/components/restaurantDetailsPageMobile/RestaurantDetailsNavMobile"
 import RestaurantDetailsDescriptionMobile from "@/components/restaurantDetailsPageMobile/RestaurantDetailsDescriptionMobile"
 import RestaurantDetailsCuisinesMobile from "@/components/restaurantDetailsPageMobile/RestaurantDetailsCuisinesMobile"
