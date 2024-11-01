@@ -33,7 +33,7 @@ const UserNameForm = ({ currentUser, onSave, isLoading }: Props) => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSave)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSave)} className="space-y-4 max-w-[400px]">
                 <FormField
                     control={form.control}
                     name="email"

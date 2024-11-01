@@ -35,6 +35,9 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
     const [isCityUnchanged, setIsCityUnchanged] = useState<boolean[]>(addressList.map(() => true))
 
     const handleAddAddress = () => {
+        if (addressList.length > 2) {
+            return showToast("Cannot add more then 3 addresses", "info")
+        }
         setAddressList([...addressList, { addressLine1: "", city: "", country: "Israel" }])
         setSelectedCities([...selectedCities, null])
         setIsCityUnchanged([...isCityUnchanged, true])
@@ -83,16 +86,19 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
 
     return (
         <div className="space-y-4">
-            {addressList.map((address, index) => (
-                <AddressFormItem
-                    key={index}
-                    address={address}
-                    onChange={(data) => handleChangeAddress(data, index)}
-                    onRemove={() => handleRemoveAddress(index)}
-                    onCitySelect={(cityName) => handleCitySelect(cityName, index)}
-                    index={index}
-                />
-            ))}
+            <ul className="flex flex-col md:flex-row gap-5">
+                {addressList.map((address, index) => (
+                    <li key={index} className="flex-1">
+                        <AddressFormItem
+                            address={address}
+                            onChange={(data) => handleChangeAddress(data, index)}
+                            onRemove={() => handleRemoveAddress(index)}
+                            onCitySelect={(cityName) => handleCitySelect(cityName, index)}
+                            index={index}
+                        />
+                    </li>
+                ))}
+            </ul>
             <div className="space-x-2">
                 <Button type="button" variant="outline" onClick={handleAddAddress}>
                     Add Address
