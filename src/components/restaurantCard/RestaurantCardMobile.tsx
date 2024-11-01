@@ -16,12 +16,12 @@ const RestaurantCardMobile = ({ restaurant }: Props) => {
     }
 
     return (
-        <div className="flex flex-col gap-2" onClick={sendToRestaurantDetails}>
+        <li className="flex flex-col gap-2 cursor-pointer" onClick={sendToRestaurantDetails}>
             <AspectRatio ratio={16 / 7}>
                 <img src={restaurant.imageUrl} className="rounded-lg object-cover h-full w-full" />
             </AspectRatio>
             <div>
-                <h3 className="text-xl">{restaurant.restaurantName}</h3>
+                <h3 className="text-xl hover:underline">{restaurant.restaurantName}</h3>
                 <div className="flex">
                     {restaurant.cuisines.map((cuisine, index) => (
                         <span key={cuisine} className="flex text-gray-600 text-sm">
@@ -32,7 +32,7 @@ const RestaurantCardMobile = ({ restaurant }: Props) => {
                 </div>
             </div>
             <RestaurantStats restaurant={restaurant} />
-        </div>
+        </li>
     )
 }
 

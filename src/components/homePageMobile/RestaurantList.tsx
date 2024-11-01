@@ -39,9 +39,17 @@ const RestaurantList = () => {
     return (
         <div className="space-y-5">
             {!city && <RestaurantSeeAll />}
-            {restaurants.map((restaurant) => (
-                <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
-            ))}
+            <ul className="
+                grid gap-5 grid-cols-1
+                sm:grid-cols-2
+                md:grid-cols-3
+                lg:grid-cols-4
+                xl:grid-cols-5
+            ">
+                {restaurants.map((restaurant) => (
+                    <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
+                ))}
+            </ul>
         </div>
     )
 }

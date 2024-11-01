@@ -1,4 +1,4 @@
-import Yummy from "/yummy.png"
+import yummyFullLogo from "/yummyFullLogo.png"
 
 type Props = {
     isFullScreen?: boolean
@@ -7,7 +7,7 @@ type Props = {
 const Loader = ({ isFullScreen = false }: Props) => {
     return (
         <div className={`flex flex-col items-center justify-center ${isFullScreen && "h-screen"} space-y-4`}>
-            <img src={Yummy} alt="yummy-logo" className="h-20 w-20 animate-bounce" />
+            <img src={yummyFullLogo} alt="yummy-logo" className="h-[200px] w-[200px] animate-bounce" />
             <span className="text-lg font-semibold text-gray-700">Loading...</span>
         </div>
     )

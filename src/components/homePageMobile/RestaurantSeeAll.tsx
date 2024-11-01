@@ -8,9 +8,9 @@ const RestaurantSeeAll = () => {
         navigate('/search/london')
     }
     return (
-        <div className="flex items-center justify-between">
+        <div className="flex items-end justify-between md:justify-normal md:gap-2">
             <h2 className="text-xl">Open Restaurants</h2>
-            <div onClick={handleSeeAll}>
+            <div className="md:underline" onClick={handleSeeAll}>
                 <ExpandBtn />
             </div>
         </div>

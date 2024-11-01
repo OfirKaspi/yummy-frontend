@@ -45,7 +45,7 @@ const CitySearchBar = () => {
     }
 
     return (
-        <div className='relative'>
+        <div className='relative flex-1'>
             <SearchBarMobile
                 form={form}
                 onSubmit={handleSearchSubmit}

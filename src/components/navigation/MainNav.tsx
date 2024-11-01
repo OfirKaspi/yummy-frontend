@@ -6,13 +6,29 @@ import DesktopNav from "@/components/navigation/DesktopNav"
 import GlobalCart from "@/components/homePageMobile/GlobalCart"
 import DeliverTo from "@/components/homePageMobile/DeliverTo"
 import SearchResultsInfoMobile from "@/components/searchResultsInfo/SearchResultsInfoMobile"
+import CitySearchBar from "../city/CitySearch"
 
 const MainNav = () => {
     const location = useLocation()
     const { isMobile } = useDeviceType()
 
+    let homePageComponent
+
+    if (isMobile) {
+        homePageComponent = <DeliverTo />
+    } else {
+        homePageComponent =
+            <div className="flex gap-5">
+                <DeliverTo />
+                <CitySearchBar />
+            </div>
+    }
+
     const navigationItems = [
-        { path: "/", component: <DeliverTo /> },
+        {
+            path: "/",
+            component: homePageComponent
+        },
         { path: "/my-orders", label: "My Orders" },
         { path: "/my-profile", label: "My Profile" },
         { path: "/my-restaurant", label: "My Restaurant" },
