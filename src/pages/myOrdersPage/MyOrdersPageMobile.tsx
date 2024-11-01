@@ -2,7 +2,6 @@ import MyOrderCardMobile from "@/components/order/MyOrderCardMobile"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Order } from "@/types"
-import MainNavMobile from "@/components/navigation/MainNavMobile"
 import NotFound from "@/components/NotFound"
 
 type Props = {
@@ -13,9 +12,6 @@ type Props = {
 const NyOrdersPageMobile = ({ ongoingOrders, deliveredOrders }: Props) => {
     return (
         <div className="space-y-5">
-            <MainNavMobile>
-                My Orders
-            </MainNavMobile>
             <Tabs defaultValue="ongoing" className="space-y-5">
                 <TabsList className="flex">
                     <TabsTrigger value="ongoing" className="flex-1">Ongoing</TabsTrigger>

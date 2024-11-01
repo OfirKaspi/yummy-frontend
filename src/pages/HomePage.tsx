@@ -2,7 +2,7 @@ import UserSection from "@/components/homePageMobile/UserSection"
 import RestaurantList from "@/components/homePageMobile/RestaurantList"
 import CitySearchBar from "@/components/city/CitySearch"
 
-const HomePageMobile = () => {
+const HomePage = () => {
     return (
         <div className="space-y-5">
             <UserSection />
@@ -12,4 +12,4 @@ const HomePageMobile = () => {
     )
 }
 
-export default HomePageMobile
+export default HomePage

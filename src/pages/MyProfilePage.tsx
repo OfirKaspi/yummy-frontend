@@ -1,17 +1,16 @@
+import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react"
-import MainNavMobile from "@/components/navigation/MainNavMobile"
-import { Separator } from "@/components/ui/separator"
-import UserNameForm from "@/forms/user-profile-form/UserNameForm"
-import AddressListForm from "@/forms/user-profile-form/AddressListForm"
-import useDeviceType from "@/hooks/useDeviceType"
-import { selectUser, selectUserLoading } from "@/store/user/userSelectors"
-import { updateUserName, updateUserAddresses } from "@/store/user/userSlice"
 import { AppDispatch } from "@/store/store"
 import { Address } from "@/types"
+import useDeviceType from "@/hooks/useDeviceType"
+import UserNameForm from "@/forms/user-profile-form/UserNameForm"
+import AddressListForm from "@/forms/user-profile-form/AddressListForm"
+import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs"
-import { useState } from "react"
 import { SkeletonCard } from "@/components/ui/skeleton"
+import { selectUser, selectUserLoading } from "@/store/user/userSelectors"
+import { updateUserName, updateUserAddresses } from "@/store/user/userSlice"
 
 const MyProfilePage = () => {
     const dispatch: AppDispatch = useDispatch()
@@ -41,11 +40,6 @@ const MyProfilePage = () => {
 
     return (
         <div className="space-y-5">
-            {isMobile &&
-                <MainNavMobile>
-                    My Profile
-                </MainNavMobile>
-            }
             <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-5">
                 <TabsList className={`${isMobile && 'flex'}`}>
                     <TabsTrigger value="profile-form" className={`${isMobile && 'flex-1'}`}>Profile Form</TabsTrigger>

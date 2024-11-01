@@ -32,7 +32,7 @@ const RestaurantDetailsPageMobile = ({
 }: Props) => {
 
     return (
-        <div className="space-y-5 pb-20">
+        <div className="space-y-5 p-5 pb-24">
             <RestaurantDetailsNavMobile restaurantImg={restaurant.imageUrl} />
             <RestaurantDetailsDescriptionMobile restaurant={restaurant} />
             <RestaurantDetailsCuisinesMobile

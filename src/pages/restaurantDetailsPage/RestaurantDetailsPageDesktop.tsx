@@ -7,6 +7,7 @@ import RestaurantInfo from "@/components/RestaurantInfo"
 import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"
 import { UserFormData } from "@/forms/user-profile-form/UserDetailsOrderForm"
+import MainNav from "@/components/navigation/MainNav"
 
 type Props = {
     restaurant: Restaurant
@@ -29,7 +30,8 @@ const RestaurantDetailsPageDesktop = ({
     removeFromCart,
 }: Props) => {
     return (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-5 p-5">
+            <MainNav />
             <AspectRatio ratio={16 / 5}>
                 <img src={restaurant?.imageUrl} className="rounded-md object-cover h-full w-full" />
             </AspectRatio>

@@ -1,15 +1,15 @@
-import { selectPagination } from "@/store/restaurants/restaurantsSelectors"
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
+import { selectPagination } from "@/store/restaurants/restaurantsSelectors"
 
 const SearchResultsInfoMobile = () => {
     const { city } = useParams()
     const pagination = useSelector(selectPagination)
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col sm:flex-row sm:gap-1">
             <span>{pagination?.total} Restaurants found</span>
-            <div className="flex items-center gap-1">
+            <div className="flex gap-1">
                 in
                 <Link to="/" className="font-medium underline">{city}</Link>
             </div>

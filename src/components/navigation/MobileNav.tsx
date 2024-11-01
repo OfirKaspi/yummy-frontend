@@ -1,12 +1,19 @@
+import { matchPath, useLocation } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 import { CircleUserRound, Menu } from 'lucide-react'
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
-import { useAuth0 } from '@auth0/auth0-react'
 import MobileNavLinks from '@/components/navigation/MobileNavLinks'
+import SearchFilter from '@/components/searchPage/SearchFilter'
 
 const MobileNav = () => {
+    const location = useLocation()
     const { isAuthenticated, loginWithRedirect, user } = useAuth0()
+
+    if (matchPath('/search/:city', location.pathname)) {
+        return <SearchFilter />
+    }
 
     return (
         <Sheet>
