@@ -25,7 +25,7 @@ const SearchBarMobile = ({
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className={`bg-slate-100 shadow-lg rounded-lg flex items-center p-2
+                className={`bg-slate-100 shadow-lg rounded-lg flex items-center p-2 md:p-1
                     ${form.formState.errors.searchQuery && "border-red-500"}`}
             >
                 <button type="submit" className="text-gray-400 px-2">
