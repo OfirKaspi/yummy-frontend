@@ -8,7 +8,7 @@ import ProtectedRoute from '@/auth/ProtectedRoute'
 import MyRestaurantPage from '@/pages/MyRestaurantPage'
 import SearchPage from '@/pages/searchPage/SearchPage'
 import RestaurantDetailsPage from '@/pages/restaurantDetailsPage/RestaurantDetailsPage'
-import MyOrdersPage from '@/pages/myOrdersPage/MyOrdersPage'
+import MyOrdersPage from '@/pages/MyOrdersPage'
 
 const AppRoutes = () => {
     return (

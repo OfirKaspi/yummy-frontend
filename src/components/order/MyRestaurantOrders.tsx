@@ -7,7 +7,11 @@ const MyRestaurantOrders = () => {
     const { orders, isLoading } = useGetMyRestaurantOrders()
 
     if (isLoading) {
-        return <SkeletonCard />
+        return (
+            <div className="max-w-[500px]">
+                <SkeletonCard />
+            </div>
+        )
     }
 
     if (!orders || orders.length === 0) {

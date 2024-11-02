@@ -1,7 +1,6 @@
 import { useCreateMyRestaurant } from "@/hooks/myRestaurant/useCreateMyRestaurant"
 import { useUpdateMyRestaurant } from "@/hooks/myRestaurant/useUpdateMyRestaurant"
 import { useGetMyRestaurant } from "@/hooks/myRestaurant/useGetMyRestaurant"
-import useDeviceType from "@/hooks/useDeviceType"
 import ManageRestaurantForm from "@/forms/manage-restaurant-form/ManageRestaurantForm"
 import MyRestaurantOrders from "@/components/order/MyRestaurantOrders"
 import { Separator } from "@/components/ui/separator"
@@ -11,16 +10,15 @@ const MyRestaurantPage = () => {
     const { createRestaurant, isLoading: isCreateLoading } = useCreateMyRestaurant()
     const { restaurant } = useGetMyRestaurant()
     const { updateRestaurant, isLoading: isUpdateLoading } = useUpdateMyRestaurant()
-    const { isMobile } = useDeviceType()
 
     const isEditing = !!restaurant
 
     return (
         <div className="space-y-5">
             <Tabs defaultValue="orders" className="space-y-5">
-                <TabsList className={`${isMobile && 'flex'}`}>
-                    <TabsTrigger value="orders" className={`${isMobile && 'flex-1'}`}>Orders</TabsTrigger>
-                    <TabsTrigger value="manage-restaurant" className={`${isMobile && 'flex-1'}`}>Manage Restaurant</TabsTrigger>
+                <TabsList className="flex md:w-[300px]">
+                    <TabsTrigger value="orders" className="flex-1">Orders</TabsTrigger>
+                    <TabsTrigger value="manage-restaurant" className="flex-1">Manage Restaurant</TabsTrigger>
                 </TabsList>
                 <Separator />
                 <TabsContent value="orders">

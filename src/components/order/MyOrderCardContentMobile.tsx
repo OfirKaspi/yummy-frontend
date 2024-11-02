@@ -11,7 +11,7 @@ const MyOrderCardContentMobile = ({ order }: Props) => {
             <img
                 src="https://www.announcementconverters.com/media/catalog/product/S/-/S-ILG11F_9.JPG"
                 alt="order-img"
-                className="object-cover w-16 h-16 rounded-xl"
+                className="object-cover w-16 h-16 md:w-20 md:h-20 rounded-xl"
             />
             <div className="flex flex-col flex-1 gap-2 text-sm">
                 <div className="flex items-center justify-between">

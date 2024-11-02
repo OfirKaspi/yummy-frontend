@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react"
 import { AppDispatch } from "@/store/store"
 import { Address } from "@/types"
-import useDeviceType from "@/hooks/useDeviceType"
 import UserNameForm from "@/forms/user-profile-form/UserNameForm"
 import AddressListForm from "@/forms/user-profile-form/AddressListForm"
 import { Separator } from "@/components/ui/separator"
@@ -17,7 +16,6 @@ const MyProfilePage = () => {
     const { getAccessTokenSilently } = useAuth0()
     const currentUser = useSelector(selectUser)
     const isGetUserLoading = useSelector(selectUserLoading)
-    const { isMobile } = useDeviceType()
     const [activeTab, setActiveTab] = useState("profile-form")
 
     const handleUpdateName = async (userNameData: { name: string }) => {
@@ -41,9 +39,9 @@ const MyProfilePage = () => {
     return (
         <div className="space-y-5">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-5">
-                <TabsList className={`${isMobile && 'flex'}`}>
-                    <TabsTrigger value="profile-form" className={`${isMobile && 'flex-1'}`}>Profile Form</TabsTrigger>
-                    <TabsTrigger value="address-form" className={`${isMobile && 'flex-1'}`}>Address Form</TabsTrigger>
+                <TabsList className="flex md:w-[300px]">
+                    <TabsTrigger value="profile-form" className="flex-1">Profile Form</TabsTrigger>
+                    <TabsTrigger value="address-form" className="flex-1">Address Form</TabsTrigger>
                 </TabsList>
                 <Separator />
                 {isGetUserLoading ? (

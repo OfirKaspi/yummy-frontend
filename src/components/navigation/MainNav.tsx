@@ -46,7 +46,7 @@ const MainNav = () => {
                     : <PervPageNavButton />
             }
             <div className="flex-1">
-                {activeNavItem?.component ?? <span className="text-2xl">{activeNavItem?.label}</span> ?? "Error finding page"}
+                {activeNavItem?.component ?? <span className="text-lg md:text-2xl">{activeNavItem?.label}</span> ?? "Error finding page"}
             </div>
             {
                 isMobile

@@ -88,7 +88,7 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
         <div className="space-y-4">
             <ul className="flex flex-col md:flex-row gap-5">
                 {addressList.map((address, index) => (
-                    <li key={index} className="flex-1">
+                    <li key={index} className="flex-1 max-w-[500px]">
                         <AddressFormItem
                             address={address}
                             onChange={(data) => handleChangeAddress(data, index)}
