@@ -6,7 +6,7 @@ type Props = {
 
 const ShoppingBagCmp = ({ totalQuantity = 0 }: Props) => {
     return (
-        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 relative text-white">
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 relative text-white md:rounded-lg">
             <div className="relative">
                 <ShoppingBag />
                 {totalQuantity > 0 &&

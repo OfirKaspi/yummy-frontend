@@ -4,15 +4,15 @@ type Props = {
     checkedFoodSection: string
 }
 
-const RestaurantDetailsCuisinesMobile = ({ cuisines, checkedFoodSection, handleFoodSection }: Props) => {
+const RestaurantDetailsCuisines = ({ cuisines, checkedFoodSection, handleFoodSection }: Props) => {
     return (
 
         <div className="flex gap-2 overflow-x-auto whitespace-nowrap px-4 -mx-4">
             {cuisines.map((cuisine) => (
                 <button
                     key={cuisine}
-                    className={`border-2 border-slate-100 rounded-full py-2 px-4
-                            ${checkedFoodSection === cuisine ? 'bg-orange-500 text-white' : 'bg-white border-2 border-slate-100'}
+                    className={`border-2 border-slate-100 rounded-xl py-2 px-4
+                            ${checkedFoodSection === cuisine ? 'bg-orange-500 text-white' : 'bg-white border-2'}
                             `}
                     onClick={() => handleFoodSection(cuisine)}
                 >
@@ -23,4 +23,4 @@ const RestaurantDetailsCuisinesMobile = ({ cuisines, checkedFoodSection, handleF
     )
 }
 
-export default RestaurantDetailsCuisinesMobile
+export default RestaurantDetailsCuisines

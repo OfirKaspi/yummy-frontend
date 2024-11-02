@@ -1,6 +1,6 @@
 import { MenuItem, CartItem } from "@/types"
-import { AspectRatio } from "@radix-ui/react-aspect-ratio"
 import { Plus } from "lucide-react"
+import { AspectRatio } from "@radix-ui/react-aspect-ratio"
 
 
 type Props = {
@@ -9,22 +9,16 @@ type Props = {
     addToCart: (menuItem: MenuItem) => void
 }
 
-const RestaurantDetailsMenuItemsListMobile = ({ menuItems, cartItems, addToCart }: Props) => {
+const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, addToCart }: Props) => {
     return (
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-5 gap-5">
             {menuItems.map((menuItem) => {
-                const cartItem = cartItems.find(item => item._id === menuItem._id);
-                const quantity = cartItem ? cartItem.quantity : 0; // Get the quantity or default to 0
+                const cartItem = cartItems.find(item => item._id === menuItem._id)
+                const quantity = cartItem ? cartItem.quantity : 0
+                const inCart = (quantity > 0) ? "border-green-500" : ""
 
                 return (
-                    <div key={menuItem._id} className="relative flex flex-col rounded-xl shadow-lg p-3 gap-1 bg-white">
-                        {quantity > 0 && (
-                            <div className="absolute top-0 left-0 rounded-tl-xl
-                                border-t-[75px] border-t-green-600
-                                border-r-[75px] border-r-transparent"
-                            />
-                        )}
-
+                    <div key={menuItem._id} className={`relative flex flex-col rounded-xl p-3 gap-1 bg-white border-2 ${inCart} `}>
                         <AspectRatio ratio={5 / 3}>
                             <img
                                 src="https://www.announcementconverters.com/media/catalog/product/S/-/S-ILG11F_9.JPG"
@@ -49,4 +43,4 @@ const RestaurantDetailsMenuItemsListMobile = ({ menuItems, cartItems, addToCart 
     )
 }
 
-export default RestaurantDetailsMenuItemsListMobile
+export default RestaurantDetailsMenuItemsList

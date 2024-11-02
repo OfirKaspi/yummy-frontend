@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 
-import RestaurantCardMobile from "@/components/restaurantCard/RestaurantCardMobile"
+import RestaurantCard from "@/components/restaurantDetails/RestaurantCard"
 import { SkeletonCard } from "@/components/ui/skeleton"
 import { AppDispatch } from "@/store/store"
 import { getRestaurantsStore } from "@/store/restaurants/restaurantsSlice"
@@ -55,7 +55,7 @@ const RestaurantList = () => {
                 2xl:grid-cols-4
             ">
                 {restaurants.map((restaurant) => (
-                    <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />
+                    <RestaurantCard key={restaurant._id} restaurant={restaurant} />
                 ))}
             </ul>
         </div>

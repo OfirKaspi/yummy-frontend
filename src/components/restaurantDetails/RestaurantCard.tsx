@@ -8,7 +8,7 @@ type Props = {
     restaurant: Restaurant
 }
 
-const RestaurantCardMobile = ({ restaurant }: Props) => {
+const RestaurantCard = ({ restaurant }: Props) => {
     const navigate = useNavigate()
 
     const sendToRestaurantDetails = () => {
@@ -36,4 +36,4 @@ const RestaurantCardMobile = ({ restaurant }: Props) => {
     )
 }
 
-export default RestaurantCardMobile
+export default RestaurantCard

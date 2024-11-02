@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import useDeviceType from "@/hooks/useDeviceType"
 
-const Login = () => {
+const LoginPage = () => {
     const { isMobile } = useDeviceType()
     const { loginWithRedirect } = useAuth0()
 
@@ -57,4 +57,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default LoginPage

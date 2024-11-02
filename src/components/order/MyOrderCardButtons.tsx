@@ -6,7 +6,7 @@ type Props = {
     order: Order
 }
 
-const MyOrderCardButtonsMobile = ({ order }: Props) => {
+const MyOrderCardButtons = ({ order }: Props) => {
     return (
         <div className="grid grid-cols-2 gap-5 md:grid-cols-1 md:grid-rows-2 md:gap-2">
             <ShowOrder order={order} />
@@ -20,4 +20,4 @@ const MyOrderCardButtonsMobile = ({ order }: Props) => {
     )
 }
 
-export default MyOrderCardButtonsMobile
+export default MyOrderCardButtons

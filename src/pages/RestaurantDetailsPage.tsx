@@ -5,16 +5,17 @@ import { MenuItem as MenuItemType, CartItem } from '@/types'
 import { AppDispatch } from '@/store/store'
 import { getRestaurantByIdStore } from '@/store/restaurant/restaurantSlice'
 import { selectRestaurant, selectRestaurantLoading } from '@/store/restaurant/restaurantSelectors'
-import useDeviceType from '@/hooks/useDeviceType'
-import RestaurantDetailsPageDesktop from '@/pages/restaurantDetailsPage/RestaurantDetailsPageDesktop'
-import RestaurantDetailsPageMobile from '@/pages/restaurantDetailsPage/RestaurantDetailsPageMobile'
+import RestaurantDetailsNav from "@/components/restaurantDetails/RestaurantDetailsNav"
+import RestaurantDetailsDescription from "@/components/restaurantDetails/RestaurantDetailsDescriptionMobile"
+import RestaurantDetailsCuisines from "@/components/restaurantDetails/RestaurantDetailsCuisines"
+import RestaurantDetailsMenuItemsList from "@/components/restaurantDetails/RestaurantDetailsMenuItemsList"
+import RestaurantDetailsOrderSheet from "@/components/restaurantDetails/RestaurantDetailsOrderSheet"
 import { UserFormData } from '@/forms/user-profile-form/UserDetailsOrderForm'
 import { useCreateCheckoutSession } from '@/hooks/order/useCreateCheckoutSession'
 import Loader from '@/components/Loader'
 import { loadCartByRestaurantId, saveCartForRestaurant } from '@/utils/cartSessionStorage'
 
 const RestaurantDetailsPage = () => {
-    const { isMobile } = useDeviceType()
     const { restaurantId } = useParams()
     const dispatch = useDispatch<AppDispatch>()
     const restaurant = useSelector(selectRestaurant)
@@ -128,27 +129,30 @@ const RestaurantDetailsPage = () => {
         return <Loader isFullScreen={true} />
     }
 
-    return isMobile
-        ? <RestaurantDetailsPageMobile
-            restaurant={restaurant}
-            cartItems={cartItems}
-            addToCart={addToCartHandler}
-            handleFoodSection={handleFoodSection}
-            checkedFoodSection={checkedFoodSection}
-            onCheckout={onCheckout}
-            isCheckoutLoading={isCheckoutLoading}
-            adjustItemQuantity={adjustItemQuantityHandler}
-            removeFromCart={removeFromCartHandler}
-        />
-        : <RestaurantDetailsPageDesktop
-            restaurant={restaurant}
-            cartItems={cartItems}
-            addToCart={addToCartHandler}
-            onCheckout={onCheckout}
-            isCheckoutLoading={isCheckoutLoading}
-            adjustItemQuantity={adjustItemQuantityHandler}
-            removeFromCart={removeFromCartHandler}
-        />
+    return (
+        <div className="space-y-5 p-5 pb-24">
+            <RestaurantDetailsNav restaurantImg={restaurant.imageUrl} restaurantName={restaurant.restaurantName} />
+            <RestaurantDetailsDescription restaurant={restaurant} />
+            <RestaurantDetailsCuisines
+                cuisines={restaurant.cuisines}
+                handleFoodSection={handleFoodSection}
+                checkedFoodSection={checkedFoodSection}
+            />
+            <RestaurantDetailsMenuItemsList
+                cartItems={cartItems}
+                menuItems={restaurant.menuItems}
+                addToCart={addToCartHandler}
+            />
+            <RestaurantDetailsOrderSheet
+                restaurant={restaurant}
+                cartItems={cartItems}
+                isCheckoutLoading={isCheckoutLoading}
+                onCheckout={onCheckout}
+                adjustItemQuantity={adjustItemQuantityHandler}
+                removeFromCart={removeFromCartHandler}
+            />
+        </div>
+    )
 }
 
 export default RestaurantDetailsPage

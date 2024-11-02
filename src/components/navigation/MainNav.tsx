@@ -8,7 +8,11 @@ import DeliverTo from "@/components/home/DeliverTo"
 import SearchResultsInfo from "@/components/search/SearchResultsInfo"
 import CitySearchBar from "@/components/search/CitySearch"
 
-const MainNav = () => {
+type Props = {
+    customLabel?: string
+}
+
+const MainNav = ({ customLabel = "" }: Props) => {
     const location = useLocation()
     const { isMobile } = useDeviceType()
 
@@ -33,7 +37,7 @@ const MainNav = () => {
         { path: "/my-profile", label: "My Profile" },
         { path: "/my-restaurant", label: "My Restaurant" },
         { path: "/search/:city", component: <SearchResultsInfo /> },
-        { path: "/details/:restaurantId", label: "Restaurant Details" },
+        { path: "/details/:restaurantId", label: customLabel },
     ]
 
     const activeNavItem = navigationItems.find(item => matchPath(item.path, location.pathname))

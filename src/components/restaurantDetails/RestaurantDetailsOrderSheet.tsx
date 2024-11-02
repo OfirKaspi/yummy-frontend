@@ -15,7 +15,7 @@ type Props = {
     removeFromCart: (cartItem: CartItem) => void
 }
 
-const RestaurantDetailsOrderSheetMobile = ({
+const RestaurantDetailsOrderSheet = ({
     restaurant,
     cartItems,
     isCheckoutLoading,
@@ -31,7 +31,7 @@ const RestaurantDetailsOrderSheetMobile = ({
         <Sheet>
             <SheetTrigger asChild className={`fixed bottom-5 right-5 z-50 h-12 ${isAtBottom ? 'w-[calc(100%-2rem)]' : 'w-12'}`}>
                 <div
-                    className="flex items-center justify-center bg-slate-900 text-white transition-all duration-300 rounded-full"
+                    className="flex items-center justify-center bg-slate-900 text-white transition-all duration-300 rounded-full md:rounded-lg"
                 >
                     <ShoppingBagCmp totalQuantity={totalQuantity} />
                     {isAtBottom && <span className="ml-5 font-bold">Go to check out</span>}
@@ -56,4 +56,4 @@ const RestaurantDetailsOrderSheetMobile = ({
     )
 }
 
-export default RestaurantDetailsOrderSheetMobile
+export default RestaurantDetailsOrderSheet

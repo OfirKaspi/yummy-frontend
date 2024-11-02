@@ -2,7 +2,7 @@ import { useMemo } from "react"
 import { useGetMyOrders } from "@/hooks/order/useGetMyOrders"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import MyOrderCardMobile from "@/components/order/MyOrderCardMobile"
+import MyOrderCardMobile from "@/components/order/MyOrderCard"
 import NotFound from "@/components/NotFound"
 import Loader from "@/components/Loader"
 

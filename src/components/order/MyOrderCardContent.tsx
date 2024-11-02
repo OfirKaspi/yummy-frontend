@@ -5,7 +5,7 @@ type Props = {
     order: Order
 }
 
-const MyOrderCardContentMobile = ({ order }: Props) => {
+const MyOrderCardContent = ({ order }: Props) => {
     return (
         <div className="flex flex-1 items-center gap-3 ">
             <img
@@ -36,4 +36,4 @@ const MyOrderCardContentMobile = ({ order }: Props) => {
     )
 }
 
-export default MyOrderCardContentMobile
+export default MyOrderCardContent

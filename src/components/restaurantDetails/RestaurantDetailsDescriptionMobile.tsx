@@ -5,9 +5,9 @@ type Props = {
     restaurant: Restaurant
 }
 
-const RestaurantDetailsDescriptionMobile = ({ restaurant }: Props) => {
+const RestaurantDetailsDescription = ({ restaurant }: Props) => {
     return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 md:max-w-[700px]">
             <RestaurantStats restaurant={restaurant} />
             <span className="text-xl font-medium">{restaurant.restaurantName}</span>
             <p className="text-gray-600 text-sm">
@@ -20,4 +20,4 @@ const RestaurantDetailsDescriptionMobile = ({ restaurant }: Props) => {
     )
 }
 
-export default RestaurantDetailsDescriptionMobile
+export default RestaurantDetailsDescription
