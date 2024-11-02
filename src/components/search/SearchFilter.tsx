@@ -1,6 +1,6 @@
 import { Filter } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import CuisineFilter from "@/components/cuisineFilter/CuisineFilter"
+import CuisineFilter from "@/components/search/CuisineFilter"
 import SortOptionDropdown from "@/components/SortOptionDropdown"
 import { Separator } from "@/components/ui/separator"
 

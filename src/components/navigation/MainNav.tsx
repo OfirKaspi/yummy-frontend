@@ -3,10 +3,10 @@ import useDeviceType from "@/hooks/useDeviceType"
 import MobileNav from "@/components/navigation/MobileNav"
 import PervPageNavButton from "@/components/navigation/PervPageNavButton"
 import DesktopNav from "@/components/navigation/DesktopNav"
-import GlobalCart from "@/components/homePageMobile/GlobalCart"
-import DeliverTo from "@/components/homePageMobile/DeliverTo"
-import SearchResultsInfoMobile from "@/components/searchResultsInfo/SearchResultsInfoMobile"
-import CitySearchBar from "../city/CitySearch"
+import GlobalCart from "@/components/cart/GlobalCart"
+import DeliverTo from "@/components/home/DeliverTo"
+import SearchResultsInfo from "@/components/search/SearchResultsInfo"
+import CitySearchBar from "@/components/search/CitySearch"
 
 const MainNav = () => {
     const location = useLocation()
@@ -32,7 +32,7 @@ const MainNav = () => {
         { path: "/my-orders", label: "My Orders" },
         { path: "/my-profile", label: "My Profile" },
         { path: "/my-restaurant", label: "My Restaurant" },
-        { path: "/search/:city", component: <SearchResultsInfoMobile /> },
+        { path: "/search/:city", component: <SearchResultsInfo /> },
         { path: "/details/:restaurantId", label: "Restaurant Details" },
     ]
 
@@ -46,7 +46,7 @@ const MainNav = () => {
                     : <PervPageNavButton />
             }
             <div className="flex-1">
-                {activeNavItem?.component ?? <span className="text-lg md:text-2xl">{activeNavItem?.label}</span> ?? "Error finding page"}
+                {activeNavItem?.component ?? <span className="text-lg md:text-xl">{activeNavItem?.label}</span> ?? "Error finding page"}
             </div>
             {
                 isMobile

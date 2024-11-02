@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form"
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import CityList from "@/components/city/CityList"
+import CityList from "@/components/search/CityList"
 import { useCitySearch } from "@/hooks/useCitySearch"
 import { useState } from "react"
 

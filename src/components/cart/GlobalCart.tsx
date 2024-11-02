@@ -6,11 +6,12 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import ShoppingBagCmp from "@/components/ShoppingBagCmp"
 import { Separator } from "@/components/ui/separator"
 import NotFound from "@/components/NotFound"
-import GlobalCartItem from "./GlobalCartItem"
+import GlobalCartItem from "@/components/cart/GlobalCartItem"
+import useDeviceType from "@/hooks/useDeviceType"
 
 const GlobalCart = () => {
+    const { isMobile } = useDeviceType()
     const carts = loadCartsFromStorage()
-
     const restaurantIds = useMemo(() => [...new Set(carts.map(cart => cart.restaurantId))], [carts])
 
     const [restaurantDetails, setRestaurantDetails] = useState<Restaurant[]>([])
@@ -42,7 +43,7 @@ const GlobalCart = () => {
             <SheetTrigger>
                 <ShoppingBagCmp totalQuantity={totalQuantity} />
             </SheetTrigger>
-            <SheetContent side="bottom" className="rounded-t-3xl max-h-[500px] space-y-5 overflow-y-auto">
+            <SheetContent side={isMobile ? "bottom" : "left"} className="space-y-5 overflow-y-auto max-h-[500px] rounded-t-3xl md:max-h-full md:rounded-none">
                 <SheetTitle className="text-2xl font-normal">Open Carts</SheetTitle>
                 <Separator />
                 {

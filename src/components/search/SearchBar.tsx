@@ -1,5 +1,5 @@
 import { UseFormReturn } from "react-hook-form"
-import { SearchForm } from "@/components/searchBar/SearchBar"
+import { SearchForm } from "@/components/search/RestaurantSearch"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Eraser, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
@@ -13,7 +13,7 @@ type Props = {
     onSearchChange?: (value: string) => void
 }
 
-const SearchBarMobile = ({
+const SearchBar = ({
     form,
     onSubmit,
     placeHolder,
@@ -25,7 +25,7 @@ const SearchBarMobile = ({
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className={`bg-slate-100 shadow-lg rounded-lg flex items-center p-2 md:p-1
+                className={`bg-slate-100 rounded-lg flex items-center p-2 md:h-full md:p-0
                     ${form.formState.errors.searchQuery && "border-red-500"}`}
             >
                 <button type="submit" className="text-gray-400 px-2">
@@ -64,4 +64,4 @@ const SearchBarMobile = ({
     )
 }
 
-export default SearchBarMobile
+export default SearchBar

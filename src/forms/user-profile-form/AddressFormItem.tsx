@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import CityList from "@/components/city/CityList"
+import CityList from "@/components/search/CityList"
 import { useState, useEffect } from "react"
 import { useCitySearch } from "@/hooks/useCitySearch"
 

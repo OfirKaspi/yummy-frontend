@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 import RestaurantCardMobile from "@/components/restaurantCard/RestaurantCardMobile"
 import { SkeletonCard } from "@/components/ui/skeleton"
@@ -9,7 +9,7 @@ import { getRestaurantsStore } from "@/store/restaurants/restaurantsSlice"
 import { selectError, selectLoading, selectRestaurants } from "@/store/restaurants/restaurantsSelectors"
 import { selectSearchState } from "@/store/search/searchSlice"
 import NotFound from "@/components/NotFound"
-import RestaurantSeeAll from "@/components/homePageMobile/RestaurantSeeAll"
+import SeeAll from "@/components/SeeAll"
 
 const RestaurantList = () => {
     const { city } = useParams()
@@ -18,6 +18,11 @@ const RestaurantList = () => {
     const restaurants = useSelector(selectRestaurants)
     const isLoading = useSelector(selectLoading)
     const isError = useSelector(selectError)
+
+    const navigate = useNavigate()
+    const handleSeeAll = () => {
+        navigate('/search/london')
+    }
 
     useEffect(() => {
         if (city) {
@@ -29,7 +34,11 @@ const RestaurantList = () => {
 
 
     if (isLoading) {
-        return <SkeletonCard />
+        return (
+            <div className="max-w-[500px]">
+                <SkeletonCard />
+            </div>
+        )
     }
 
     if (!restaurants || isError) {
@@ -38,13 +47,12 @@ const RestaurantList = () => {
 
     return (
         <div className="space-y-5">
-            {!city && <RestaurantSeeAll />}
+            {!city && <SeeAll handleOnClick={handleSeeAll} text="Restaurants Near By" />}
             <ul className="
                 grid gap-5 grid-cols-1
                 sm:grid-cols-2
-                md:grid-cols-3
-                lg:grid-cols-4
-                xl:grid-cols-5
+                lg:grid-cols-3
+                2xl:grid-cols-4
             ">
                 {restaurants.map((restaurant) => (
                     <RestaurantCardMobile key={restaurant._id} restaurant={restaurant} />

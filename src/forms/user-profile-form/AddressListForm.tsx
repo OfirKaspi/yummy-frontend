@@ -35,8 +35,8 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
     const [isCityUnchanged, setIsCityUnchanged] = useState<boolean[]>(addressList.map(() => true))
 
     const handleAddAddress = () => {
-        if (addressList.length > 2) {
-            return showToast("Cannot add more then 3 addresses", "info")
+        if (addressList.length > 1) {
+            return showToast("Cannot add more then 2 addresses", "info")
         }
         setAddressList([...addressList, { addressLine1: "", city: "", country: "Israel" }])
         setSelectedCities([...selectedCities, null])
@@ -107,7 +107,11 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
                     <LoadingButton />
                 ) : (
                     <Button onClick={handleSubmit} className="bg-orange-500">
-                        Save All Addresses
+                        {
+                            addressList.length > 1
+                                ? "Save All Addresses"
+                                : "Save Address"
+                        }
                     </Button>
                 )}
             </div>

@@ -1,12 +1,12 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import Layout from '@/components/layout/Layout'
+import Layout from '@/layout/Layout'
 import HomePage from '@/pages/HomePage'
 import AuthCallbackPage from '@/pages/AuthCallbackPage'
 import MyProfilePage from '@/pages/MyProfilePage'
 import ProtectedRoute from '@/auth/ProtectedRoute'
 import MyRestaurantPage from '@/pages/MyRestaurantPage'
-import SearchPage from '@/pages/searchPage/SearchPage'
+import SearchPage from '@/pages/SearchPage'
 import RestaurantDetailsPage from '@/pages/restaurantDetailsPage/RestaurantDetailsPage'
 import MyOrdersPage from '@/pages/MyOrdersPage'
 

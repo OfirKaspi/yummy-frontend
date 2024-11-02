@@ -2,9 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useEffect, useState } from "react"
-import useDeviceType from "@/hooks/useDeviceType"
-import SearchBarDesktop from "@/components/searchBar/SearchBarDesktop"
-import SearchBarMobile from "@/components/searchBar/SearchBarMobile"
+import SearchBar from "@/components/search/SearchBar"
 import { useDispatch, useSelector } from "react-redux"
 import { resetSearch, selectSearchQuery, setSearchQuery } from "@/store/search/searchSlice"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -21,12 +19,11 @@ type Props = {
     placeHolder: string,
 }
 
-const SearchBar = ({ placeHolder }: Props) => {
+const RestaurantSearch = ({ placeHolder }: Props) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const location = useLocation()
     const searchQuery = useSelector(selectSearchQuery)
-    const { isMobile } = useDeviceType()
     const [isInputFilled, setIsInputFilled] = useState(false);
 
     const handleSetSearchQuery = (searchFormData: SearchForm) => {
@@ -62,20 +59,13 @@ const SearchBar = ({ placeHolder }: Props) => {
         }
     }, [location.pathname, dispatch])
 
-    return isMobile
-        ? <SearchBarMobile
-            form={form}
-            handleReset={handleResetSearch}
-            onSubmit={handleSetSearchQuery}
-            placeHolder={placeHolder}
-            isInputFilled={isInputFilled}
-        />
-        : <SearchBarDesktop
-            form={form}
-            handleReset={handleResetSearch}
-            onSubmit={handleSetSearchQuery}
-            placeHolder={placeHolder}
-        />
+    return <SearchBar
+        form={form}
+        handleReset={handleResetSearch}
+        onSubmit={handleSetSearchQuery}
+        placeHolder={placeHolder}
+        isInputFilled={isInputFilled}
+    />
 }
 
-export default SearchBar
+export default RestaurantSearch

@@ -7,11 +7,13 @@ import { AppDispatch } from "@/store/store"
 import AddressListForm from "@/forms/user-profile-form/AddressListForm"
 import { Address } from "@/types"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import useDeviceType from "@/hooks/useDeviceType"
+import { Link } from "react-router-dom"
 
 const DeliverTo = () => {
+    const { isMobile } = useDeviceType()
     const dispatch: AppDispatch = useDispatch()
     const currentUser = useSelector(selectUser)
-
     const isLoading = useSelector(selectUserLoading)
     const { getAccessTokenSilently } = useAuth0()
 
@@ -25,7 +27,15 @@ const DeliverTo = () => {
     }
 
     if (!currentUser) {
-        return <span className="flex items-center text-gray-600 gap-1">Login to add address</span>
+        return (
+            <Link to='/login' className="flex flex-col gap-1 text-sm">
+                <span className="text-orange-500 font-medium">DELIVER TO</span>
+                <span className="flex items-center gap-1 text-gray-600">
+                    Add your address
+                    <ChevronDown size={16} />
+                </span>
+            </Link>
+        )
     }
 
     return (
@@ -41,7 +51,7 @@ const DeliverTo = () => {
                     <ChevronDown size={16} />
                 </span>
             </SheetTrigger>
-            <SheetContent side="bottom" className="rounded-t-3xl max-h-[500px] space-y-5 overflow-y-auto">
+            <SheetContent side={isMobile ? "bottom" : "left"} className="space-y-5 overflow-y-auto max-h-[500px] rounded-t-3xl md:max-h-full md:rounded-none">
                 <SheetTitle className="text-2xl font-normal">Address Form</SheetTitle>
                 <AddressListForm
                     addresses={currentUser.addresses}

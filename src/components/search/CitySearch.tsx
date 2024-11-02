@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useCitySearch } from '@/hooks/useCitySearch'
 import { useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import SearchBarMobile from '@/components/searchBar/SearchBarMobile'
+import SearchBar from '@/components/search/SearchBar'
 import CityList from './CityList'
 import { showToast } from '@/utils/showToast'
 
@@ -46,7 +46,7 @@ const CitySearchBar = () => {
 
     return (
         <div className='relative flex-1'>
-            <SearchBarMobile
+            <SearchBar
                 form={form}
                 onSubmit={handleSearchSubmit}
                 placeHolder="Search cities..."
