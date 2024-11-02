@@ -37,7 +37,7 @@ const MobileNav = () => {
                 <Separator />
                 <SheetDescription className="flex flex-col gap-5">
                     {isAuthenticated ? (
-                        <nav className="flex flex-col items-start gap-4">
+                        <div className="flex flex-col items-start gap-4">
                             <TooltipProvider>
                                 {navLinks.map(({ to, icon: Icon, tooltip, label }) => (
                                     <Link
@@ -60,7 +60,7 @@ const MobileNav = () => {
                             <Button className="font-medium w-full" onClick={() => logout()}>
                                 Log Out
                             </Button>
-                        </nav>
+                        </div>
                     ) : (
                         <Button className="flex-1 font-bold bg-orange-500" onClick={() => loginWithRedirect()}>
                             Log In

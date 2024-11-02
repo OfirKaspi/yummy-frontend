@@ -69,7 +69,15 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
+  body {
+    /* background-image: radial-gradient(circle, #ffebc5, #ffe5d1, #ffe3e3, #ffe5f4, #f6e9fe, #f1ecff, #eeefff, #edf2fe, #f3f5fe, #f7f8fe, #fcfbff, #ffffff); */
+    /* background-image: radial-gradient(circle, #eeeaff, #f7e7f9, #fde5f0, #ffe5e8, #ffe5e0, #ffe7e3, #ffe9e5, #ffebe8, #fff0f2, #fdf5f9, #fdfafd, #ffffff); */
+    /* background-image: radial-gradient(circle, #e5e5ff, #fcf6fd, #fff6fa, #fff7f8, #fff8f7, #fff9f8, #fffaf9, #fffbfa, #fffcfc, #fffdfe, #fffeff, #ffffff); */
+    background-image: radial-gradient(circle, #f7f4ff, #fbf2fc, #fef1f7, #fff0f2, #fff0ee, #fff1ef, #fff2f0, #fff3f1, #fff6f7, #fef9fb, #fefcfe, #ffffff);
+    /* background-image: radial-gradient(circle, #f5f3f9, #f8f3f7, #f9f3f6, #faf3f4, #faf4f3, #faf5f4, #fbf6f5, #fbf7f6, #fcf9f9, #fdfbfc, #fefdfe, #ffffff); */
+  }
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -79,6 +87,44 @@
     -ms-overflow-style: none;
   }
 }
+
+@media (min-width: 1024px) {
+
+  /* Custom scrollbar for desktop screens */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    /* Light color for the track */
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Gray color for the scrollbar thumb */
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Darker color when hovering */
+  }
+
+  /* Firefox styling */
+  * {
+    scrollbar-width: thin;
+    /* Thin scrollbar width for Firefox */
+    scrollbar-color: #888 #f0f0f0;
+    /* Thumb color and track color */
+  }
+}
+
 
 .no-arrows::-webkit-inner-spin-button,
 .no-arrows::-webkit-outer-spin-button {

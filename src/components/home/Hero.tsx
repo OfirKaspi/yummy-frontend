@@ -14,9 +14,8 @@ const Hero = () => {
                 </h1>
             }
             <img src={heroImage} alt="hero-image" className="w-full h-[500px] object-cover" />
-            <div className="custom-gradient-overlay">
-            </div>
-        </div>
+            <div className="custom-gradient-overlay" />
+        </div >
     )
 }
 

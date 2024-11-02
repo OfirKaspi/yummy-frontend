@@ -12,7 +12,7 @@ const RestaurantDetailsCuisinesMobile = ({ cuisines, checkedFoodSection, handleF
                 <button
                     key={cuisine}
                     className={`border-2 border-slate-100 rounded-full py-2 px-4
-                            ${checkedFoodSection === cuisine ? 'bg-orange-500 text-white' : 'border-2 border-slate-100'}
+                            ${checkedFoodSection === cuisine ? 'bg-orange-500 text-white' : 'bg-white border-2 border-slate-100'}
                             `}
                     onClick={() => handleFoodSection(cuisine)}
                 >

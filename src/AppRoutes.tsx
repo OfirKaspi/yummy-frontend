@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import Layout from '@/layout/Layout'
 import HomePage from '@/pages/HomePage'
+import Login from '@/pages/Login'
 import AuthCallbackPage from '@/pages/AuthCallbackPage'
 import MyProfilePage from '@/pages/MyProfilePage'
 import ProtectedRoute from '@/auth/ProtectedRoute'
@@ -14,6 +15,7 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path='/' element={<Layout><HomePage /></Layout>} />
+            <Route path='/login' element={<Login />} />
             <Route path='/auth-callback' element={<AuthCallbackPage />} />
             <Route path='/search/:city' element={<Layout><SearchPage /></Layout>} />
             <Route path='/details/:restaurantId' element={<RestaurantDetailsPage />} />

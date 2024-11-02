@@ -17,7 +17,7 @@ const RestaurantDetailsMenuItemsListMobile = ({ menuItems, cartItems, addToCart 
                 const quantity = cartItem ? cartItem.quantity : 0; // Get the quantity or default to 0
 
                 return (
-                    <div key={menuItem._id} className="relative flex flex-col rounded-xl shadow-lg p-3 gap-1 ">
+                    <div key={menuItem._id} className="relative flex flex-col rounded-xl shadow-lg p-3 gap-1 bg-white">
                         {quantity > 0 && (
                             <div className="absolute top-0 left-0 rounded-tl-xl
                                 border-t-[75px] border-t-green-600
