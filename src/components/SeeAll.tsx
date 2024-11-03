@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom"
-import ExpandBtn from "@/components/ExpandBtn"
 import { ChevronRight } from "lucide-react"
 
 type Props = {
