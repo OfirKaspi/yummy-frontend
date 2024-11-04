@@ -10,14 +10,16 @@ type Props = {
 const RestaurantDetailsNav = ({ restaurantImg, restaurantName }: Props) => {
     const { isMobile } = useDeviceType()
     if (isMobile) {
-        <div
-            className="flex justify-between -mt-5 -mx-5 p-5 h-80 rounded-b-3xl bg-cover bg-center"
-            style={{ backgroundImage: `url(${restaurantImg})` }}
-        >
-            <div className="flex-1">
-                <MainNav />
+        return (
+            <div
+                className="flex justify-between -mt-5 -mx-5 p-5 h-80 rounded-b-3xl bg-cover bg-center"
+                style={{ backgroundImage: `url(${restaurantImg})` }}
+            >
+                <div className="flex-1">
+                    <MainNav />
+                </div>
             </div>
-        </div>
+        )
     }
 
     return (

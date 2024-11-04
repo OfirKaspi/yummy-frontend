@@ -33,6 +33,11 @@ export const updateUserAddresses = createAsyncThunk('user/updateUserAddresses', 
     return await updateMyUserRequest(accessToken, userData)
 })
 
+export const updateUserFavoriteRestaurants = createAsyncThunk('user/updateUserFavoriteRestaurants', async ({ accessToken, favoriteRestaurantId }: { accessToken: string, favoriteRestaurantId: string }) => {
+    const userData: UpdateMyUserRequest = { favoriteRestaurantId }
+    return await updateMyUserRequest(accessToken, userData)
+})
+
 const userSlice = createSlice({
     name: 'user',
     initialState,

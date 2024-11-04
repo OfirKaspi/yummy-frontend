@@ -5,8 +5,8 @@ export type User = {
     email: string
     name: string
     addresses: Address[]
-    favoriteRestaurants: string[]
-    orders: string[]
+    favoriteRestaurants: Restaurant[]
+    orders: Order[]
 }
 
 export type Address = {

@@ -7,7 +7,7 @@ type Props = {
 
 const RestaurantStats = ({ restaurant }: Props) => {
     return (
-        <div className="flex items-center gap-6 text-sm">
+        <div className="flex items-center gap-2 text-sm">
 
             {/* Later add reviews for restaurants */}
             {/* <div className="flex gap-1 font-bold">
