@@ -10,6 +10,7 @@ import MyRestaurantPage from '@/pages/MyRestaurantPage'
 import SearchPage from '@/pages/SearchPage'
 import RestaurantDetailsPage from '@/pages/RestaurantDetailsPage'
 import MyOrdersPage from '@/pages/MyOrdersPage'
+import MyFavorites from '@/pages/MyFavoritesPage'
 
 const AppRoutes = () => {
     return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
                 <Route path='/my-orders' element={<Layout><MyOrdersPage /></Layout>} />
                 <Route path='/my-profile' element={<Layout><MyProfilePage /></Layout>} />
                 <Route path='/my-restaurant' element={<Layout><MyRestaurantPage /></Layout>} />
+                <Route path='/my-favorites' element={<Layout><MyFavorites /></Layout>} />
             </Route>
             <Route path='*' element={<Navigate to='/' />} />
         </Routes>

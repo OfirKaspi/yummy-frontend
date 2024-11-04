@@ -5,20 +5,21 @@ import { MenuItem as MenuItemType, CartItem } from '@/types'
 import { AppDispatch } from '@/store/store'
 import { getRestaurantByIdStore } from '@/store/restaurant/restaurantSlice'
 import { selectRestaurant, selectRestaurantLoading } from '@/store/restaurant/restaurantSelectors'
+import Loader from '@/components/Loader'
 import RestaurantDetailsNav from "@/components/restaurantDetails/RestaurantDetailsNav"
-import RestaurantDetailsDescription from "@/components/restaurantDetails/RestaurantDetailsDescriptionMobile"
+import RestaurantDetailsDescription from "@/components/restaurantDetails/RestaurantDetailsDescription"
 import RestaurantDetailsCuisines from "@/components/restaurantDetails/RestaurantDetailsCuisines"
 import RestaurantDetailsMenuItemsList from "@/components/restaurantDetails/RestaurantDetailsMenuItemsList"
 import RestaurantDetailsOrderSheet from "@/components/restaurantDetails/RestaurantDetailsOrderSheet"
 import { UserFormData } from '@/forms/user-profile-form/UserDetailsOrderForm'
 import { useCreateCheckoutSession } from '@/hooks/order/useCreateCheckoutSession'
-import Loader from '@/components/Loader'
 import { loadCartByRestaurantId, saveCartForRestaurant } from '@/utils/cartSessionStorage'
 
 const RestaurantDetailsPage = () => {
     const { restaurantId } = useParams()
     const dispatch = useDispatch<AppDispatch>()
     const restaurant = useSelector(selectRestaurant)
+
     const isLoading = useSelector(selectRestaurantLoading)
     const { createCheckoutSession, isLoading: isCheckoutLoading } = useCreateCheckoutSession()
     const [checkedFoodSection, setCheckedFoodSection] = useState('')

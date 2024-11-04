@@ -36,6 +36,7 @@ const MainNav = ({ customLabel = "" }: Props) => {
         { path: "/my-orders", label: "My Orders" },
         { path: "/my-profile", label: "My Profile" },
         { path: "/my-restaurant", label: "My Restaurant" },
+        { path: "/my-favorites", label: "My Favorites" },
         { path: "/search/:city", component: <SearchResultsInfo /> },
         { path: "/details/:restaurantId", label: customLabel },
     ]

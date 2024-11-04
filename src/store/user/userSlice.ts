@@ -95,6 +95,27 @@ const userSlice = createSlice({
                 state.loading = false
                 state.error = 'Failed to update addresses'
             })
+            .addCase(updateUserFavoriteRestaurants.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(updateUserFavoriteRestaurants.fulfilled, (state, action) => {
+                const newRestaurants = action.payload.favoriteRestaurants
+
+                if ((state.user?.favoriteRestaurants.length || 0) < newRestaurants.length) {
+                    showToast(
+                        `${newRestaurants[newRestaurants.length - 1].restaurantName} added to the favorites successfully`,
+                        'success'
+                    )
+                }
+
+                state.user = { ...state.user, favoriteRestaurants: newRestaurants } as User;
+                state.loading = false
+            })
+            .addCase(updateUserFavoriteRestaurants.rejected, (state) => {
+                state.loading = false
+                state.error = 'Failed to update favorite restaurant'
+            })
     }
 })
 
