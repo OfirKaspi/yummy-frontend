@@ -47,7 +47,7 @@ const RestaurantList = () => {
 
     return (
         <div className="space-y-5">
-            {!city && <SeeAll handleOnClick={handleSeeAll} text="Restaurants Near By" />}
+            {!city && <SeeAll handleOnClick={handleSeeAll} text="Restaurants near by" />}
             <ul className="
                 grid gap-5 grid-cols-1
                 sm:grid-cols-2

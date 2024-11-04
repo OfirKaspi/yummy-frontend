@@ -1,10 +1,10 @@
 import yummyFullLogo from "/yummyFullLogo.png"
-import loginImagePhone from "@/assets/loginImagePhone.jpg"
-import loginImageLaptop from "@/assets/loginImageLaptop.jpg"
-import { Button } from "@/components/ui/button"
+import motorImage from "@/assets/motorImage.jpg"
+import google from "@/assets/google.svg"
 import { Link } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import useDeviceType from "@/hooks/useDeviceType"
+import { User } from "lucide-react"
 
 const LoginPage = () => {
     const { isMobile } = useDeviceType()
@@ -20,39 +20,40 @@ const LoginPage = () => {
 
     const Content = () => {
         return (
-            <>
-                <img src={yummyFullLogo} alt="yummy-logo" className="h-[300px] w-full object-contain" />
-                <h1 className="text-orange-500 text-3xl md:text-4xl flex flex-col items-center font-medium -mt-14 md:-mt-10">
-                    <span>Login / Register</span>
-                    <span>to your account</span>
-                </h1>
-                <div className="flex flex-col gap-5">
-                    <Button variant="default" className="bg-orange-500 md:text-lg" onClick={onLogin}>Login / Register</Button>
-                    <Button variant="outline" className="md:text-lg">
-                        <Link to='/'>
-                            Continuo as a Guest
-                        </Link>
-                    </Button>
+            <div className="flex flex-col items-center h-[100vh] gap-8 p-10">
+                <div className="h-[180px] w-[200px] ">
+                    <img src={yummyFullLogo} alt="yummy-logo" />
                 </div>
-            </>
+                <div className="flex flex-col gap-2">
+                    <span className="text-slate-900 text-3xl font-medium">Welcome to Yummy</span>
+                    <span className="text-gray-500 font-medium">You are just one step away from your favorite restaurants</span>
+                </div>
+                <div className="flex flex-col gap-5 w-[100%]">
+                    <button className="flex items-center gap-4 justify-start h-[64px] border-2  rounded-md" onClick={onLogin}>
+                        <img src={google} alt="google-icon" className="h-[60px] w-[60px] rounded-md bg-white p-2 border-r-2" />
+                        <span className="font-medium">Login / Register with Google</span>
+                    </button>
+                    <button className="flex items-center gap-4 justify-start h-[64px] border-2 rounded-md ">
+                        <span className="flex items-center justify-center h-[60px] w-[60px] border-r-2">
+                            <User size={40} />
+                        </span>
+                        <Link to='/' className="font-medium">Continuo as a Guest</Link>
+                    </button>
+                </div>
+            </div >
         )
     }
 
     if (isMobile) {
         return (
-            <div className="flex flex-col justify-start h-full w-full p-10 gap-10">
-                <Content />
-            </div>
+            <Content />
         )
     }
 
     return (
-        <div className="h-svh w-svw grid grid-cols-[1fr_500px_1fr] bg-white">
-            <img src={loginImageLaptop} alt="login-image-laptop" className="h-svh object-cover" />
-            <div className="flex flex-col justify-start border-x-8 border-orange-500 h-full w-full p-10 gap-10">
-                <Content />
-            </div>
-            <img src={loginImagePhone} alt="login-image-phone" className="h-svh mt-auto object-cover" />
+        <div className="grid grid-cols-[500px_1fr]">
+            <Content />
+            <img src={motorImage} alt="login-image-laptop" className="h-svh object-cover" />
         </div>
     )
 }
