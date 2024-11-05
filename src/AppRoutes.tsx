@@ -11,12 +11,14 @@ import SearchPage from '@/pages/SearchPage'
 import RestaurantDetailsPage from '@/pages/RestaurantDetailsPage'
 import MyOrdersPage from '@/pages/MyOrdersPage'
 import MyFavorites from '@/pages/MyFavoritesPage'
+import AboutPage from '@/pages/AboutPage'
 
 const AppRoutes = () => {
     return (
         <Routes>
             <Route path='/' element={<Layout><HomePage /></Layout>} />
             <Route path='/login' element={<LoginPage />} />
+            <Route path='/about' element={<Layout><AboutPage /></Layout>} />
             <Route path='/auth-callback' element={<AuthCallbackPage />} />
             <Route path='/search/:city' element={<Layout><SearchPage /></Layout>} />
             <Route path='/details/:restaurantId' element={<RestaurantDetailsPage />} />

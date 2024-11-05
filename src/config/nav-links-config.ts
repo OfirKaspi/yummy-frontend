@@ -1,4 +1,4 @@
-import { Home, ShoppingBag, Star, User, Utensils } from 'lucide-react'
+import { Home, CircleHelp, ShoppingBag, Star, User, Utensils } from 'lucide-react'
 
 export const navLinks = [
     { to: '/', icon: Home, tooltip: 'Home Page', label: 'Home' },
@@ -6,4 +6,5 @@ export const navLinks = [
     { to: '/my-restaurant', icon: Utensils, tooltip: 'Manage Restaurant', label: 'My Restaurant' },
     { to: '/my-profile', icon: User, tooltip: 'User Profile', label: 'My Profile' },
     { to: '/my-favorites', icon: Star, tooltip: 'Favorite Restaurants', label: 'My Favorites' },
+    { to: '/about', icon: CircleHelp, tooltip: 'About Us', label: 'About Us' },
 ]

@@ -28,7 +28,7 @@ const DeliverTo = () => {
 
     if (!currentUser) {
         return (
-            <Link to='/login' className="flex flex-col gap-1 text-sm">
+            <Link to='/login' className="flex flex-col text-sm">
                 <span className="text-orange-500 font-medium">DELIVER TO</span>
                 <span className="flex items-center gap-1 text-gray-600">
                     Add your address
@@ -40,7 +40,7 @@ const DeliverTo = () => {
 
     return (
         <Sheet>
-            <SheetTrigger className="flex flex-col gap-1 text-sm">
+            <SheetTrigger className="flex flex-col text-sm">
                 <span className="text-orange-500 font-medium">DELIVER TO</span>
                 <span className="flex items-center gap-1 text-gray-600">
                     {

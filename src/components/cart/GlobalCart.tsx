@@ -3,7 +3,7 @@ import { Restaurant } from "@/types"
 import { getRestaurantById } from "@/api/restaurantAPI"
 import { loadCartsFromStorage } from "@/utils/cartSessionStorage"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import ShoppingBagCmp from "@/components/ShoppingBagCmp"
+import ShoppingCartCmp from "@/components/ShoppingCartCmp"
 import { Separator } from "@/components/ui/separator"
 import NotFound from "@/components/NotFound"
 import GlobalCartItem from "@/components/cart/GlobalCartItem"
@@ -41,7 +41,7 @@ const GlobalCart = () => {
     return (
         <Sheet>
             <SheetTrigger>
-                <ShoppingBagCmp totalQuantity={totalQuantity} />
+                <ShoppingCartCmp totalQuantity={totalQuantity} />
             </SheetTrigger>
             <SheetContent side={isMobile ? "bottom" : "left"} className="space-y-5 overflow-y-auto max-h-[500px] rounded-t-3xl md:max-h-full md:rounded-none">
                 <SheetTitle className="text-2xl font-normal">Open Carts</SheetTitle>

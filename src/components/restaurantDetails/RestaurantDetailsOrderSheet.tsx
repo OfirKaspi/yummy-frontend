@@ -3,7 +3,7 @@ import { Restaurant, CartItem } from "@/types"
 import { UserFormData } from "@/forms/user-profile-form/UserDetailsOrderForm"
 import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"
-import ShoppingBagCmp from "@/components/ShoppingBagCmp"
+import ShoppingCartCmp from "@/components/ShoppingCartCmp"
 import useScrollPosition from "@/hooks/useScrollPosition"
 
 type Props = {
@@ -33,7 +33,7 @@ const RestaurantDetailsOrderSheet = ({
                 <div
                     className="flex items-center justify-center bg-slate-900 text-white transition-all duration-300 rounded-full md:rounded-lg"
                 >
-                    <ShoppingBagCmp totalQuantity={totalQuantity} />
+                    <ShoppingCartCmp totalQuantity={totalQuantity} />
                     {isAtBottom && <span className="ml-5 font-bold">Go to check out</span>}
                 </div>
             </SheetTrigger>

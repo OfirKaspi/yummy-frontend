@@ -33,6 +33,7 @@ const MainNav = ({ customLabel = "" }: Props) => {
             path: "/",
             component: homePageComponent
         },
+        { path: "/about", label: "About Us" },
         { path: "/my-orders", label: "My Orders" },
         { path: "/my-profile", label: "My Profile" },
         { path: "/my-restaurant", label: "My Restaurant" },

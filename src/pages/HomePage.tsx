@@ -8,13 +8,12 @@ const HomePage = () => {
     const { isMobile } = useDeviceType()
     return (
         <div className="space-y-5">
-            {isMobile ? <>
+            {isMobile && <>
                 <UserSection />
                 <CitySearchBar />
                 {/* ADD BANNER WITH A DISCOUNT !!! */}
-            </>
-                : <Hero />
-            }
+            </>}
+            <Hero />
             <RestaurantList />
         </div >
     )
