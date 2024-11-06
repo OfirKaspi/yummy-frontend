@@ -30,7 +30,7 @@ const MyOrdersPage = () => {
                 <TabsTrigger value="history" className="flex-1">History</TabsTrigger>
             </TabsList>
             <Separator />
-            <TabsContent value="ongoing" className="space-y-5">
+            <TabsContent value="ongoing" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
                 {ongoingOrders.length > 0 ? (
                     ongoingOrders.map((order) => (
                         <MyOrderCardMobile key={order._id} order={order} />

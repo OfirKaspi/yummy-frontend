@@ -16,6 +16,7 @@ const SeeAll = ({ handleOnClick, isExpanded = false, text }: Props) => {
                         {isExpanded ? 'See Less' : 'See All'}
                     </span>
                     <ChevronRight
+                        size={18}
                         className={`text-gray-400 transform transition-transform duration-300 
                                     ${isExpanded ? 'rotate-180' : ''}`
                         }
