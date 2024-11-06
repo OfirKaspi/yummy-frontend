@@ -28,20 +28,23 @@ const SearchPage = () => {
 
     return (
         <div className="relative md:grid md:grid-cols-[270px_1fr] md:gap-5">
-            {!isMobile && <div className="sticky top-0 space-y-5">
-                <div className="space-y-5 border-2 p-5 rounded-lg">
-                    <SortOptionDropdown />
+            {!isMobile && (
+                <div className="sticky top-0 space-y-5">
+                    <div className="space-y-5 border-2 p-5 rounded-lg">
+                        <SortOptionDropdown />
+                    </div>
+                    <div className="space-y-5 border-2 p-5 rounded-lg sticky">
+                        <h3 className="text-xl">Filter By</h3>
+                        <Separator />
+                        <CuisineFilter />
+                    </div>
                 </div>
-                <div className="space-y-5 border-2 p-5 rounded-lg sticky">
-                    <h3 className="text-xl">Filter By</h3>
-                    <Separator />
-                    <CuisineFilter />
-                </div>
-            </div>}
+            )}
             <div className="space-y-5">
                 <div className="pb-2">
-                    <RestaurantSearch placeHolder="Search restaurant..." />
+                    <RestaurantSearch placeHolder="Search by restaurant..." />
                 </div>
+                <Separator />
                 <RestaurantList />
                 <PaginationSelector />
             </div>

@@ -46,7 +46,7 @@ const CuisineFilter = () => {
 
             {!isMobile || isExpanded ? (
                 <div className="flex flex-col gap-5">
-                    <div className="grid grid-cols-5 md:grid-cols-2 lg:grid-cols-3  gap-2">
+                    <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3  gap-2">
                         {cuisineListWithImgsCloudinary.map((cuisine) => {
                             const isSelected = selectedCuisines.includes(cuisine.name)
                             return (

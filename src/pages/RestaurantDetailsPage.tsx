@@ -144,6 +144,8 @@ const RestaurantDetailsPage = () => {
                 cartItems={cartItems}
                 menuItems={restaurant.menuItems}
                 addToCart={addToCartHandler}
+                adjustItemQuantity={adjustItemQuantityHandler}
+                removeFromCart={removeFromCartHandler}
             />
             <RestaurantDetailsOrderSheet
                 restaurant={restaurant}

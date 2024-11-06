@@ -18,7 +18,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        bitter: ['Bitter', 'serif'],
+        sans: ['Quicksand', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

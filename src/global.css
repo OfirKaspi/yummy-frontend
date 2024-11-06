@@ -125,6 +125,10 @@
   }
 }
 
+body {
+  /* @apply font-poppins */
+}
+
 .no-arrows::-webkit-inner-spin-button,
 .no-arrows::-webkit-outer-spin-button {
   -webkit-appearance: none;

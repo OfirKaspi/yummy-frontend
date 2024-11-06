@@ -15,7 +15,7 @@ const MenuItemInput = ({ index, removeMenuItem }: Props) => {
     const { control } = useFormContext()
 
     return (
-        <Card className="p-5 space-y-5 sm:shadow-none sm:border-0 sm:p-0 sm:space-y-0 sm:flex sm:flex-row sm:items-end sm:gap-2">
+        <Card className="p-5 space-y-5 bg-transparent sm:shadow-none sm:border-0 sm:p-0 sm:space-y-0 sm:flex sm:flex-row sm:items-end sm:gap-2">
             <FormField
                 control={control}
                 name={`menuItems.${index}.name`}
@@ -60,9 +60,10 @@ const MenuItemInput = ({ index, removeMenuItem }: Props) => {
                     )}
                 />
                 <Button
+                    variant={"destructive"}
                     type="button"
                     onClick={removeMenuItem}
-                    className="bg-red-500 max-h-fit g2"
+                    className="max-h-fit gap-2"
                 >
                     <Trash2 className="h-4 w-4 text-white" />
                     Remove Menu Item

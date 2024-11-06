@@ -5,6 +5,7 @@ import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"
 import ShoppingCartCmp from "@/components/ShoppingCartCmp"
 import useScrollPosition from "@/hooks/useScrollPosition"
+import { Button } from "../ui/button"
 
 type Props = {
     restaurant: Restaurant
@@ -29,13 +30,13 @@ const RestaurantDetailsOrderSheet = ({
 
     return (
         <Sheet>
-            <SheetTrigger asChild className={`fixed bottom-5 right-5 z-50 h-12 ${isAtBottom ? 'w-[calc(100%-2rem)]' : 'w-12'}`}>
-                <div
-                    className="flex items-center justify-center bg-slate-900 text-white transition-all duration-300 rounded-full"
+            <SheetTrigger asChild className={`fixed bottom-5 right-5 z-50 h-12 curp ${isAtBottom ? 'w-[calc(100%-2rem)]' : 'w-12'}`}>
+                <Button
+                    className="flex items-center justify-center bg-slate-900 text-white transition-all duration-300 rounded-full hover:bg-primary"
                 >
                     <ShoppingCartCmp totalQuantity={totalQuantity} />
-                    {isAtBottom && <span className="ml-5 font-bold">Go to check out</span>}
-                </div>
+                    {isAtBottom && <span className={`${totalQuantity > 0 && 'ml-2'} font-medium`}>Go to check out</span>}
+                </Button>
             </SheetTrigger>
             <SheetContent side="bottom" className="rounded-t-3xl">
                 <OrderSummary
