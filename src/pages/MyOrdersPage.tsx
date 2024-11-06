@@ -32,11 +32,8 @@ const MyOrdersPage = () => {
             <Separator />
             <TabsContent value="ongoing" className="space-y-5">
                 {ongoingOrders.length > 0 ? (
-                    ongoingOrders.map((order, index) => (
-                        <>
-                            {index !== 0 && <Separator />}
-                            <MyOrderCardMobile key={order._id} order={order} />
-                        </>
+                    ongoingOrders.map((order) => (
+                        <MyOrderCardMobile key={order._id} order={order} />
                     ))
                 ) : (
                     <NotFound itemNotFound="Orders" />
@@ -45,11 +42,8 @@ const MyOrdersPage = () => {
             </TabsContent>
             <TabsContent value="history" className="space-y-5">
                 {deliveredOrders.length > 0 ? (
-                    deliveredOrders.map((order, index) => (
-                        <>
-                            {index !== 0 && <Separator />}
-                            <MyOrderCardMobile key={order._id} order={order} />
-                        </>
+                    deliveredOrders.map((order) => (
+                        <MyOrderCardMobile key={order._id} order={order} />
                     ))
                 ) : (
                     <NotFound itemNotFound="Orders" />

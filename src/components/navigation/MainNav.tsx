@@ -49,7 +49,10 @@ const MainNav = ({ customLabel = "" }: Props) => {
             {
                 location.pathname === '/' || !isMobile
                     ? <GlobalCart />
-                    : <PervPageNavButton />
+                    : (location.pathname.startsWith('/details'))
+                        ? <PervPageNavButton />
+                        : <GlobalCart />
+
             }
             <div className="flex-1">
                 {activeNavItem?.component ?? <span className="text-lg md:text-xl">{activeNavItem?.label}</span> ?? "Error finding page"}

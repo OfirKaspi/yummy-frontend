@@ -21,7 +21,7 @@ const RestaurantStats = ({ restaurant }: Props) => {
             </div>
             <div className="flex gap-1">
                 <Truck size={20} className="text-orange-500" />
-                <span>Delivery from ${(restaurant.deliveryPrice / 100).toFixed(2)}</span>
+                <span>Delivery ${(restaurant.deliveryPrice / 100).toFixed(2)}</span>
             </div>
         </div>
     )

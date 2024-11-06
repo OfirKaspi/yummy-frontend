@@ -70,11 +70,7 @@ export type Order = {
         city: string
         country: string
     }
-    cartItems: {
-        menuItemId: string
-        quantity: string
-        name: string
-    }[]
+    cartItems: CartItem[]
     totalAmount: number
     status: OrderStatus
     createdAt: string

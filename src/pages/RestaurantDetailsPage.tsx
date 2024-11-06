@@ -111,6 +111,7 @@ const RestaurantDetailsPage = () => {
                 menuItemId: cartItem._id,
                 name: cartItem.name,
                 quantity: cartItem.quantity.toString(),
+                price: cartItem.price
             })),
             restaurantId: restaurant._id,
             deliveryDetails: {

@@ -1,3 +1,5 @@
+import useDeviceType from "@/hooks/useDeviceType"
+
 type Props = {
     cuisines: string[]
     handleFoodSection: (foodSection: string) => void
@@ -5,9 +7,10 @@ type Props = {
 }
 
 const RestaurantDetailsCuisines = ({ cuisines, checkedFoodSection, handleFoodSection }: Props) => {
-    return (
+    const { isMobile } = useDeviceType()
 
-        <div className="flex gap-2 overflow-x-auto whitespace-nowrap px-4 -mx-4">
+    return (
+        <div className={`flex gap-2 overflow-x-auto whitespace-nowrap px-4 -mx-4 ${!isMobile ? 'flex-wrap overflow-x-hidden' : ''}`}>
             {cuisines.map((cuisine) => (
                 <button
                     key={cuisine}

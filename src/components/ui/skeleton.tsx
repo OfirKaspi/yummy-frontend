@@ -36,4 +36,24 @@ function SkeletonProfile() {
   )
 }
 
-export { Skeleton, SkeletonCard, SkeletonProfile }
+function SkeletonForm() {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <Skeleton className="h-6 max-w-[50px]" />
+        <Skeleton className="h-6 max-w-[500px]" />
+      </div>
+      <div className="space-y-2">
+        <Skeleton className="h-6 max-w-[50px]" />
+        <Skeleton className="h-6 max-w-[500px]" />
+      </div>
+      <Skeleton className="h-6 max-w-[100px]" />
+    </div>)
+}
+
+export {
+  Skeleton,
+  SkeletonCard,
+  SkeletonProfile,
+  SkeletonForm
+}

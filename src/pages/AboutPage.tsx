@@ -8,7 +8,7 @@ export default function AboutPage() {
             <Separator />
             <section className="flex flex-col space-y-5 max-w-4xl mx-auto px-5">
                 <div className='flex justify-center'>
-                    <img src={yummyLogo} alt='yummy-logo' className="h-[150px] w-[200px] object-cover" />
+                    <img src={yummyLogo} alt='yummy-logo' className="h-[200px] w-[200px] object-cover" />
                 </div>
                 <p className="text-lg text-slate-700">
                     Welcome to Yummy – where discovering and ordering food from your favorite restaurants is as easy as a few taps! At Yummy, we believe in creating memorable dining experiences, whether you&apos;re ordering a quick bite on the go or indulging in a cozy dinner from the comfort of home.

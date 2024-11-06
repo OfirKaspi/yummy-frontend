@@ -19,8 +19,9 @@ const OrderStatusHeader = ({ order }: Props) => {
     return (
         <>
             {isMobile &&
-                <>
-                    <h1 className="text-xl font-medium tracking-tighter flex flex-col gap-5 md:flex-row md:justify-between">
+                <section className="py-2">
+                    <Progress className="animate-pulse my-2 h-3" value={getOrderStatusInfo().progressValue} />
+                    <h1 className="text-lg font-medium tracking-tighter flex flex-col md:gap-5 md:flex-row md:justify-between">
                         <div>
                             <span>Order Status: </span>
                             <span className="text-orange-500">{getOrderStatusInfo().label}</span>
@@ -30,8 +31,7 @@ const OrderStatusHeader = ({ order }: Props) => {
                             <span>{getExpectedDelivery({ order })}</span>
                         </div>
                     </h1>
-                    <Progress className="animate-pulse" value={getOrderStatusInfo().progressValue} />
-                </>
+                </section>
             }
             {isDesktop &&
                 <>

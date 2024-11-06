@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react"
 import { Order, OrderStatus } from "@/types"
+import { ORDER_STATUS } from "@/config/order-status-config"
+import { useUpdateMyRestaurantOrder } from "@/hooks/myRestaurant/useUpdateMyRestaurantOrder"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ORDER_STATUS } from "@/config/order-status-config"
-import { useUpdateMyRestaurantOrder } from "@/hooks/myRestaurant/useUpdateMyRestaurantOrder"
-import { useEffect, useState } from "react"
 
 type Props = {
     order: Order
@@ -66,7 +66,7 @@ const OrderItemCard = ({ order }: Props) => {
             <CardContent className="space-y-5">
                 <div className="flex flex-col gap-2">
                     {order.cartItems.map((cartItem) => (
-                        <span key={cartItem.menuItemId}>
+                        <span key={cartItem._id}>
                             <Badge variant="outline" className="mr-2">{cartItem.quantity}</Badge>
                             {cartItem.name}
                         </span>

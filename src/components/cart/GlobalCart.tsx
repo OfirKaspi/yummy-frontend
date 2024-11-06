@@ -49,15 +49,12 @@ const GlobalCart = () => {
                 {
                     restaurantDetails.length > 0
                         ? (
-                            restaurantDetails.map((restaurant, index) => {
+                            restaurantDetails.map((restaurant) => {
                                 const cart = carts.find(c => c.restaurantId === restaurant._id)
                                 if (!cart) return null
 
                                 return (
-                                    <>
-                                        {index !== 0 && <Separator />}
-                                        <GlobalCartItem restaurant={restaurant} cart={cart} />
-                                    </>
+                                    <GlobalCartItem key={restaurant._id} restaurant={restaurant} cart={cart} />
                                 )
                             }))
                         : <NotFound itemNotFound="Carts" />

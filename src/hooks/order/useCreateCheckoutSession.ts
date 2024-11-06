@@ -10,7 +10,6 @@ export const useCreateCheckoutSession = () => {
     const createCheckoutSessionFunction = async (checkoutSessionRequest: CheckoutSessionRequest) => {
         const accessToken = await getAccessTokenSilently()
         return createCheckoutSessionRequest(accessToken, checkoutSessionRequest)
-
     }
     const {
         mutateAsync: createCheckoutSession,

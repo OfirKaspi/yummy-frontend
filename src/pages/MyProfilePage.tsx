@@ -7,7 +7,7 @@ import UserNameForm from "@/forms/user-profile-form/UserNameForm"
 import AddressListForm from "@/forms/user-profile-form/AddressListForm"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs"
-import { SkeletonCard } from "@/components/ui/skeleton"
+import { SkeletonForm } from "@/components/ui/skeleton"
 import { selectUser, selectUserLoading } from "@/store/user/userSelectors"
 import { updateUserName, updateUserAddresses } from "@/store/user/userSlice"
 
@@ -45,12 +45,12 @@ const MyProfilePage = () => {
                 </TabsList>
                 <Separator />
                 {isGetUserLoading ? (
-                    <SkeletonCard />
+                    <SkeletonForm />
                 ) : !currentUser ? (
                     <span>Unable to load user profile</span>
                 ) : (
                     <>
-                        <TabsContent value="profile-form">
+                        <TabsContent value="profile-form" >
                             <UserNameForm
                                 currentUser={currentUser}
                                 onSave={handleUpdateName}
