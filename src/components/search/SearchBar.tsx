@@ -25,7 +25,7 @@ const SearchBar = ({
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className={`bg-slate-100 rounded-lg flex items-center p-2 md:h-full md:p-0
+                className={`border-2 rounded-lg flex items-center p-2 md:h-full md:p-0
                     ${form.formState.errors.searchQuery && "border-red-500"}`}
             >
                 <button type="submit" className="text-gray-400 px-2">
@@ -44,7 +44,7 @@ const SearchBar = ({
                                         field.onChange(e)
                                         if (onSearchChange) onSearchChange(e.target.value)
                                     }}
-                                    className="border-none text-gray-600 text-md shadow-none focus-visible:ring-0"
+                                    className="border-none text-gray-800 dark:text-gray-200 text-md shadow-none focus-visible:ring-0"
                                 />
                             </FormControl>
                         </FormItem>

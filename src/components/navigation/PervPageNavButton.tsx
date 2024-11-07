@@ -14,10 +14,10 @@ const PervPageNavButton = () => {
 
     return (
         <div
-            className="bg-slate-100 rounded-full w-12 h-12 flex items-center justify-center"
+            className="bg-slate-100 dark:bg-gray-500 rounded-full w-12 h-12 flex items-center justify-center"
             onClick={handleReturnToPrevPage}
         >
-            <ChevronLeft className="text-gray-600" />
+            <ChevronLeft className="text-gray-800 dark:text-gray-200" />
         </div>
     )
 }

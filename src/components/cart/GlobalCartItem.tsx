@@ -16,11 +16,11 @@ const GlobalCartItem = ({ restaurant, cart }: Props) => {
             <div className='space-y-1'>
                 <div className="flex items-center justify-between">
                     <span className="font-medium text-lg">{restaurant.restaurantName}</span>
-                    <span className="text-gray-600 text-xs">
+                    <span className="text-gray-800 dark:text-gray-200 text-xs">
                         {cart.cartItems.reduce((sum, item) => sum + item.quantity, 0)} items
                     </span>
                 </div>
-                <div className="flex flex-col gap-1 text-xs text-gray-600">
+                <div className="flex flex-col gap-1 text-xs text-gray-800 dark:text-gray-200">
                     <span>
                         Total: $
                         {(

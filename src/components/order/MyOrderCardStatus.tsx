@@ -10,7 +10,7 @@ const capitalizeFirstLetter = (string: string) => {
 const getStatusColor = (status: string) => {
     switch (status) {
         case "placed":
-            return "text-gray-500"
+            return "text-gray-800 dark:text-gray-200"
         case "paid":
             return "text-yellow-500"
         case "inProgress":

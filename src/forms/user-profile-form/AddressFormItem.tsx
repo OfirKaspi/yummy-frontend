@@ -54,7 +54,7 @@ const AddressFormItem = ({ address, onChange, onRemove, onCitySelect, index }: P
                         <FormItem>
                             <FormLabel>Address Line</FormLabel>
                             <FormControl>
-                                <Input {...field} className="bg-white" />
+                                <Input {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -74,7 +74,6 @@ const AddressFormItem = ({ address, onChange, onRemove, onCitySelect, index }: P
                                         setSearchCityTerm(e.target.value)
                                     }}
                                     value={field.value}
-                                    className="bg-white"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -97,7 +96,7 @@ const AddressFormItem = ({ address, onChange, onRemove, onCitySelect, index }: P
                         <FormItem>
                             <FormLabel>Country</FormLabel>
                             <FormControl>
-                                <Input {...field} disabled className="bg-gray-100" value="Israel" />
+                                <Input {...field} disabled value="Israel" />
                             </FormControl>
                         </FormItem>
                     )}

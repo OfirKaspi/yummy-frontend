@@ -34,7 +34,7 @@ const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, addToCart, adjus
                 return (
                     <Dialog key={menuItem._id} open={openItemId === menuItem._id} onOpenChange={(isOpen) => setOpenItemId(isOpen ? menuItem._id : null)}>
                         <DialogTrigger>
-                            <div className={`relative flex flex-col items-start cursor-pointer rounded-xl p-3 gap-1 bg-white border-2 ${isInCart} `}>
+                            <div className={`relative flex flex-col items-start cursor-pointer rounded-xl p-3 gap-1 border-2 ${isInCart} `}>
                                 <AspectRatio ratio={5 / 3}>
                                     <img
                                         src="https://www.announcementconverters.com/media/catalog/product/S/-/S-ILG11F_9.JPG"
@@ -64,7 +64,7 @@ const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, addToCart, adjus
                                             size={20}
                                         />
                                     </Button>
-                                    <Badge variant="outline" className="h-9 w-14 flex justify-center text-gray-600 text-md">
+                                    <Badge variant="outline" className="h-9 w-14 flex justify-center text-gray-800 dark:text-gray-200 text-md">
                                         {quantity}
                                     </Badge>
                                     {isInCart && (
@@ -79,7 +79,7 @@ const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, addToCart, adjus
                                         </Button>
                                     )}
                                 </div>
-                                <div className="flex flex-col text-gray-600 text-sm">
+                                <div className="flex flex-col text-gray-800 dark:text-gray-200 text-sm">
                                     <span>Dish price: ${(menuItem.price / 100).toFixed(2)}</span>
                                     <span>Total: ${((menuItem.price * quantity) / 100).toFixed(2)} (${(menuItem.price / 100).toFixed(2)} x {quantity})</span>
                                 </div>

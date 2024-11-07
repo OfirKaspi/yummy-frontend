@@ -30,7 +30,7 @@ const DeliverTo = () => {
         return (
             <Link to='/login' className="flex flex-col text-sm">
                 <span className="text-orange-500 font-medium">DELIVER TO</span>
-                <span className="flex items-center gap-1 text-gray-600">
+                <span className="flex items-center gap-1 text-gray-800 dark:text-gray-200">
                     Add your address
                     <ChevronDown size={16} />
                 </span>
@@ -42,7 +42,7 @@ const DeliverTo = () => {
         <Sheet>
             <SheetTrigger className="flex flex-col text-sm">
                 <span className="text-orange-500 font-medium">DELIVER TO</span>
-                <span className="flex items-center gap-1 text-gray-600">
+                <span className="flex items-center gap-1 text-gray-800 dark:text-gray-200">
                     {
                         currentUser.addresses.length
                             ? currentUser.addresses[0].addressLine1

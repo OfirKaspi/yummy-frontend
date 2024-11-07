@@ -26,11 +26,11 @@ const LoginPage = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                     <span className="text-slate-900 text-3xl font-medium">Welcome to Yummy</span>
-                    <span className="text-gray-500 font-medium">You are just one step away from your favorite restaurants</span>
+                    <span className="text-gray-800 dark:text-gray-200 font-medium">You are just one step away from your favorite restaurants</span>
                 </div>
                 <div className="flex flex-col gap-5 w-[100%]">
                     <button className="flex items-center gap-4 justify-start h-[64px] border-2  rounded-md" onClick={onLogin}>
-                        <img src={google} alt="google-icon" className="h-[60px] w-[60px] rounded-md bg-white p-2 border-r-2" />
+                        <img src={google} alt="google-icon" className="h-[60px] w-[60px] rounded-md  p-2 border-r-2" />
                         <span className="font-medium">Login / Register with Google</span>
                     </button>
                     <button className="flex items-center gap-4 justify-start h-[64px] border-2 rounded-md ">

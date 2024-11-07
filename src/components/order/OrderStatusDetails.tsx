@@ -11,14 +11,14 @@ const OrderStatusDetails = ({ order }: Props) => {
             <Separator />
             <div className="flex flex-col">
                 <span className="font-medium">Delivering to:</span>
-                <span className="text-gray-600">{order.deliveryDetails.name}</span>
-                <span className="text-gray-600">{order.deliveryDetails.addressLine1}, {order.deliveryDetails.city}, {order.deliveryDetails.country} </span>
+                <span className="text-gray-800 dark:text-gray-200">{order.deliveryDetails.name}</span>
+                <span className="text-gray-800 dark:text-gray-200">{order.deliveryDetails.addressLine1}, {order.deliveryDetails.city}, {order.deliveryDetails.country} </span>
             </div>
             <div className="flex flex-col">
                 <span className="font-medium">Your Order</span>
                 <ul>
                     {order.cartItems.map((item) => (
-                        <li className="text-gray-600" key={item.name}>
+                        <li className="text-gray-800 dark:text-gray-200" key={item.name}>
                             {item.name} x {item.quantity}
                         </li>
                     ))}
@@ -26,7 +26,7 @@ const OrderStatusDetails = ({ order }: Props) => {
             </div>
             <div className="flex flex-col">
                 <span className="font-medium">Total</span>
-                <span className="text-gray-600">${(order.totalAmount / 100).toFixed(2)}</span>
+                <span className="text-gray-800 dark:text-gray-200">${(order.totalAmount / 100).toFixed(2)}</span>
             </div>
         </div>
     )

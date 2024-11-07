@@ -15,7 +15,7 @@ const NotFound = ({ itemNotFound }: Props) => {
                 />
             </div>
             <h2 className="text-2xl font-medium">No {itemNotFound} yet</h2>
-            <span className="text-gray-500">There aren't {itemNotFound} at the moment</span>
+            <span className="text-gray-800 dark:text-gray-200">There aren't {itemNotFound} at the moment</span>
         </div>
     )
 }

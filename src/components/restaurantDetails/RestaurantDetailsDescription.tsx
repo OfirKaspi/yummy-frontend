@@ -43,7 +43,7 @@ const RestaurantDetailsDescription = ({ restaurant }: Props) => {
                     <Tooltip>
                         <TooltipTrigger>
                             {isUserLoading ? (
-                                <StarIcon className="text-gray-500 size-5" />
+                                <StarIcon className="text-gray-800 dark:text-gray-200 size-5" />
                             ) : isFavorite ? (
                                 <StarFilledIcon onClick={handleFavoriteToggle} className="text-orange-500 size-5" />
                             ) : (
@@ -62,7 +62,7 @@ const RestaurantDetailsDescription = ({ restaurant }: Props) => {
                     </Tooltip>
                 </TooltipProvider>
             </div>
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-800 dark:text-gray-200 text-sm">
                 At {restaurant.restaurantName}, enjoy a vibrant dining experience with a diverse
                 menu featuring fresh ingredients and creative dishes.
                 Whether you’re here for a casual lunch or a special dinner,

@@ -41,7 +41,7 @@ const UserNameForm = ({ currentUser, onSave, isLoading }: Props) => {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input {...field} disabled className="bg-gray-100" />
+                                <Input {...field} disabled />
                             </FormControl>
                         </FormItem>
                     )}
@@ -53,13 +53,13 @@ const UserNameForm = ({ currentUser, onSave, isLoading }: Props) => {
                         <FormItem>
                             <FormLabel>Name</FormLabel>
                             <FormControl>
-                                <Input {...field} className="bg-white" />
+                                <Input {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                {isLoading ? <LoadingButton /> : <Button type="submit" className="bg-orange-500">Submit</Button>}
+                {isLoading ? <LoadingButton /> : <Button type="submit" className="bg-orange-500 hover:bg-orange-400 dark:text-white">Submit</Button>}
             </form>
         </Form>
     )

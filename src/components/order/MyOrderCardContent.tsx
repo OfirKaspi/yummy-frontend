@@ -16,12 +16,12 @@ const MyOrderCardContent = ({ order }: Props) => {
             <div className="flex flex-col flex-1 gap-2 text-sm">
                 <div className="flex items-center justify-between">
                     <span className="font-medium text-sm">{order.restaurant.restaurantName}</span>
-                    <span className="text-gray-600 text-xs underline">#{order._id.slice(order._id.length - 6, order._id.length)}</span>
+                    <span className="text-gray-800 dark:text-gray-200 text-xs underline">#{order._id.slice(order._id.length - 6, order._id.length)}</span>
                 </div>
                 <div className="flex items-center gap-1">
                     <span className="font-medium text-sm">${(order.totalAmount / 100).toFixed()}</span>
                     <Dot size={18} />
-                    <span className="text-gray-600 text-xs">
+                    <span className="text-gray-800 dark:text-gray-200 text-xs">
                         {new Date(order.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
@@ -29,7 +29,7 @@ const MyOrderCardContent = ({ order }: Props) => {
                         })}
                     </span>
                     <Dot size={18} />
-                    <span className="text-gray-600 text-xs">{order.cartItems.length} Items</span>
+                    <span className="text-gray-800 dark:text-gray-200 text-xs">{order.cartItems.length} Items</span>
                 </div>
             </div>
         </div>

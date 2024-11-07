@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from 
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import SearchFilter from '@/components/search/SearchFilter'
+import DarkModeSwitch from '@/components/DarkModeSwitch'
 
 const MobileNav = () => {
     const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
@@ -23,8 +24,8 @@ const MobileNav = () => {
 
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger className="bg-slate-100 rounded-full w-12 h-12 flex items-center justify-center">
-                <Menu className="text-gray-600" />
+            <SheetTrigger className="bg-slate-100 dark:bg-gray-500 rounded-full w-12 h-12 flex items-center justify-center">
+                <Menu className="text-gray-800 dark:text-gray-200" />
             </SheetTrigger>
             <SheetContent side="right" className="space-y-5">
                 <SheetTitle>
@@ -38,15 +39,17 @@ const MobileNav = () => {
                     )}
                 </SheetTitle>
                 <Separator />
+                <DarkModeSwitch />
                 <SheetDescription className="flex flex-col gap-5">
+
                     {isAuthenticated ? (
                         <div className="flex flex-col items-start gap-4">
                             {navLinks.map(({ to, icon: Icon, label }) => (
                                 <Link
                                     key={to}
                                     to={to}
-                                    onClick={handleLinkClick} // Close Sheet when link is clicked
-                                    className={`flex items-center font-medium gap-2 ${isActive(to) ? 'text-orange-500' : ''}`}
+                                    onClick={handleLinkClick}
+                                    className={`flex items-center font-medium gap-2 ${isActive(to) ? 'text-orange-500' : 'text-gray-800 dark:text-gray-200 '}`}
                                 >
                                     <Icon className="text-orange-500" />
                                     {label}

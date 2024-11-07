@@ -106,7 +106,7 @@ const AddressListForm = ({ addresses, onSave, isLoading }: Props) => {
                 {isLoading ? (
                     <LoadingButton />
                 ) : (
-                    <Button onClick={handleSubmit} className="bg-orange-500">
+                    <Button onClick={handleSubmit} className="bg-orange-500 hover:bg-orange-400 dark:text-white">
                         {
                             addressList.length > 1
                                 ? "Save All Addresses"

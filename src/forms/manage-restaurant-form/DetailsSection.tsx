@@ -28,7 +28,7 @@ const DetailsSection = () => {
                     <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                            <Input {...field} className="bg-white" />
+                            <Input {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -49,7 +49,6 @@ const DetailsSection = () => {
                                         setSearchTerm(e.target.value)
                                     }}
                                     value={field.value}
-                                    className="bg-white"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -72,7 +71,7 @@ const DetailsSection = () => {
                         <FormItem className="flex-1">
                             <FormLabel>Country</FormLabel>
                             <FormControl>
-                                <Input {...field} value="Israel" disabled className="bg-gray-200" />
+                                <Input {...field} value="Israel" disabled />
                             </FormControl>
                         </FormItem>
                     )}
@@ -91,7 +90,7 @@ const DetailsSection = () => {
                                 step="1"
                                 value={field.value ?? ""}
                                 placeholder="30"
-                                className="bg-white no-arrows"
+                                className="no-arrows"
                             />
                         </FormControl>
                         <FormMessage />
@@ -111,7 +110,7 @@ const DetailsSection = () => {
                                 step="0.01"
                                 value={field.value ?? ""}
                                 placeholder="1.50"
-                                className="bg-white no-arrows"
+                                className="no-arrows"
                             />
                         </FormControl>
                         <FormMessage />

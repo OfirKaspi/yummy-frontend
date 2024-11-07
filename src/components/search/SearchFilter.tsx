@@ -9,7 +9,7 @@ const SearchFilter = () => {
         <Sheet>
             <SheetTrigger asChild>
                 <div className="bg-slate-100 rounded-full w-12 h-12 flex items-center justify-center">
-                    <Filter className="text-gray-600" />
+                    <Filter className="text-gray-800 dark:text-gray-200" />
                 </div>
             </SheetTrigger>
             <SheetContent side="bottom" className="flex flex-col rounded-t-3xl">

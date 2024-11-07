@@ -22,7 +22,7 @@ const MyOrderCard = ({ order }: Props) => {
                             <div className="flex items-center justify-between md:justify-start md:gap-2">
                                 <span className="font-medium text-lg">{order.restaurant.restaurantName}</span>
                             </div>
-                            <div className="flex flex-col items-start gap-1 text-xs text-gray-600">
+                            <div className="flex flex-col items-start gap-1 text-xs text-gray-800 dark:text-gray-200">
                                 <span className="flex">
                                     Total: ${(order.totalAmount / 100).toFixed(2)}
                                     <Dot size={16} />

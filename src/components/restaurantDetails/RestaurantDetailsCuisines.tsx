@@ -14,8 +14,8 @@ const RestaurantDetailsCuisines = ({ cuisines, checkedFoodSection, handleFoodSec
             {cuisines.map((cuisine) => (
                 <button
                     key={cuisine}
-                    className={`border-2 border-slate-100 rounded-xl py-2 px-4
-                            ${checkedFoodSection === cuisine ? 'bg-orange-500 text-white' : 'bg-white border-2'}
+                    className={`border-2 rounded-xl py-2 px-4
+                            ${checkedFoodSection === cuisine ? 'bg-orange-500 text-white' : 'border-2'}
                             `}
                     onClick={() => handleFoodSection(cuisine)}
                 >

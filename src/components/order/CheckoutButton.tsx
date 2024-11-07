@@ -38,7 +38,7 @@ const CheckoutButton = ({ disabled, onCheckout, isLoading }: Props) => {
     if (!isAuthenticated) {
         return (
             <Button
-                className="bg-orange-500 flex-1"
+                className="bg-orange-500 flex-1 dark:text-white"
                 onClick={onLogin}
             >
                 Log in to check out
@@ -52,7 +52,7 @@ const CheckoutButton = ({ disabled, onCheckout, isLoading }: Props) => {
                 <SheetTrigger asChild>
                     <Button
                         disabled={disabled}
-                        className="bg-orange-500 flex-1"
+                        className="bg-orange-500 flex-1 dark:text-white"
                     >
                         Go to check out
                     </Button>

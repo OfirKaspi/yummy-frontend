@@ -26,7 +26,7 @@ const CityList = ({ cities, isLoading, isError, debouncedTerm, onCitySelect }: P
                 <CardContent className='p-4'>
                     <ul>
                         {statusMessage ? (
-                            <li className={`p-2  ${isError ? 'text-red-500' : 'text-gray-600'}`}>
+                            <li className={`p-2  ${isError ? 'text-red-500' : 'text-gray-800 dark:text-gray-200'}`}>
                                 {statusMessage}
                             </li>
                         ) : (
@@ -34,7 +34,7 @@ const CityList = ({ cities, isLoading, isError, debouncedTerm, onCitySelect }: P
                                 <li
                                     key={city.id}
                                     onClick={() => onCitySelect(city.name)}
-                                    className={`p-2 hover:bg-slate-100 cursor-pointer ${index !== 0 && "border-t-2"}`}
+                                    className={`p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-md cursor-pointer ${index !== 0 && "border-t-2"}`}
                                 >
                                     {city.name}
                                 </li>
