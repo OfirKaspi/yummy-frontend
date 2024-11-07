@@ -4,7 +4,7 @@ import { selectSelectedCuisines, setSelectedCuisines } from "@/store/search/sear
 import useDeviceType from "@/hooks/useDeviceType"
 import { cuisineListWithImgsCloudinary } from "@/config/restaurant-options-config"
 import SeeAll from "@/components/SeeAll"
-import CarouselCard from "@/components/CarouselCard"
+// import CarouselCard from "@/components/CarouselCard"
 
 const CuisineFilter = () => {
     const { isMobile } = useDeviceType()
@@ -50,19 +50,19 @@ const CuisineFilter = () => {
                         {cuisineListWithImgsCloudinary.map((cuisine) => {
                             const isSelected = selectedCuisines.includes(cuisine.name)
                             return (
-                                <div
+                                <span
                                     key={cuisine.name}
                                     onClick={() => handleCuisineChange(cuisine.name)}
                                     className={`flex items-center justify-center text-sm rounded-lg border-2 py-2 px-3
-                                    ${isSelected && 'text-green-600 md:border-green-600'}`}
+                                    ${isSelected && 'text-green-600 border-green-600'}`}
                                 >
-                                    <span>{cuisine.name}</span>
-                                </div>
+                                    {cuisine.name}
+                                </span>
                             )
                         })}
                     </div>
                     <span
-                        className="text-sm font-semibold mb-2 underline text-blue-500"
+                        className="text-sm font-semibold mb-2 underline text-orange-500"
                         onClick={handleCuisinesReset}
                     >
                         Reset Filters
@@ -73,13 +73,21 @@ const CuisineFilter = () => {
                     {cuisineListWithImgsCloudinary.map((cuisine) => {
                         const isSelected = selectedCuisines.includes(cuisine.name)
                         return (
-                            <CarouselCard
+                            <span
                                 key={cuisine.name}
-                                img={cuisine.img}
-                                name={cuisine.name}
-                                handleCuisineChange={handleCuisineChange}
-                                isSelected={isSelected}
-                            />
+                                onClick={() => handleCuisineChange(cuisine.name)}
+                                className={`flex items-center justify-center text-sm rounded-lg border-2 py-2 px-3
+                                    ${isSelected && 'text-green-600 border-green-600'}`}
+                            >
+                                {cuisine.name}
+                            </span>
+                            // <CarouselCard
+                            //     key={cuisine.name}
+                            //     img={cuisine.img}
+                            //     name={cuisine.name}
+                            //     handleCuisineChange={handleCuisineChange}
+                            //     isSelected={isSelected}
+                            // />
                         )
                     })}
                 </div>

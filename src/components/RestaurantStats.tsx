@@ -17,11 +17,11 @@ const RestaurantStats = ({ restaurant }: Props) => {
 
             <div className="flex gap-1">
                 <Clock size={20} className="text-orange-500" />
-                <span>{restaurant.estimatedDeliveryTime} min</span>
+                <span className="text-gray-800 dark:text-gray-200">{restaurant.estimatedDeliveryTime} min</span>
             </div>
             <div className="flex gap-1">
                 <Truck size={20} className="text-orange-500" />
-                <span>Delivery ${(restaurant.deliveryPrice / 100).toFixed(2)}</span>
+                <span className="text-gray-800 dark:text-gray-200">Delivery ${(restaurant.deliveryPrice / 100).toFixed(2)}</span>
             </div>
         </div>
     )

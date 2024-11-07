@@ -8,7 +8,7 @@ type Props = {
 
 const SeeAll = ({ handleOnClick, isExpanded = false, text }: Props) => {
     return (
-        <div className="flex items-end justify-between md:justify-normal md:gap-2">
+        <div className="flex items-end justify-between md:justify-normal md:gap-2 transition-all duration-300">
             <h2 className="text-xl">{text}</h2>
             <div onClick={handleOnClick ? handleOnClick : undefined}>
                 <span className="flex items-center gap-1">

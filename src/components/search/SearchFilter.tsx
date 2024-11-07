@@ -8,7 +8,7 @@ const SearchFilter = () => {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <div className="bg-slate-100 rounded-full w-12 h-12 flex items-center justify-center">
+                <div className="bg-slate-100 dark:bg-gray-500 border-white rounded-full w-12 h-12 flex items-center justify-center">
                     <Filter className="text-gray-800 dark:text-gray-200" />
                 </div>
             </SheetTrigger>

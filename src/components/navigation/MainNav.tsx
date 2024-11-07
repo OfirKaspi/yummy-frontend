@@ -49,7 +49,7 @@ const MainNav = ({ customLabel = "" }: Props) => {
             {
                 location.pathname === '/' || !isMobile
                     ? <GlobalCart />
-                    : (location.pathname.startsWith('/details'))
+                    : (location.pathname.startsWith('/details') || location.pathname.startsWith('/search'))
                         ? <PervPageNavButton />
                         : <GlobalCart />
 

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import AppRoutes from '@/AppRoutes'
 import { getUser } from '@/store/user/userSlice'
 import { AppDispatch } from '@/store/store'
+import { setDarkMode } from './store/darkMode/darkModeSlice'
 
 const App = () => {
     const dispatch: AppDispatch = useDispatch()
@@ -21,6 +22,10 @@ const App = () => {
                 }
             }
         }
+
+        const savedMode = localStorage.getItem('darkMode') === 'true'
+        dispatch(setDarkMode(savedMode))
+        document.documentElement.classList.toggle('dark', savedMode)
 
         initializeUser()
     }, [isAuthenticated, getAccessTokenSilently, dispatch])
