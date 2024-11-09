@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { MenuItem as MenuItemType, CartItem } from '@/types'
+import { CartItem } from '@/types'
 import { AppDispatch } from '@/store/store'
 import { getRestaurantByIdStore } from '@/store/restaurant/restaurantSlice'
 import { selectRestaurant, selectRestaurantLoading } from '@/store/restaurant/restaurantSelectors'
@@ -56,27 +56,23 @@ const RestaurantDetailsPage = () => {
         setCheckedFoodSection(foodSection)
     }
 
-    const addToCartHandler = (menuItem: MenuItemType) => {
-        setCartItems((prevCartItems) => {
-            const existingCartItem = prevCartItems.find((cartItem) => cartItem._id === menuItem._id)
+    const handleCartAction = (cartItem: CartItem, action: "add" | "update" | "remove") => {
+        setCartItems(prevCartItems => {
+            const existingItemIndex = prevCartItems.findIndex(item => item._id === cartItem._id)
 
-            if (existingCartItem) {
-                return prevCartItems.map((cartItem) =>
-                    cartItem._id === existingCartItem._id
-                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                        : cartItem
-                )
-            } else {
-                return [
-                    ...prevCartItems,
-                    {
-                        _id: menuItem._id,
-                        name: menuItem.name,
-                        price: menuItem.price,
-                        quantity: 1,
-                    }
-                ]
+            if (action === "remove") {
+                return prevCartItems.filter(item => item._id !== cartItem._id)
             }
+            else if (existingItemIndex > -1 && action === "update") {
+                const updatedCart = [...prevCartItems]
+                updatedCart[existingItemIndex].quantity = cartItem.quantity
+                return updatedCart
+            }
+            else if (action === "add") {
+                return [...prevCartItems, cartItem]
+            }
+
+            return prevCartItems
         })
     }
 
@@ -143,9 +139,7 @@ const RestaurantDetailsPage = () => {
             <RestaurantDetailsMenuItemsList
                 cartItems={cartItems}
                 menuItems={restaurant.menuItems}
-                addToCart={addToCartHandler}
-                adjustItemQuantity={adjustItemQuantityHandler}
-                removeFromCart={removeFromCartHandler}
+                handleCartAction={handleCartAction}
             />
             <RestaurantDetailsOrderSheet
                 restaurant={restaurant}

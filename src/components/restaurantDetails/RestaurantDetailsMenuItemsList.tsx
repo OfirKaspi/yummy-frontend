@@ -6,41 +6,66 @@ import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
-
+import { getButtonProperties } from "@/utils/getButtonProperties"
 
 type Props = {
     cartItems: CartItem[]
     menuItems: MenuItem[]
-    addToCart: (menuItem: MenuItem) => void
-    adjustItemQuantity: (cartItem: CartItem, newQuantity: number) => void
-    removeFromCart: (cartItem: CartItem) => void
+    handleCartAction: (cartItem: CartItem, action: "add" | "update" | "remove") => void
 }
 
-const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, addToCart, adjustItemQuantity, removeFromCart }: Props) => {
-    const [openItemId, setOpenItemId] = useState<string | null>(null)
+const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, handleCartAction }: Props) => {
+    const [tempQuantity, setTempQuantity] = useState(0)
+    const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
+
+    const openDialog = (item: MenuItem) => {
+        const cartItem = cartItems.find(i => i._id === item._id)
+        setTempQuantity(cartItem ? cartItem.quantity : 0)
+        setSelectedItem(item)
+    }
+
+    const closeDialog = () => setSelectedItem(null)
+
+    const handleMainAction = () => {
+        if (!selectedItem) return
+        const cartItem = { ...selectedItem, quantity: tempQuantity }
+        const action = cartItems.some(i => i._id === selectedItem._id) ? "update" : "add"
+        handleCartAction(cartItem, action)
+        closeDialog()
+    }
 
     const handleRemoveFromCart = (cartItem: CartItem) => {
-        removeFromCart(cartItem)
-        setOpenItemId(null)
+        handleCartAction(cartItem, "remove")
+        closeDialog()
     }
+
+    const updateTempQuantity = (amount: number) => setTempQuantity(prev => Math.max(0, prev + amount))
 
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-5 gap-5">
             {menuItems.map((menuItem) => {
-                const cartItem = cartItems.find(item => item._id === menuItem._id) || { ...menuItem, quantity: 0 }
-                const quantity = cartItem ? cartItem.quantity : 0
-                const isInCart = (quantity > 0) ? "border-green-500" : ""
+                const cartItem = cartItems.find(item => item._id === menuItem._id)
+                const initialQuantity = cartItem ? cartItem.quantity : 0
+                const isSelected = initialQuantity > 0
+
+                const { buttonText, buttonStyle, buttonIcon, isButtonDisabled } = getButtonProperties(initialQuantity, tempQuantity)
+                const showMainButton = buttonText !== "Remove from cart" && tempQuantity !== 0
+                const showRemoveButton = initialQuantity > 0 && cartItem
 
                 return (
-                    <Dialog key={menuItem._id} open={openItemId === menuItem._id} onOpenChange={(isOpen) => setOpenItemId(isOpen ? menuItem._id : null)}>
-                        <DialogTrigger>
-                            <div className={`relative flex flex-col items-start cursor-pointer rounded-xl p-3 gap-1 border-2 ${isInCart} `}>
+                    <Dialog key={menuItem._id} open={selectedItem?._id === menuItem._id} onOpenChange={(isOpen) => setSelectedItem(isOpen ? menuItem : null)}>
+                        <DialogTrigger asChild>
+                            <div
+                                onClick={() => openDialog(menuItem)}
+                                className={`relative flex flex-col items-start cursor-pointer rounded-xl p-3 gap-1 border-2 ${isSelected ? 'border-green-500' : ''}`}
+                            >
                                 <AspectRatio ratio={5 / 3}>
                                     <img
                                         src="https://www.announcementconverters.com/media/catalog/product/S/-/S-ILG11F_9.JPG"
                                         alt={menuItem.name}
                                         className="object-cover w-full h-full rounded-xl"
                                     />
+                                    {/* <img src={menuItem.img} alt={menuItem.name} className="object-cover w-full h-full rounded-xl" /> */}
                                 </AspectRatio>
                                 <span className="font-medium">{menuItem.name}</span>
                                 <div className="flex justify-between w-full">
@@ -49,55 +74,53 @@ const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, addToCart, adjus
                                 </div>
                             </div>
                         </DialogTrigger>
-                        <DialogContent className="gap-5 p-5 w-[300px] rounded-lg md:w-[400px] ">
+                        <DialogContent className="gap-5 p-5 w-[300px] rounded-lg md:w-[400px]">
                             <DialogTitle className="text-lg font-semibold">{menuItem.name}</DialogTitle>
                             <Separator />
                             <section className="flex flex-col gap-5">
                                 <div className="flex items-center gap-2">
-                                    <Button
-                                        className="bg-green-500 hover:bg-green-400"
-
-                                        onClick={isInCart ? () => adjustItemQuantity(cartItem, quantity + 1) : () => addToCart(menuItem)}
-                                    >
-                                        <Plus
-                                            className="cursor-pointer"
-                                            size={20}
-                                        />
+                                    <Button className="bg-green-500 hover:bg-green-400" onClick={() => updateTempQuantity(1)}>
+                                        <Plus size={20} />
                                     </Button>
-                                    <Badge variant="outline" className="h-9 w-14 flex justify-center text-gray-800 dark:text-gray-200 text-md">
-                                        {quantity}
+                                    <Badge variant="outline" className="h-9 w-14 flex justify-center text-gray-600 text-md">
+                                        {tempQuantity}
                                     </Badge>
-                                    {isInCart && (
-                                        <Button
-                                            variant={"destructive"}
-                                            onClick={() => adjustItemQuantity(cartItem, quantity - 1)}
-                                        >
-                                            <Minus
-                                                className="cursor-pointer"
-                                                size={20}
-                                            />
-                                        </Button>
-                                    )}
-                                </div>
-                                <div className="flex flex-col text-gray-800 dark:text-gray-200 text-sm">
-                                    <span>Dish price: ${(menuItem.price / 100).toFixed(2)}</span>
-                                    <span>Total: ${((menuItem.price * quantity) / 100).toFixed(2)} (${(menuItem.price / 100).toFixed(2)} x {quantity})</span>
-                                </div>
-                                {isInCart && (
-                                    <Button
-                                        variant="destructive"
-                                        className="space-x-2"
-                                        onClick={() => handleRemoveFromCart(cartItem)}
-                                    >
-                                        <span>Remove from cart</span>
-                                        <Trash size={20} />
+                                    <Button variant="destructive" onClick={() => updateTempQuantity(-1)}>
+                                        <Minus size={20} />
                                     </Button>
-                                )}
+                                </div>
+                                <div className="flex flex-col text-gray-600 text-sm">
+                                    <span>Dish price: ${(menuItem.price / 100).toFixed(2)}</span>
+                                    <span>Total: ${((menuItem.price * tempQuantity) / 100).toFixed(2)} (${(menuItem.price / 100).toFixed(2)} x {tempQuantity})</span>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    {showMainButton &&
+                                        <Button
+                                            className={`space-x-2 ${buttonStyle} text-white`}
+                                            onClick={handleMainAction}
+                                            disabled={isButtonDisabled}
+                                        >
+                                            {buttonIcon}
+                                            <span>{buttonText}</span>
+                                        </Button>
+                                    }
+                                    {showRemoveButton &&
+                                        < Button
+                                            variant="destructive"
+                                            className="space-x-2"
+                                            onClick={() => handleRemoveFromCart(cartItem)}
+                                        >
+                                            <Trash size={20} />
+                                            <span>Remove from cart</span>
+                                        </Button>
+                                    }
+                                </div>
                             </section>
                         </DialogContent>
-                    </Dialog>)
+                    </Dialog>
+                )
             })}
-        </div>
+        </div >
     )
 }
 

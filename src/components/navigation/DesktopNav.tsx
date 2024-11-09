@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { useAuth0 } from "@auth0/auth0-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { navLinks } from "@/config/nav-links-config"
+import DarkModeToggle from "../DarkModeSwitch"
 
 const DesktopNav = () => {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
@@ -13,6 +14,7 @@ const DesktopNav = () => {
     return (
         <nav className="flex justify-between items-center">
             <div className="flex items-center gap-2">
+                <DarkModeToggle />
                 {isAuthenticated ? (
                     <>
                         <TooltipProvider>
