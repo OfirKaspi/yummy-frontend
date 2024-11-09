@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom"
-import { Button } from "@/components/ui/button"
 import { useAuth0 } from "@auth0/auth0-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { navLinks } from "@/config/nav-links-config"
-import DarkModeToggle from "../DarkModeSwitch"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
+import DarkModeToggle from "@/components/DarkModeSwitch"
 
 const DesktopNav = () => {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0()

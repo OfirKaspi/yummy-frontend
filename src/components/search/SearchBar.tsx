@@ -1,7 +1,7 @@
 import { UseFormReturn } from "react-hook-form"
+import { Eraser, Search } from "lucide-react"
 import { SearchForm } from "@/components/search/RestaurantSearch"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
-import { Eraser, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
 type Props = {

@@ -1,14 +1,14 @@
+import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { ChevronDown } from "lucide-react"
 import { useAuth0 } from "@auth0/auth0-react"
+import { Address } from "@/types"
 import { updateUserAddresses } from "@/store/user/userSlice"
 import { selectUser, selectUserLoading } from "@/store/user/userSelectors"
 import { AppDispatch } from "@/store/store"
 import AddressListForm from "@/forms/user-profile-form/AddressListForm"
-import { Address } from "@/types"
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import useDeviceType from "@/hooks/useDeviceType"
-import { Link } from "react-router-dom"
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 
 const DeliverTo = () => {
     const { isMobile } = useDeviceType()

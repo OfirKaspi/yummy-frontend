@@ -3,10 +3,10 @@ import { useSelector } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react"
 
 import { selectUser, selectUserLoading } from "@/store/user/userSelectors"
+import UserProfileForm, { UserFormData } from "@/forms/user-profile-form/UserDetailsOrderForm"
 import useDeviceType from "@/hooks/useDeviceType"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import UserProfileForm, { UserFormData } from "@/forms/user-profile-form/UserDetailsOrderForm"
 import LoadingButton from "@/components/LoadingButton"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 

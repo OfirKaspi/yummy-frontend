@@ -1,10 +1,10 @@
+import { User } from "lucide-react"
+import { Link } from "react-router-dom"
+import { useAuth0 } from "@auth0/auth0-react"
 import yummyFullLogo from "/yummyFullLogo.png"
 import motorImage from "@/assets/motorImage.jpg"
 import google from "@/assets/google.svg"
-import { Link } from "react-router-dom"
-import { useAuth0 } from "@auth0/auth0-react"
 import useDeviceType from "@/hooks/useDeviceType"
-import { User } from "lucide-react"
 
 const LoginPage = () => {
     const { isMobile } = useDeviceType()

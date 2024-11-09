@@ -1,11 +1,11 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Restaurant, CartItem } from "@/types"
+import useScrollPosition from "@/hooks/useScrollPosition"
+import useCheckout from "@/hooks/order/useCheckout"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import OrderSummary from "@/components/order/OrderSummary"
 import CheckoutButton from "@/components/order/CheckoutButton"
-import ShoppingCartCmp from "@/components/ShoppingCartCmp"
-import useScrollPosition from "@/hooks/useScrollPosition"
-import { Button } from "../ui/button"
-import useCheckout from "@/hooks/order/useCheckout"
+import CartButton from "@/components/cart/CartButton"
+import { Button } from "@/components/ui/button"
 
 type Props = {
     restaurant: Restaurant
@@ -28,7 +28,7 @@ const RestaurantDetailsOrderSheet = ({
                 <Button
                     className="flex items-center justify-center bg-slate-900 dark:bg-cyan-700 text-white transition-all duration-300 rounded-full hover:bg-primary"
                 >
-                    <ShoppingCartCmp totalQuantity={totalQuantity} />
+                    <CartButton totalQuantity={totalQuantity} />
                     {isAtBottom && <span className={`${totalQuantity > 0 && 'ml-2'} font-medium`}>Go to check out</span>}
                 </Button>
             </SheetTrigger>

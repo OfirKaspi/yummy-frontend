@@ -1,14 +1,14 @@
-import { Restaurant } from "@/types"
-import RestaurantStats from "@/components/RestaurantStats"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
-import { StarIcon, StarFilledIcon } from "@radix-ui/react-icons"
+import { useCallback } from "react"
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
+import { useAuth0 } from "@auth0/auth0-react"
+import { StarIcon, StarFilledIcon } from "@radix-ui/react-icons"
+import { Restaurant } from "@/types"
+import { updateUserFavoriteRestaurants } from "@/store/user/userSlice"
 import { selectFavoriteRestaurants, selectUserLoading } from "@/store/user/userSelectors"
 import { AppDispatch } from "@/store/store"
-import { updateUserFavoriteRestaurants } from "@/store/user/userSlice"
-import { useAuth0 } from "@auth0/auth0-react"
-import { useNavigate } from "react-router-dom"
-import { useCallback } from "react"
+import RestaurantStats from "@/components/restaurant/RestaurantStats"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 type Props = {
     restaurant: Restaurant

@@ -1,6 +1,6 @@
-import MainNav from "@/components/navigation/MainNav"
+import { AspectRatio } from '@/components/ui/aspect-ratio'
 import useDeviceType from "@/hooks/useDeviceType"
-import { AspectRatio } from "@radix-ui/react-aspect-ratio"
+import MainNav from "@/components/navigation/MainNav"
 
 type Props = {
     restaurantImg: string

@@ -5,7 +5,7 @@ type Props = {
     totalQuantity?: number
 }
 
-const ShoppingCartCmp = ({ totalQuantity = 0 }: Props) => {
+const CartButton = ({ totalQuantity = 0 }: Props) => {
     return (
         <Button className="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 dark:bg-cyan-700 relative text-white">
             <div className="relative">
@@ -20,4 +20,4 @@ const ShoppingCartCmp = ({ totalQuantity = 0 }: Props) => {
     )
 }
 
-export default ShoppingCartCmp
+export default CartButton

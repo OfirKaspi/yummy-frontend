@@ -1,5 +1,5 @@
-import { Order } from "@/types"
 import { Dot } from "lucide-react"
+import { Order } from "@/types"
 
 type Props = {
     order: Order

@@ -2,7 +2,7 @@ import { useEffect, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 
-import RestaurantCard from "@/components/restaurantDetails/RestaurantCard"
+import RestaurantCard from "@/components/restaurant/RestaurantCard"
 import { Skeleton, SkeletonCard } from "@/components/ui/skeleton"
 import { AppDispatch } from "@/store/store"
 import { getRestaurantsStore } from "@/store/restaurants/restaurantsSlice"

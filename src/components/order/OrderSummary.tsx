@@ -1,8 +1,8 @@
+import { Minus, Plus, Trash } from "lucide-react"
 import { Restaurant, CartItem } from "@/types"
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { Minus, Plus, Trash } from "lucide-react"
 
 type Props = {
     restaurant: Restaurant

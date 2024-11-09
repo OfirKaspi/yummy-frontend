@@ -8,22 +8,16 @@ type Props = {
 
 const SeeAll = ({ handleOnClick, isExpanded = false, text }: Props) => {
     return (
-        <div className="flex items-end justify-between md:justify-normal md:gap-2 transition-all duration-300">
-            <h2 className="text-xl">{text}</h2>
-            <div onClick={handleOnClick ? handleOnClick : undefined}>
-                <span className="flex items-center gap-1">
-                    <span className="md:underline md:text-blue-500">
-                        {isExpanded ? 'See Less' : 'See All'}
-                    </span>
-                    <ChevronRight
-                        size={18}
-                        className={`text-gray-400 transform transition-transform duration-300 
-                                    ${isExpanded ? 'rotate-180' : ''}`
-                        }
-                    />
-                </span>
-            </div>
-        </div>
+        <div className="flex items-center justify-between cursor-pointer md:justify-normal md:gap-2 transition-all duration-300">
+            <h4 className="text-lg">{text}</h4>
+            <span className="flex items-center underline text-orange-500" onClick={handleOnClick ? handleOnClick : undefined}>
+                {isExpanded ? 'See Less' : 'See All'}
+                <ChevronRight
+                    size={18}
+                    className={` ${isExpanded ? 'rotate-180' : ''}`}
+                />
+            </span>
+        </div >
     )
 }
 

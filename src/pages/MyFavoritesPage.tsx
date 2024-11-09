@@ -4,7 +4,7 @@ import useDeviceType from "@/hooks/useDeviceType"
 import { Separator } from "@/components/ui/separator"
 import NotFound from "@/components/NotFound"
 import { SkeletonCard } from "@/components/ui/skeleton"
-import RestaurantCard from "@/components/restaurantDetails/RestaurantCard"
+import RestaurantCard from "@/components/restaurant/RestaurantCard"
 
 const MyFavoritesPage = () => {
     const { isMobile } = useDeviceType()

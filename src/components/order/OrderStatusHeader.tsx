@@ -1,7 +1,7 @@
-import { Order } from "@/types"
-import { Progress } from "@/components/ui/progress"
 import { ORDER_STATUS } from "@/config/order-status-config"
+import { Order } from "@/types"
 import { getExpectedDelivery } from "@/utils/getExpectedDelivery"
+import { Progress } from "@/components/ui/progress"
 
 type Props = {
     order: Order

@@ -1,13 +1,13 @@
 import { useEffect, useState, useMemo } from "react"
 import { Restaurant } from "@/types"
 import { getRestaurantById } from "@/api/restaurantAPI"
+import useDeviceType from "@/hooks/useDeviceType"
 import { loadCartsFromStorage } from "@/utils/cartSessionStorage"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import ShoppingCartCmp from "@/components/ShoppingCartCmp"
+import CartButton from "@/components/cart/CartButton"
 import { Separator } from "@/components/ui/separator"
 import NotFound from "@/components/NotFound"
 import GlobalCartItem from "@/components/cart/GlobalCartItem"
-import useDeviceType from "@/hooks/useDeviceType"
 
 const GlobalCart = () => {
     const { isMobile } = useDeviceType()
@@ -41,7 +41,7 @@ const GlobalCart = () => {
     return (
         <Sheet>
             <SheetTrigger>
-                <ShoppingCartCmp totalQuantity={totalQuantity} />
+                <CartButton totalQuantity={totalQuantity} />
             </SheetTrigger>
             <SheetContent side={isMobile ? "bottom" : "left"} className="space-y-5 overflow-y-auto max-h-[500px] rounded-t-3xl md:max-h-full md:rounded-none">
                 <SheetTitle className="text-2xl font-normal">Open Carts</SheetTitle>

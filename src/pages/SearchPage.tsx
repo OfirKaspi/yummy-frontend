@@ -7,9 +7,9 @@ import { getRestaurantsStore } from "@/store/restaurants/restaurantsSlice"
 import useDeviceType from "@/hooks/useDeviceType"
 import RestaurantSearch from "@/components/search/RestaurantSearch"
 import RestaurantList from "@/components/search/RestaurantList"
-import PaginationSelector from "@/components/PaginationSelector"
+import PaginationSelector from "@/components/search/PaginationSelector"
 import CuisineFilter from "@/components/search/CuisineFilter"
-import SortOptionDropdown from "@/components/SortOptionDropdown"
+import SortOptionDropdown from "@/components/search/SortOptionDropdown"
 import { Separator } from "@/components/ui/separator"
 
 const SearchPage = () => {
@@ -31,6 +31,7 @@ const SearchPage = () => {
             {!isMobile && (
                 <div className="sticky top-0 space-y-5">
                     <div className="space-y-5 border-2 p-5 rounded-lg">
+                        <h3 className="text-xl">Sort By</h3>
                         <SortOptionDropdown />
                     </div>
                     <div className="space-y-5 border-2 p-5 rounded-lg sticky">

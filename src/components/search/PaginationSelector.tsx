@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { selectPagination } from "@/store/restaurants/restaurantsSelectors"
 import { setPage } from "@/store/search/searchSlice"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 
 const PaginationSelector = () => {
     const dispatch = useDispatch()

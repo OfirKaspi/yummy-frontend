@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Restaurant, RestaurantCart } from '@/types'
-import { AspectRatio } from '@radix-ui/react-aspect-ratio'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
 
 type Props = {
     cart: RestaurantCart

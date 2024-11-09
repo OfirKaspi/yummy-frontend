@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleDarkMode, setDarkMode } from '@/store/darkMode/darkModeSlice'
-import { Switch } from '@/components/ui/switch'
 import { selectIsDarkMode } from '@/store/darkMode/darkModeSelectors'
+import { Switch } from '@/components/ui/switch'
 
 const DarkModeToggle = () => {
     const isDarkMode = useSelector(selectIsDarkMode)

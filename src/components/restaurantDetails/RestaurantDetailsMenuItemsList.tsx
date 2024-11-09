@@ -1,12 +1,13 @@
-import { MenuItem, CartItem } from "@/types"
+import { useState } from "react"
 import { Minus, Plus, Trash } from "lucide-react"
-import { AspectRatio } from "@radix-ui/react-aspect-ratio"
+import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { getButtonProperties } from "@/utils/getButtonProperties"
+import { showToast } from "@/utils/showToast"
+import { MenuItem, CartItem } from "@/types"
 import { Separator } from "@/components/ui/separator"
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { getButtonProperties } from "@/utils/getButtonProperties"
 
 type Props = {
     cartItems: CartItem[]
@@ -32,11 +33,13 @@ const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, handleCartAction
         const action = cartItems.some(i => i._id === selectedItem._id) ? "update" : "add"
         handleCartAction(cartItem, action)
         closeDialog()
+        showToast(`${cartItem.name} ${action === "update" ? "dishes quantity updated" : "added to cart"}`, "success")
     }
 
     const handleRemoveFromCart = (cartItem: CartItem) => {
         handleCartAction(cartItem, "remove")
         closeDialog()
+        showToast(`${cartItem.name} removed from cart`, "success")
     }
 
     const updateTempQuantity = (amount: number) => setTempQuantity(prev => Math.max(0, prev + amount))

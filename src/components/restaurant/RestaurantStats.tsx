@@ -1,5 +1,5 @@
-import { Restaurant } from "@/types"
 import { Clock, Truck } from "lucide-react"
+import { Restaurant } from "@/types"
 
 type Props = {
     restaurant: Restaurant

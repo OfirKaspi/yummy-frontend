@@ -33,7 +33,7 @@ const CuisineFilter = () => {
             {isMobile ? (
                 <SeeAll handleOnClick={toggleExpansion} isExpanded={isExpanded} text="All Cuisines" />
             ) : (
-                <span className="text-xl">All Cuisines</span>
+                <span className="text-lg">All Cuisines</span>
             )}
 
             <CuisineList

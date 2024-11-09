@@ -4,14 +4,14 @@ import { useParams } from 'react-router-dom'
 import { AppDispatch } from '@/store/store'
 import { getRestaurantByIdStore } from '@/store/restaurant/restaurantSlice'
 import { selectRestaurant, selectRestaurantLoading } from '@/store/restaurant/restaurantSelectors'
+import useCart from '@/hooks/useCart'
+import useCheckedFoodSection from '@/hooks/useCheckedFoodSection'
 import Loader from '@/components/Loader'
 import RestaurantDetailsNav from "@/components/restaurantDetails/RestaurantDetailsNav"
 import RestaurantDetailsDescription from "@/components/restaurantDetails/RestaurantDetailsDescription"
 import RestaurantDetailsCuisines from "@/components/restaurantDetails/RestaurantDetailsCuisines"
 import RestaurantDetailsMenuItemsList from "@/components/restaurantDetails/RestaurantDetailsMenuItemsList"
 import RestaurantDetailsOrderSheet from "@/components/restaurantDetails/RestaurantDetailsOrderSheet"
-import useCart from '@/hooks/useCart'
-import useCheckedFoodSection from '@/hooks/useCheckedFoodSection'
 
 const RestaurantDetailsPage = () => {
     const { restaurantId } = useParams()

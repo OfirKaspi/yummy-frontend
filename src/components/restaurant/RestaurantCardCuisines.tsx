@@ -1,5 +1,5 @@
-import { Restaurant } from "@/types"
 import { Dot } from "lucide-react"
+import { Restaurant } from "@/types"
 
 type Props = {
     restaurant: Restaurant

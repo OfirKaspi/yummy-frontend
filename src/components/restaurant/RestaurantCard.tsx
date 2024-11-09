@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import { Restaurant } from "@/types"
-import { AspectRatio } from "@radix-ui/react-aspect-ratio"
-import RestaurantStats from "@/components/RestaurantStats"
-import RestaurantCardCuisines from "@/components/restaurantDetails/RestaurantCardCuisines"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import RestaurantStats from "@/components/restaurant/RestaurantStats"
+import RestaurantCardCuisines from "@/components/restaurant/RestaurantCardCuisines"
 
 type Props = {
     restaurant: Restaurant
