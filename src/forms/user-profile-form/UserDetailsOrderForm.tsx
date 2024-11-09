@@ -12,7 +12,7 @@ import { showToast } from "@/utils/showToast"
 import { User } from "@/types"
 
 const formSchema = z.object({
-    email: z.string().optional(),
+    email: z.string().default(""),
     name: z.string().min(1, "Name is required"),
     addressLine1: z.string().min(1, "Address Line 1 is required"),
     country: z.string().min(1, "Country is required").default("Israel"),
@@ -158,7 +158,7 @@ const UserProfileForm = ({
                 {isLoading ? (
                     <LoadingButton />
                 ) : (
-                    <Button type="submit" className="bg-orange-500 dark:text-white">
+                    <Button type="submit" className="bg-orange-500 dark:text-white dark:hover:bg-orange-400">
                         {buttonText}
                     </Button>
                 )}

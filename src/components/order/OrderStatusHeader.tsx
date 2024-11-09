@@ -15,7 +15,7 @@ const OrderStatusHeader = ({ order }: Props) => {
     }
 
     return (
-        <section className="py-2">
+        <section>
             <Progress className="animate-pulse my-2 h-3" value={getOrderStatusInfo().progressValue} />
             <h1 className="text-lg font-medium tracking-tighter flex flex-col md:gap-5 md:flex-row md:justify-between">
                 <div>

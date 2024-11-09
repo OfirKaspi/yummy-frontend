@@ -88,45 +88,30 @@
   }
 }
 
-@media (min-width: 1024px) {
-
-  /* Custom scrollbar for desktop screens */
+@media (min-width: 768px) {
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
-  /* Track */
   ::-webkit-scrollbar-track {
     background: #f0f0f0;
-    /* Light color for the track */
     border-radius: 10px;
   }
 
-  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #888;
-    /* Gray color for the scrollbar thumb */
     border-radius: 10px;
   }
 
-  /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
-    /* Darker color when hovering */
   }
 
-  /* Firefox styling */
   * {
     scrollbar-width: thin;
-    /* Thin scrollbar width for Firefox */
     scrollbar-color: #888 #f0f0f0;
-    /* Thumb color and track color */
   }
-}
-
-body {
-  /* @apply font-poppins */
 }
 
 .no-arrows::-webkit-inner-spin-button,

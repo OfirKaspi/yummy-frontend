@@ -1,20 +1,16 @@
-import { Restaurant } from "@/types"
-
+import { Restaurant, CartItem } from "@/types"
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Minus, Plus, Trash } from "lucide-react"
 
-import { CartItem } from "@/types"
-
 type Props = {
     restaurant: Restaurant
     cartItems: CartItem[]
-    removeFromCart: (cartItem: CartItem) => void
-    adjustItemQuantity: (cartItem: CartItem, newQuantity: number) => void
+    handleCartAction: (cartItem: CartItem, action: "add" | "update" | "remove") => void
 }
 
-const OrderSummary = ({ cartItems, restaurant, removeFromCart, adjustItemQuantity }: Props) => {
+const OrderSummary = ({ cartItems, restaurant, handleCartAction }: Props) => {
     const getTotalCost = () => {
         const totalInCents = cartItems.reduce((total, cartItem) =>
             total + cartItem.price * cartItem.quantity,
@@ -40,7 +36,7 @@ const OrderSummary = ({ cartItems, restaurant, removeFromCart, adjustItemQuantit
                                 className="cursor-pointer"
                                 color="green"
                                 size={20}
-                                onClick={() => adjustItemQuantity(item, item.quantity + 1)}
+                                onClick={() => handleCartAction({ ...item, quantity: item.quantity + 1 }, "update")}
                             />
                             <Badge variant="outline">
                                 {item.quantity}
@@ -49,7 +45,7 @@ const OrderSummary = ({ cartItems, restaurant, removeFromCart, adjustItemQuantit
                                 className="cursor-pointer"
                                 color="red"
                                 size={20}
-                                onClick={() => adjustItemQuantity(item, item.quantity - 1)}
+                                onClick={() => handleCartAction({ ...item, quantity: item.quantity - 1 }, item.quantity - 1 > 0 ? "update" : "remove")}
                             />
                             {item.name}
                         </span>
@@ -59,7 +55,7 @@ const OrderSummary = ({ cartItems, restaurant, removeFromCart, adjustItemQuantit
                                 className="cursor-pointer"
                                 color="red"
                                 size={20}
-                                onClick={() => removeFromCart(item)}
+                                onClick={() => handleCartAction(item, "remove")}
                             />
                         </span>
                     </div>

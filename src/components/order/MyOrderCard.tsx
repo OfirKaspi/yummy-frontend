@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { ChevronDown, Dot } from "lucide-react"
 import { Order } from "@/types"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
@@ -36,8 +37,8 @@ const MyOrderCard = ({ order }: Props) => {
                     </div>
                 </button>
             </DialogTrigger>
-            <DialogContent className="p-5 gap-0 w-[300px] rounded-lg md:w-[500px] ">
-                <DialogHeader className="text-lg font-semibold pb-2">
+            <DialogContent className="p-5 space-y-2 gap-0 w-[300px] rounded-lg md:w-[500px] ">
+                <DialogHeader className="text-lg font-semibold">
                     {order.restaurant.restaurantName}
                 </DialogHeader>
                 <AspectRatio ratio={16 / 7}>
@@ -45,6 +46,7 @@ const MyOrderCard = ({ order }: Props) => {
                 </AspectRatio>
                 <OrderStatusHeader order={order} />
                 <OrderStatusDetails order={order} />
+                <Link to={`/details/${order.restaurant._id}`} className="text-orange-500 underline text-sm">See Restaurant</Link>
             </DialogContent>
         </Dialog >
     )

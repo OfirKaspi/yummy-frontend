@@ -2,7 +2,7 @@ import { useMemo } from "react"
 import { useGetMyOrders } from "@/hooks/order/useGetMyOrders"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import MyOrderCardMobile from "@/components/order/MyOrderCard"
+import MyOrderCard from "@/components/order/MyOrderCard"
 import NotFound from "@/components/NotFound"
 import Loader from "@/components/Loader"
 
@@ -33,7 +33,7 @@ const MyOrdersPage = () => {
             <TabsContent value="ongoing" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
                 {ongoingOrders.length > 0 ? (
                     ongoingOrders.map((order) => (
-                        <MyOrderCardMobile key={order._id} order={order} />
+                        <MyOrderCard key={order._id} order={order} />
                     ))
                 ) : (
                     <NotFound itemNotFound="Orders" />
@@ -43,7 +43,7 @@ const MyOrdersPage = () => {
             <TabsContent value="history" className="space-y-5">
                 {deliveredOrders.length > 0 ? (
                     deliveredOrders.map((order) => (
-                        <MyOrderCardMobile key={order._id} order={order} />
+                        <MyOrderCard key={order._id} order={order} />
                     ))
                 ) : (
                     <NotFound itemNotFound="Orders" />
