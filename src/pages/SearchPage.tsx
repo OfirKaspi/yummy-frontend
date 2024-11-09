@@ -27,7 +27,7 @@ const SearchPage = () => {
 
 
     return (
-        <div className="relative md:grid md:grid-cols-[270px_1fr] md:gap-5">
+        <div className="relative md:grid md:grid-cols-[270px_1fr] lg:grid-cols-[320px_1fr] md:gap-5">
             {!isMobile && (
                 <div className="sticky top-0 space-y-5">
                     <div className="space-y-5 border-2 p-5 rounded-lg">

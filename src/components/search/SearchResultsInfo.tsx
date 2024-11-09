@@ -7,7 +7,7 @@ const SearchResultsInfo = () => {
     const pagination = useSelector(selectPagination)
 
     return (
-        <div className="flex flex-col sm:flex-row sm:gap-1 sm:text-xl">
+        <div className="flex flex-col lg:flex-row lg:gap-1 lg:text-xl">
             <span>{pagination?.total} Restaurants found</span>
             <div className="flex gap-1">
                 in
