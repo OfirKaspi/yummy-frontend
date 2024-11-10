@@ -1,5 +1,5 @@
 import userFlowImage from '@/assets/userFlowImage.jpg'
-import yummyLogo from '/yummyFullLogo.png'
+import yummyLogo from "@/assets/yummyFullLogo.png"
 import { Separator } from '@/components/ui/separator'
 
 export default function AboutPage() {
