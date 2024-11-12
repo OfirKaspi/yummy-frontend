@@ -1,4 +1,3 @@
-import { z } from "zod"
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -9,43 +8,10 @@ import { Form } from "@/components/ui/form"
 import LoadingButton from "@/components/LoadingButton"
 import DetailsSection from "@/forms/manage-restaurant-form/DetailsSection"
 import CuisinesSection from "@/forms/manage-restaurant-form/CuisinesSection"
-import MenuSection from "@/forms/manage-restaurant-form/MenuSection"
+import MenuSection from "@/forms/manage-restaurant-form/MenuCategories"
 import ImageSection from "@/forms/manage-restaurant-form/ImageSection"
 import { showToast } from "@/utils/showToast"
-
-const formSchema = z.object({
-    restaurantName: z.string({
-        required_error: "Restaurant name is required"
-    }),
-    city: z.string({
-        required_error: "City is required"
-    }),
-    country: z.literal("Israel"),
-    deliveryPrice: z.coerce.number({
-        required_error: "Delivery price is required",
-        invalid_type_error: "Must be a valid number",
-    }),
-    estimatedDeliveryTime: z.coerce.number({
-        required_error: "Estimated delivery time is required",
-        invalid_type_error: "Must be a valid number",
-    }),
-    cuisines: z.array(z.string()).nonempty({
-        message: "Must select at least one item"
-    }),
-    menuItems: z.array(
-        z.object({
-            name: z.string().min(1, "Name is required"),
-            price: z.coerce.number().min(1, "Price is required"),
-        })
-    ),
-    imageUrl: z.string().optional(),
-    imageFile: z.instanceof(File, { message: "Image is required" }).optional(),
-}).refine((data) => data.imageUrl || data.imageFile, {
-    message: "Either image URL or image file must be provided",
-    path: ["imageFile"],
-})
-
-type RestaurantFormData = z.infer<typeof formSchema>
+import { RestaurantFormValues, restaurantSchema } from "@/types/restaurantFormType"
 
 type Props = {
     restaurant?: Restaurant
@@ -54,62 +20,80 @@ type Props = {
 }
 
 const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
-    const form = useForm<RestaurantFormData>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<RestaurantFormValues>({
+        resolver: zodResolver(restaurantSchema),
         defaultValues: {
             country: "Israel",
             cuisines: [],
-            menuItems: [{ name: "", price: 0 }]
+            menuCategories: [{ name: "", menuItems: [{ name: "", price: 0 }] }]
         }
     })
 
+    const { reset } = form
+
     useEffect(() => {
-        if (!restaurant) return
-
-        const deliveryPriceFormatted = parseInt(
-            (restaurant.deliveryPrice / 100).toFixed(2)
-        )
-
-        const menuItemsFormatted = restaurant.menuItems.map((item) => ({
-            name: item.name,
-            price: parseInt((item.price / 100).toFixed(2))
-        }))
-
-        const updatedRestaurant = {
-            ...restaurant,
-            deliveryPrice: deliveryPriceFormatted,
-            menuItems: menuItemsFormatted,
-            country: "Israel" as const,
+        console.log(restaurant)
+        if (restaurant) {
+            reset({
+                restaurantName: restaurant.restaurantName || "",
+                city: restaurant.city || "",
+                country: restaurant.country || "Israel",
+                cuisines: restaurant.cuisines || [],
+                deliveryPrice: restaurant.deliveryPrice || 0,
+                estimatedDeliveryTime: restaurant.estimatedDeliveryTime || 0,
+                imageUrl: restaurant.imageUrl || undefined,
+                imageFile: undefined,
+                menuCategories: restaurant.menuCategories?.map((category) => ({
+                    name: category.name || "",
+                    menuItems: category.menuItems.map((item) => ({
+                        name: item.name || "",
+                        price: item.price || 0,
+                        imageUrl: item.imageUrl || undefined,
+                        imageFile: undefined,
+                    })),
+                })) || [{ name: "", menuItems: [{ name: "", price: 0, imageFile: undefined }] }],
+            });
         }
+    }, [restaurant, reset]);
 
-        form.reset(updatedRestaurant)
-    }, [form, restaurant])
-
-    const onSubmit = (formDataJson: RestaurantFormData) => {
-        if (!formDataJson.city) {
+    const onSubmit = (data: RestaurantFormValues) => {
+        if (!data.city) {
             showToast("Please select a valid city from the suggestions.", "info")
             return
         }
 
         const formData = new FormData()
-        formData.append("restaurantName", formDataJson.restaurantName)
-        formData.append("city", formDataJson.city)
-        formData.append("country", formDataJson.country)
-        formData.append("deliveryPrice", (formDataJson.deliveryPrice * 100).toString())
-        formData.append("estimatedDeliveryTime", formDataJson.estimatedDeliveryTime.toString())
+        formData.append("restaurantName", data.restaurantName)
+        formData.append("city", data.city)
+        formData.append("country", data.country)
+        formData.append("deliveryPrice", (data.deliveryPrice * 100).toString())
+        formData.append("estimatedDeliveryTime", data.estimatedDeliveryTime.toString())
 
-        formDataJson.cuisines.forEach((cuisine, index) => {
+        data.cuisines.forEach((cuisine, index) => {
             formData.append(`cuisines[${index}]`, cuisine)
         })
 
-        formDataJson.menuItems.forEach((menuItem, index) => {
-            formData.append(`menuItems[${index}][name]`, menuItem.name)
-            formData.append(`menuItems[${index}][price]`, (menuItem.price * 100).toString())
-        })
+        data.menuCategories.forEach((category, catIndex) => {
+            formData.append(`menuCategories[${catIndex}][name]`, category.name);
+            category.menuItems.forEach((item, itemIndex) => {
+                formData.append(`menuCategories[${catIndex}][menuItems][${itemIndex}][name]`, item.name);
+                formData.append(`menuCategories[${catIndex}][menuItems][${itemIndex}][price]`, (item.price * 100).toString());
 
-        if (formDataJson.imageFile) {
-            formData.append("imageFile", formDataJson.imageFile)
+                console.log("formDate", Object.fromEntries(formData.entries()));
+                console.log("item", item);
+
+                if (item.imageFile instanceof File) {
+                    const formattedName = item.name.replace(/\s+/g, "");
+                    formData.append(`menuItem_${formattedName}_image`, item.imageFile);
+                }
+            });
+        });
+
+        if (data.imageFile) {
+            formData.append("imageFile", data.imageFile)
         }
+        // console.log("formDate", Object.fromEntries(formData.entries()));
+
 
         onSave(formData)
     }

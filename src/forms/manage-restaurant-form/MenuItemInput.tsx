@@ -5,71 +5,78 @@ import { Button } from "@/components/ui/button"
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 type Props = {
-    index: number
-    removeMenuItem: () => void
+  removeMenuItem: () => void
+  name: string
 }
 
-const MenuItemInput = ({ index, removeMenuItem }: Props) => {
-    const { control } = useFormContext()
+const MenuItemInput = ({ removeMenuItem, name }: Props) => {
+  const { control, watch } = useFormContext()
 
-    return (
-        <Card className="p-5 space-y-5 bg-transparent sm:shadow-none sm:border-0 sm:p-0 sm:space-y-0 sm:flex sm:flex-row sm:items-end sm:gap-2">
-            <FormField
-                control={control}
-                name={`menuItems.${index}.name`}
-                render={({ field, fieldState }) => (
-                    <FormItem>
-                        <FormLabel className="flex items-center gap-1">
-                            Name
-                            {fieldState.error ? " - " : ""}
-                            <FormMessage />
-                        </FormLabel>
-                        <FormControl>
-                            <Input
-                                {...field}
-                                placeholder="Cheese Pizza"
-                            />
-                        </FormControl>
-                    </FormItem>
-                )}
-            />
-            <div className="flex gap-2 items-end">
-                <FormField
-                    control={control}
-                    name={`menuItems.${index}.price`}
-                    render={({ field, fieldState }) => (
-                        <FormItem className="flex-1">
-                            <FormLabel className="flex items-center gap-1">
-                                Price ($)
-                                {fieldState.error ? " - " : ""}
-                                <FormMessage />
-                            </FormLabel>
-                            <FormControl>
-                                <Input
-                                    {...field}
-                                    value={field.value || ""}
-                                    type="number"
-                                    placeholder="8.50"
-                                    className="no-arrows"
-                                />
-                            </FormControl>
-                        </FormItem>
-                    )}
-                />
-                <Button
-                    variant={"destructive"}
-                    type="button"
-                    onClick={removeMenuItem}
-                    className="max-h-fit gap-2"
-                >
-                    <Trash2 className="h-4 w-4 text-white" />
-                    Remove Menu Item
-                </Button>
-            </div>
-        </Card>
-    )
+  const existingImageUrl = watch(`${name}.imageUrl`)
+
+  return (
+    <Card className="p-5 space-y-5">
+
+      {/* NAME */}
+      <FormField control={control} name={`${name}.name`} render={({ field }) => (
+        <FormItem>
+          <FormLabel className="flex flex-col gap-1">
+            Name
+            <FormMessage />
+          </FormLabel>
+          <FormControl>
+            <Input {...field} placeholder="Cheese Pizza" />
+          </FormControl>
+        </FormItem>
+      )}
+      />
+
+      {/* PRICE */}
+      <FormField control={control} name={`${name}.price`} render={({ field }) => (
+        <FormItem className="flex-1">
+          <FormLabel className="flex flex-col gap-1">
+            Price ($)
+            <FormMessage />
+          </FormLabel>
+          <FormControl>
+            <Input {...field} value={field.value || ""} type="number" placeholder="8.50" className="no-arrows" />
+          </FormControl>
+        </FormItem>
+      )}
+      />
+
+      {/* IMAGE */}
+      <div className={existingImageUrl && "grid grid-cols-[92px_1fr] gap-5"}>
+        {existingImageUrl && (
+          <AspectRatio ratio={1 / 1} >
+            <img src={existingImageUrl} className="rounded-md object-cover h-[92px] w-[92px]" />
+          </AspectRatio>
+        )}
+        <div className="flex flex-col gap-5">
+          <FormField control={control} name={`${name}.imageFile`} render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input type="file" accept=".jpg, .jpeg, .png .svg" onChange={(e) => field.onChange(e.target.files ? e.target.files[0] : null)} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+          />
+
+          {/* REMOVE ITEM */}
+          <Button variant="destructive" type="button" onClick={removeMenuItem} className="gap-2">
+            <Trash2 size={16} />
+            Remove
+          </Button>
+        </div>
+      </div>
+
+
+    </Card>
+  )
 }
 
 export default MenuItemInput

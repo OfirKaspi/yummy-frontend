@@ -37,15 +37,21 @@ export type Restaurant = {
     deliveryPrice: number
     estimatedDeliveryTime: number
     cuisines: string[]
-    menuItems: MenuItem[]
+    menuCategories: MenuCategory[]
     imageUrl: string
     lastUpdated: string
+}
+
+export type MenuCategory = {
+    name: string
+    menuItems: MenuItem[]
 }
 
 export type MenuItem = {
     _id: string
     name: string
     price: number
+    imageUrl: string
 }
 
 export type RestaurantSearchResponse = {
@@ -89,11 +95,7 @@ export type OrderStatus =
     | "delivered"
 
 export type CheckoutSessionRequest = {
-    cartItems: {
-        menuItemId: string
-        name: string
-        quantity: string
-    }[]
+    cartItems: CartItem[]
     deliveryDetails: {
         email: string
         name: string
@@ -102,7 +104,6 @@ export type CheckoutSessionRequest = {
     }
     restaurantId: string
 }
-
 
 // Search
 export type Pagination = {
@@ -124,7 +125,6 @@ export type SearchState = {
 }
 
 // City
-
 export type City = {
     id: string
     name: string
