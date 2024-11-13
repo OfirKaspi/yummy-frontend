@@ -35,7 +35,7 @@ const ImageSection = () => {
               <FormControl>
                 <Input
                   type="file"
-                  accept=".jpg, .jpeg, .png"
+                  accept=".jpg, .jpeg, .png .svg"
                   onChange={(e) =>
                     field.onChange(e.target.files ? e.target.files[0] : null)
                   }

@@ -1,18 +1,16 @@
 import { useFormContext } from "react-hook-form"
-import { Trash2 } from 'lucide-react'
-
-import { Button } from "@/components/ui/button"
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import RemoveButton from "@/components/RemoveButton"
 
 type Props = {
   removeMenuItem: () => void
   name: string
 }
 
-const MenuItemInput = ({ removeMenuItem, name }: Props) => {
+const MenuItemCard = ({ removeMenuItem, name }: Props) => {
   const { control, watch } = useFormContext()
 
   const existingImageUrl = watch(`${name}.imageUrl`)
@@ -25,11 +23,11 @@ const MenuItemInput = ({ removeMenuItem, name }: Props) => {
         <FormItem>
           <FormLabel className="flex flex-col gap-1">
             Name
-            <FormMessage />
           </FormLabel>
           <FormControl>
             <Input {...field} placeholder="Cheese Pizza" />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
       />
@@ -39,11 +37,11 @@ const MenuItemInput = ({ removeMenuItem, name }: Props) => {
         <FormItem className="flex-1">
           <FormLabel className="flex flex-col gap-1">
             Price ($)
-            <FormMessage />
           </FormLabel>
           <FormControl>
             <Input {...field} value={field.value || ""} type="number" placeholder="8.50" className="no-arrows" />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
       />
@@ -52,7 +50,7 @@ const MenuItemInput = ({ removeMenuItem, name }: Props) => {
       <div className={existingImageUrl && "grid grid-cols-[92px_1fr] gap-5"}>
         {existingImageUrl && (
           <AspectRatio ratio={1 / 1} >
-            <img src={existingImageUrl} className="rounded-md object-cover h-[92px] w-[92px]" />
+            <img src={existingImageUrl} className="rounded-md object-cover h-full w-full" />
           </AspectRatio>
         )}
         <div className="flex flex-col gap-5">
@@ -67,16 +65,11 @@ const MenuItemInput = ({ removeMenuItem, name }: Props) => {
           />
 
           {/* REMOVE ITEM */}
-          <Button variant="destructive" type="button" onClick={removeMenuItem} className="gap-2">
-            <Trash2 size={16} />
-            Remove
-          </Button>
+          <RemoveButton remove={removeMenuItem} propertyName="item" />
         </div>
       </div>
-
-
     </Card>
   )
 }
 
-export default MenuItemInput
+export default MenuItemCard

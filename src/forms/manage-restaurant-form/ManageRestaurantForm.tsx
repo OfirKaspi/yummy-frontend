@@ -8,7 +8,7 @@ import { Form } from "@/components/ui/form"
 import LoadingButton from "@/components/LoadingButton"
 import DetailsSection from "@/forms/manage-restaurant-form/DetailsSection"
 import CuisinesSection from "@/forms/manage-restaurant-form/CuisinesSection"
-import MenuSection from "@/forms/manage-restaurant-form/MenuCategories"
+import MenuCategories from "@/forms/manage-restaurant-form/MenuCategories"
 import ImageSection from "@/forms/manage-restaurant-form/ImageSection"
 import { showToast } from "@/utils/showToast"
 import { RestaurantFormValues, restaurantSchema } from "@/types/restaurantFormType"
@@ -52,9 +52,9 @@ const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
                         imageFile: undefined,
                     })),
                 })) || [{ name: "", menuItems: [{ name: "", price: 0, imageFile: undefined }] }],
-            });
+            })
         }
-    }, [restaurant, reset]);
+    }, [restaurant, reset])
 
     const onSubmit = (data: RestaurantFormValues) => {
         if (!data.city) {
@@ -74,26 +74,24 @@ const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
         })
 
         data.menuCategories.forEach((category, catIndex) => {
-            formData.append(`menuCategories[${catIndex}][name]`, category.name);
+            formData.append(`menuCategories[${catIndex}][name]`, category.name)
             category.menuItems.forEach((item, itemIndex) => {
-                formData.append(`menuCategories[${catIndex}][menuItems][${itemIndex}][name]`, item.name);
-                formData.append(`menuCategories[${catIndex}][menuItems][${itemIndex}][price]`, (item.price * 100).toString());
+                formData.append(`menuCategories[${catIndex}][menuItems][${itemIndex}][name]`, item.name)
+                formData.append(`menuCategories[${catIndex}][menuItems][${itemIndex}][price]`, (item.price * 100).toString())
 
-                console.log("formDate", Object.fromEntries(formData.entries()));
-                console.log("item", item);
+                console.log("formDate", Object.fromEntries(formData.entries()))
+                console.log("item", item)
 
                 if (item.imageFile instanceof File) {
-                    const formattedName = item.name.replace(/\s+/g, "");
-                    formData.append(`menuItem_${formattedName}_image`, item.imageFile);
+                    const formattedName = item.name.replace(/\s+/g, "")
+                    formData.append(`menuItem_${formattedName}_image`, item.imageFile)
                 }
-            });
-        });
+            })
+        })
 
         if (data.imageFile) {
             formData.append("imageFile", data.imageFile)
         }
-        // console.log("formDate", Object.fromEntries(formData.entries()));
-
 
         onSave(formData)
     }
@@ -108,7 +106,7 @@ const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
                 <Separator />
                 <CuisinesSection />
                 <Separator />
-                <MenuSection />
+                <MenuCategories />
                 <Separator />
                 <ImageSection />
 

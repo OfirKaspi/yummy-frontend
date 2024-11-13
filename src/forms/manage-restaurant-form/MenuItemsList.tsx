@@ -1,13 +1,13 @@
 import { useFieldArray, useFormContext } from "react-hook-form"
-import MenuItemInput from "@/forms/manage-restaurant-form/MenuItemInput"
+import MenuItemCard from "@/forms/manage-restaurant-form/MenuItemCard"
 import { FormDescription, FormField, FormItem } from "@/components/ui/form"
-import { Button } from "@/components/ui/button"
+import AddButton from "@/components/AddButton"
 
 type MenuSectionProps = {
   categoryIndex: number
 }
 
-const MenuItems = ({ categoryIndex }: MenuSectionProps) => {
+const MenuItemsList = ({ categoryIndex }: MenuSectionProps) => {
   const { control } = useFormContext()
   const { fields, append, remove } = useFieldArray({
     control,
@@ -25,7 +25,7 @@ const MenuItems = ({ categoryIndex }: MenuSectionProps) => {
       <FormField control={control} name={`menuCategories.${categoryIndex}.menuItems`} render={() => (
         <FormItem className="grid gap-5 md:grid-cols-2">
           {fields.map((field, index) => (
-            <MenuItemInput
+            <MenuItemCard
               key={field.id}
               removeMenuItem={() => remove(index)}
               name={`menuCategories.${categoryIndex}.menuItems.${index}`}
@@ -33,11 +33,9 @@ const MenuItems = ({ categoryIndex }: MenuSectionProps) => {
           ))}
         </FormItem>
       )} />
-      <Button className="bg-orange-500 dark:hover:bg-orange-400 dark:text-white" type="button" onClick={() => append({ name: "", price: "" })}>
-        Add Menu Item
-      </Button>
+      <AddButton add={() => append({ name: "", price: "" })} propertyName="Menu Item" />
     </div>
   )
 }
 
-export default MenuItems
+export default MenuItemsList

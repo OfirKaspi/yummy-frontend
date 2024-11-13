@@ -1,10 +1,10 @@
 import { useFieldArray, useFormContext } from "react-hook-form"
-import { Trash2 } from "lucide-react"
-import MenuItems from "@/forms/manage-restaurant-form/MenuItems"
-import { Button } from "@/components/ui/button"
+import MenuItemsList from "@/forms/manage-restaurant-form/MenuItemsList"
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import RemoveButton from "@/components/RemoveButton"
+import AddButton from "@/components/AddButton"
 
 
 const MenuCategories = () => {
@@ -34,7 +34,6 @@ const MenuCategories = () => {
 										<FormItem className="flex-1">
 											<FormLabel className="flex flex-col text-xl">
 												Category Name
-												<FormMessage />
 											</FormLabel>
 											<FormControl>
 												<Input
@@ -42,28 +41,20 @@ const MenuCategories = () => {
 													placeholder="Main courses..."
 												/>
 											</FormControl>
+											<FormMessage />
 										</FormItem>
 									)}
 								/>
-								<Button variant="destructive" type="button" onClick={() => remove(index)} className="gap-2">
-									<Trash2 size={16} />
-									Remove
-								</Button>
+								<RemoveButton remove={() => remove(index)} propertyName="category" />
 							</div>
-							<MenuItems categoryIndex={index} />
+							<MenuItemsList categoryIndex={index} />
 							<Separator />
 						</div>
 					))}
 				</FormItem>
 			)} />
 
-			<Button
-				className="bg-orange-500 dark:hover:bg-orange-400 dark:text-white"
-				type="button"
-				onClick={() => append({ name: '', menuItems: [{ name: '', price: '' }] })}
-			>
-				Add Menu Category
-			</Button>
+			<AddButton add={() => append({ name: '', menuItems: [{ name: '', price: '' }] })} propertyName="Menu Category" />
 		</div>
 	)
 }
