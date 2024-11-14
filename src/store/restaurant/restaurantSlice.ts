@@ -1,4 +1,3 @@
-// restaurantSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { Restaurant } from '@/types'
 import { getRestaurantById } from '@/api/restaurantAPI'

@@ -1,8 +1,8 @@
+import { useSelector } from "react-redux"
+import { StarIcon } from "lucide-react"
 import { StarFilledIcon } from "@radix-ui/react-icons"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip"
-import { StarIcon } from "lucide-react"
 import { selectFavoriteRestaurants, selectUserLoading } from "@/store/user/userSelectors"
-import { useSelector } from "react-redux"
 
 type Props = {
   onClick: () => void
