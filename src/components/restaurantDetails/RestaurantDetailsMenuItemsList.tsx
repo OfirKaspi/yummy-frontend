@@ -8,10 +8,11 @@ import { Separator } from "@/components/ui/separator"
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { SkeletonCard } from "@/components/ui/skeleton"
 
 type Props = {
     cartItems: CartItem[]
-    menuItems: MenuItem[]
+    menuItems?: MenuItem[]
     handleCartAction: (cartItem: CartItem, action: "add" | "update" | "remove") => void
 }
 
@@ -44,6 +45,10 @@ const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, handleCartAction
 
     const updateTempQuantity = (amount: number) => setTempQuantity(prev => Math.max(0, prev + amount))
 
+    if (!menuItems) {
+        return <SkeletonCard />
+    }
+
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-5 gap-5">
             {menuItems.map((menuItem) => {
@@ -63,16 +68,11 @@ const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, handleCartAction
                                 className={`relative flex flex-col items-start cursor-pointer rounded-xl p-3 gap-1 border-2 ${isSelected ? 'border-green-500' : ''}`}
                             >
                                 <AspectRatio ratio={5 / 3}>
-                                    <img
-                                        src="https://www.announcementconverters.com/media/catalog/product/S/-/S-ILG11F_9.JPG"
-                                        alt={menuItem.name}
-                                        className="object-cover w-full h-full rounded-xl"
-                                    />
-                                    {/* <img src={menuItem.img} alt={menuItem.name} className="object-cover w-full h-full rounded-xl" /> */}
+                                    <img src={menuItem.imageUrl} alt={`${menuItem.name}-img`} className="object-cover w-full h-full rounded-xl" />
                                 </AspectRatio>
                                 <span className="font-medium">{menuItem.name}</span>
                                 <div className="flex justify-between w-full">
-                                    <span>${(menuItem.price / 100).toFixed(2)}</span>
+                                    <span>${(menuItem.price / 100).toFixed()}</span>
                                     <Plus className="rounded-full bg-orange-500 text-white p-1" />
                                 </div>
                             </div>
@@ -92,7 +92,7 @@ const RestaurantDetailsMenuItemsList = ({ menuItems, cartItems, handleCartAction
                                         <Minus size={20} />
                                     </Button>
                                 </div>
-                                <div className="flex flex-col text-gray-600 text-sm">
+                                <div className="flex flex-col text-muted-foreground text-sm">
                                     <span>Dish price: ${(menuItem.price / 100).toFixed(2)}</span>
                                     <span>Total: ${((menuItem.price * tempQuantity) / 100).toFixed(2)} (${(menuItem.price / 100).toFixed(2)} x {tempQuantity})</span>
                                 </div>

@@ -30,10 +30,12 @@ const MyOrdersPage = () => {
                 <TabsTrigger value="history" className="flex-1">History</TabsTrigger>
             </TabsList>
             <Separator />
-            <TabsContent value="ongoing" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
+            <TabsContent value="ongoing">
                 {ongoingOrders.length > 0 ? (
                     ongoingOrders.map((order) => (
-                        <MyOrderCard key={order._id} order={order} />
+                        <div key={order._id} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
+                            <MyOrderCard order={order} />
+                        </div>
                     ))
                 ) : (
                     <NotFound itemNotFound="Orders" />

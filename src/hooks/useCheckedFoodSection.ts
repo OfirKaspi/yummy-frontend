@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Restaurant } from '@/types'
+import { MenuCategory, Restaurant } from '@/types'
 
-const useCheckedFoodSection = (restaurant: Restaurant | null) => {
-    const [checkedFoodSection, setCheckedFoodSection] = useState<string>('')
+const useCheckedFoodSection = (restaurant: Restaurant) => {
+    const [checkedFoodSection, setCheckedFoodSection] = useState<MenuCategory>()
 
     useEffect(() => {
-        if (restaurant?.cuisines?.length) {
-            setCheckedFoodSection(restaurant.cuisines[0])
+        if (restaurant.menuCategories.length) {
+            setCheckedFoodSection(restaurant.menuCategories[0])
         }
     }, [restaurant])
 
-    const handleFoodSection = (foodSection: string) => setCheckedFoodSection(foodSection)
+    const handleFoodSection = (menuCategory: MenuCategory) => setCheckedFoodSection(menuCategory)
 
     return { checkedFoodSection, handleFoodSection }
 }

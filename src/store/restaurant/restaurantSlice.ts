@@ -18,8 +18,7 @@ const initialState: RestaurantState = {
 export const getRestaurantByIdStore = createAsyncThunk<Restaurant, string>(
     'restaurant/getRestaurantByIdStore',
     async (restaurantId: string) => {
-        const restaurant = await getRestaurantById(restaurantId)
-        return restaurant
+        return await getRestaurantById(restaurantId)
     }
 )
 

@@ -22,6 +22,7 @@ const RestaurantCard = ({ restaurant, isColumn = false }: Props) => {
                 <img src={restaurant.imageUrl} className={`rounded-lg object-cover ${isColumn ? "h-full w-full" : 'h-20 w-20'}`} />
             </AspectRatio>
             <div className={`flex flex-col justify-center gap-1`}>
+                <h3 className="text-lg hover:underline">{restaurant.restaurantName}</h3>
                 <RestaurantCardCuisines restaurant={restaurant} />
                 <RestaurantStats restaurant={restaurant} />
             </div>

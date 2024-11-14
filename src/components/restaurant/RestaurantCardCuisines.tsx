@@ -11,7 +11,6 @@ const RestaurantCardCuisines = ({ restaurant }: Props) => {
 
     return (
         <>
-            <h3 className="text-lg hover:underline">{restaurant.restaurantName}</h3>
             <div className="flex items-center text-gray-800 dark:text-gray-200 text-sm">
                 {visibleCuisines.map((cuisine, index) => (
                     <span key={cuisine} className="flex items-center">
