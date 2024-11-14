@@ -26,10 +26,7 @@ const useCheckout = (restaurant: Restaurant, cartItems: CartItem[]) => {
 
         const checkoutData = {
             cartItems: cartItems.map((cartItem) => ({
-                menuItemId: cartItem._id,
-                name: cartItem.name,
-                quantity: cartItem.quantity.toString(),
-                price: cartItem.price
+                ...cartItem,
             })),
             restaurantId: restaurant._id,
             deliveryDetails: {
