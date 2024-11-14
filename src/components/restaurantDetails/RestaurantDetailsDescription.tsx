@@ -39,12 +39,7 @@ const RestaurantDetailsDescription = ({ restaurant }: Props) => {
             </div>
             <RestaurantStats restaurant={restaurant} />
             <RestaurantCardCuisines restaurant={restaurant} />
-            <p className="text-muted-foreground text-sm">
-                At {restaurant.restaurantName}, enjoy a vibrant dining experience with a diverse
-                menu featuring fresh ingredients and creative dishes.
-                Whether you’re here for a casual lunch or a special dinner,
-                our welcoming atmosphere and attentive service make every meal memorable.
-            </p>
+            <p className="text-muted-foreground text-sm">{restaurant.description}</p>
         </div>
     )
 }

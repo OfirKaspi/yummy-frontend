@@ -14,7 +14,7 @@ const AddButton = ({ add, propertyName }: Props) => {
   }
 
   return (
-    <Button className="bg-orange-500 dark:hover:bg-orange-400 dark:text-white" onClick={handleAdd}>
+    <Button className="bg-orange-500 dark:hover:bg-orange-400 dark:text-white" type="button" onClick={handleAdd}>
       Add {propertyName}
     </Button>
   )

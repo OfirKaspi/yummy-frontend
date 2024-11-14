@@ -39,6 +39,7 @@ export type Restaurant = {
     cuisines: string[]
     menuCategories: MenuCategory[]
     imageUrl: string
+    description: string
     lastUpdated: string
 }
 

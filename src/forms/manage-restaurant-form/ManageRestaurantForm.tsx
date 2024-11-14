@@ -38,6 +38,7 @@ const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
                 restaurantName: restaurant.restaurantName || "",
                 city: restaurant.city || "",
                 country: restaurant.country || "Israel",
+                description: restaurant.description,
                 cuisines: restaurant.cuisines || [],
                 deliveryPrice: restaurant.deliveryPrice || 0,
                 estimatedDeliveryTime: restaurant.estimatedDeliveryTime || 0,
@@ -66,6 +67,7 @@ const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
         formData.append("restaurantName", data.restaurantName)
         formData.append("city", data.city)
         formData.append("country", data.country)
+        formData.append("description", data.description)
         formData.append("deliveryPrice", (data.deliveryPrice * 100).toString())
         formData.append("estimatedDeliveryTime", data.estimatedDeliveryTime.toString())
 

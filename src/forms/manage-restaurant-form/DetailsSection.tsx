@@ -1,9 +1,10 @@
+import { useState } from "react"
 import { useFormContext } from "react-hook-form"
+import { useCitySearch } from "@/hooks/useCitySearch"
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import CityList from "@/components/search/CityList"
-import { useCitySearch } from "@/hooks/useCitySearch"
-import { useState } from "react"
+import { Textarea } from "@/components/ui/textarea"
 
 const DetailsSection = () => {
     const { control, setValue } = useFormContext()
@@ -89,7 +90,7 @@ const DetailsSection = () => {
                                 type="number"
                                 step="1"
                                 value={field.value ?? ""}
-                                placeholder="30"
+                                placeholder="30..."
                                 className="no-arrows"
                             />
                         </FormControl>
@@ -107,10 +108,28 @@ const DetailsSection = () => {
                             <Input
                                 {...field}
                                 type="number"
-                                step="0.01"
+                                step="1"
                                 value={field.value ?? ""}
-                                placeholder="1.50"
+                                placeholder="5..."
                                 className="no-arrows"
+                            />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="description"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Description</FormLabel>
+                        <FormControl >
+                            <Textarea
+                                {...field}
+                                value={field.value ?? ""}
+                                placeholder="Enter your description here"
+                                className="resize-none"
                             />
                         </FormControl>
                         <FormMessage />

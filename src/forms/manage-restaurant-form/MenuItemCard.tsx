@@ -39,7 +39,7 @@ const MenuItemCard = ({ removeMenuItem, name }: Props) => {
             Price ($)
           </FormLabel>
           <FormControl>
-            <Input {...field} value={field.value || ""} type="number" placeholder="8.50" className="no-arrows" />
+            <Input {...field} value={field.value || ""} type="number" placeholder="8..." className="no-arrows" />
           </FormControl>
           <FormMessage />
         </FormItem>
