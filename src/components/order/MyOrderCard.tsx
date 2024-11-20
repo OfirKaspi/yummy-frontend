@@ -11,6 +11,8 @@ type Props = {
 }
 
 const MyOrderCard = ({ order }: Props) => {
+    const totalItemsQuantity = order.cartItems.reduce((sum, item) => sum + item.quantity, 0)
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -27,7 +29,7 @@ const MyOrderCard = ({ order }: Props) => {
                                 <span className="flex">
                                     Total: ${(order.totalAmount / 100).toFixed(2)}
                                     <Dot size={16} />
-                                    {order.cartItems.length} {order.cartItems.length > 1 ? "items" : "item"}
+                                    {totalItemsQuantity} {totalItemsQuantity > 1 ? "items" : "1 item"}
                                 </span>
                                 <span className="flex gap-1 text-orange-500 underline">
                                     See More <ChevronDown size={16} />

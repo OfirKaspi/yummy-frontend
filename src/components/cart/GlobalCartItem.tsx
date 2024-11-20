@@ -8,6 +8,8 @@ type Props = {
 }
 
 const GlobalCartItem = ({ restaurant, cart }: Props) => {
+    const totalItemsQuantity = cart.cartItems.reduce((sum, item) => sum + item.quantity, 0)
+
     return (
         <div className="grid grid-cols-[80px_1fr] items-center gap-5">
             <AspectRatio ratio={1 / 1}>
@@ -17,7 +19,7 @@ const GlobalCartItem = ({ restaurant, cart }: Props) => {
                 <div className="flex items-center justify-between">
                     <span className="font-medium text-lg">{restaurant.restaurantName}</span>
                     <span className="text-gray-800 dark:text-gray-200 text-xs">
-                        {cart.cartItems.reduce((sum, item) => sum + item.quantity, 0)} items
+                        {totalItemsQuantity} {totalItemsQuantity > 1 ? "items" : "1 item"}
                     </span>
                 </div>
                 <div className="flex flex-col gap-1 text-xs text-gray-800 dark:text-gray-200">

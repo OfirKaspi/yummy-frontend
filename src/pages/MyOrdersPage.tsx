@@ -1,4 +1,5 @@
 import { useMemo } from "react"
+import { Order } from "@/types"
 import { useGetMyOrders } from "@/hooks/order/useGetMyOrders"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -23,6 +24,18 @@ const MyOrdersPage = () => {
         return <Loader isFullScreen={true} />
     }
 
+    const renderContent = (orders: Order[]) => {
+        return orders.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
+                {orders.map((order) => (
+                    <MyOrderCard key={order._id} order={order} />
+                ))}
+            </div>
+        ) : (
+            <NotFound itemNotFound="Orders" />
+        )
+    }
+
     return (
         <Tabs defaultValue="ongoing" className="space-y-5">
             <TabsList className="flex md:w-[300px]">
@@ -31,25 +44,10 @@ const MyOrdersPage = () => {
             </TabsList>
             <Separator />
             <TabsContent value="ongoing">
-                {ongoingOrders.length > 0 ? (
-                    ongoingOrders.map((order) => (
-                        <div key={order._id} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
-                            <MyOrderCard order={order} />
-                        </div>
-                    ))
-                ) : (
-                    <NotFound itemNotFound="Orders" />
-                )}
-
+                {renderContent(ongoingOrders)}
             </TabsContent>
             <TabsContent value="history" className="space-y-5">
-                {deliveredOrders.length > 0 ? (
-                    deliveredOrders.map((order) => (
-                        <MyOrderCard key={order._id} order={order} />
-                    ))
-                ) : (
-                    <NotFound itemNotFound="Orders" />
-                )}
+                {renderContent(deliveredOrders)}
             </TabsContent>
         </Tabs>
     )
