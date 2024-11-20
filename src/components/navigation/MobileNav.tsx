@@ -8,9 +8,10 @@ import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import SearchFilter from '@/components/search/SearchFilter'
 import DarkModeSwitch from '@/components/DarkModeSwitch'
+import LogoutButton from '@/components/navigation/LogoutButton'
 
 const MobileNav = () => {
-    const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
+    const { isAuthenticated, loginWithRedirect, user } = useAuth0()
     const location = useLocation()
     const [isOpen, setIsOpen] = useState(false)
 
@@ -55,9 +56,7 @@ const MobileNav = () => {
                                     {label}
                                 </Link>
                             ))}
-                            <Button className="font-medium w-full" onClick={() => { logout(); setIsOpen(false); }}>
-                                Log Out
-                            </Button>
+                            <LogoutButton close={() => setIsOpen(false)} />
                         </div>
                     ) : (
                         <Button className="flex-1 font-bold bg-orange-500" onClick={() => { loginWithRedirect(); setIsOpen(false); }}>
