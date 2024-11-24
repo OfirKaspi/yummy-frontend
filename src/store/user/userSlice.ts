@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getMyUserRequest, createMyUserRequest, updateMyUserRequest } from '@/api/myUserAPI'
+import { fetchOrCreateMyUserRequest, updateMyUserRequest } from '@/api/myUserAPI'
 import { User, CreateUserRequest, UpdateMyUserRequest, Address } from '@/types'
 import { showToast } from '@/utils/showToast'
 
@@ -15,12 +15,8 @@ const initialState: UserState = {
     error: null,
 }
 
-export const getUser = createAsyncThunk('user/getUser', async (accessToken: string) => {
-    return await getMyUserRequest(accessToken)
-})
-
-export const createUser = createAsyncThunk('user/createUser', async ({ accessToken, userData }: { accessToken: string, userData: CreateUserRequest }) => {
-    return await createMyUserRequest(accessToken, userData)
+export const fetchOrCreateUser = createAsyncThunk('user/fetchOrCreateUser', async ({ accessToken, userData }: { accessToken: string, userData?: CreateUserRequest }) => {
+    return await fetchOrCreateMyUserRequest(accessToken, userData)
 })
 
 export const updateUserName = createAsyncThunk('user/updateUserName', async ({ accessToken, name }: { accessToken: string, name: string }) => {
@@ -41,35 +37,25 @@ export const updateUserFavoriteRestaurants = createAsyncThunk('user/updateUserFa
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        clearUser(state) {
+            localStorage.removeItem("user");
+            state.user = null
+        },
+    },
     extraReducers: (builder) => {
         builder
-            .addCase(getUser.pending, (state) => {
+            .addCase(fetchOrCreateUser.pending, (state) => {
                 state.loading = true
                 state.error = null
             })
-            .addCase(getUser.fulfilled, (state, action) => {
+            .addCase(fetchOrCreateUser.fulfilled, (state, action) => {
                 state.user = action.payload
                 state.loading = false
             })
-            .addCase(getUser.rejected, (state) => {
+            .addCase(fetchOrCreateUser.rejected, (state) => {
                 state.loading = false
-                state.error = 'Failed to get user'
-                showToast('Failed to get user', 'error')
-            })
-            .addCase(createUser.pending, (state) => {
-                state.loading = true
-                state.error = null
-            })
-            .addCase(createUser.fulfilled, (state, action) => {
-                state.user = action.payload
-                state.loading = false
-                // showToast('User created!', 'success')
-            })
-            .addCase(createUser.rejected, (state) => {
-                state.loading = false
-                state.error = 'Failed to create user'
-                showToast('Failed to create user', 'error')
+                state.error = 'Failed to fetch or create user'
             })
             .addCase(updateUserName.pending, (state) => {
                 state.loading = true
@@ -118,5 +104,7 @@ const userSlice = createSlice({
             })
     }
 })
+
+export const { clearUser } = userSlice.actions;
 
 export default userSlice.reducer

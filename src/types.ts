@@ -19,6 +19,7 @@ export type Address = {
 export type CreateUserRequest = {
     auth0Id: string
     email: string
+    name: string
 }
 
 export type UpdateMyUserRequest = {

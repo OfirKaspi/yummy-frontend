@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleDarkMode, setDarkMode } from '@/store/darkMode/darkModeSlice'
+import { toggleDarkMode } from '@/store/darkMode/darkModeSlice'
 import { selectIsDarkMode } from '@/store/darkMode/darkModeSelectors'
 import { Switch } from '@/components/ui/switch'
 
@@ -8,17 +7,8 @@ const DarkModeToggle = () => {
     const isDarkMode = useSelector(selectIsDarkMode)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        const savedMode = localStorage.getItem('darkMode') === 'true'
-        dispatch(setDarkMode(savedMode))
-        document.documentElement.classList.toggle('dark', savedMode)
-    }, [dispatch])
-
     const handleToggle = () => {
         dispatch(toggleDarkMode())
-        const newMode = !isDarkMode
-        localStorage.setItem('darkMode', newMode.toString())
-        document.documentElement.classList.toggle('dark', newMode)
     }
 
     return (

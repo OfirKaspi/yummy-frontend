@@ -1,29 +1,40 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit"
+import { persistStore, persistReducer } from "redux-persist"
+import storage from "redux-persist/lib/storage"
+import { combineReducers } from "redux"
 
-import restaurantsReducer from '@/store/restaurants/restaurantsSlice'
-import restaurantReducer from '@/store/restaurant/restaurantSlice'
-import searchReducer from '@/store/search/searchSlice'
-import userReducer from '@/store/user/userSlice'
-import darkModeReducer from '@/store/darkMode/darkModeSlice'
+import restaurantsReducer from "@/store/restaurants/restaurantsSlice"
+import restaurantReducer from "@/store/restaurant/restaurantSlice"
+import searchReducer from "@/store/search/searchSlice"
+import userReducer from "@/store/user/userSlice"
+import darkModeReducer from "@/store/darkMode/darkModeSlice"
 
-export type RootState = {
-    restaurants: ReturnType<typeof restaurantsReducer>
-    restaurant: ReturnType<typeof restaurantReducer>
-    search: ReturnType<typeof searchReducer>
-    user: ReturnType<typeof userReducer>
-    darkMode: ReturnType<typeof darkModeReducer>
+const persistConfig = {
+    key: "root",
+    storage,
 }
 
-export const store = configureStore({
-    reducer: {
-        restaurants: restaurantsReducer,
-        restaurant: restaurantReducer,
-        search: searchReducer,
-        user: userReducer,
-        darkMode: darkModeReducer,
-    },
+const rootReducer = combineReducers({
+    restaurants: restaurantsReducer,
+    restaurant: restaurantReducer,
+    search: searchReducer,
+    user: userReducer,
+    darkMode: darkModeReducer,
 })
 
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
+})
+
+export const persistor = persistStore(store)
+
+export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch
 
 export default store
